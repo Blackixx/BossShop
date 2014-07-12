@@ -284,13 +284,13 @@ public class CommandManager implements CommandExecutor {
 	}
 
 	private void check(String s, List<String> c) {
-		c.add(s.replaceAll("§0", "").replaceAll("§r", "").replaceAll("§n", "").replaceAll("§m", "").replaceAll("§l", "").replaceAll("§k", "").replaceAll("§j", "").replaceAll("§i", "").replaceAll("§h", "").replaceAll("§g", "").replaceAll("§f", "").replaceAll("§e", "").replaceAll("§d", "").replaceAll("§c", "").replaceAll("§b", "").replaceAll("§a", "").replaceAll("§9", "").replaceAll("§8", "").replaceAll("§7", "").replaceAll("§6", "").replaceAll("§5", "").replaceAll("§4", "").replaceAll("§3", "").replaceAll("§2", "").replaceAll("§1", ""));
+		c.add(ChatColor.stripColor(s));
 
 	}
 
 	private void check(String s, List<String> c, CommandSender sender) {
 		sender.sendMessage(s);
-		c.add(s.replaceAll("§0", "").replaceAll("§r", "").replaceAll("§n", "").replaceAll("§m", "").replaceAll("§l", "").replaceAll("§k", "").replaceAll("§j", "").replaceAll("§i", "").replaceAll("§h", "").replaceAll("§g", "").replaceAll("§f", "").replaceAll("§e", "").replaceAll("§d", "").replaceAll("§c", "").replaceAll("§b", "").replaceAll("§a", "").replaceAll("§9", "").replaceAll("§8", "").replaceAll("§7", "").replaceAll("§6", "").replaceAll("§5", "").replaceAll("§4", "").replaceAll("§3", "").replaceAll("§2", "").replaceAll("§1", ""));
+		c.add(ChatColor.stripColor(s));
 	}
 
 }
