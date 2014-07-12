@@ -72,6 +72,10 @@
 			<id>gravity-repo</id>
 			<url>http://repo.gravitydevelopment.net</url>
 		</repository>
+		<repository>
+			<id>dakani</id>
+			<url>http://repo.dakanilabs.com/content/repositories/public</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -127,6 +131,25 @@
 			<artifactId>timedCommands</artifactId>
 			<version>2.6.5</version>
 			<systemPath>${basedir}/lib/ScheduledCommands.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.black_ixx</groupId>
+			<artifactId>PlayerPoints</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>pgDev.bukkit</groupId>
+			<artifactId>CommandPoints</artifactId>
+			<version>1.0</version>
+			<systemPath>${basedir}/lib/CommandPoints.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.enjin</groupId>
+			<artifactId>OfficialPlugin</artifactId>
+			<version>2.6.5</version>
+			<systemPath>${basedir}/lib/EnjinMinecraftPlugin.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
 	</dependencies>
