@@ -1,0 +1,38 @@
+name: BossShop
+version: 2.0.5
+description: The BOSS Shop Plugin
+author: Black_ixx
+website: http://felix.neuby.de
+main: org.black_ixx.bossshop.BossShop
+commands:
+  bs:
+   description: BossShop Command
+  bossshop:
+   description: BossShop Command
+  shop:
+   description: BossShop Command
+permissions:
+  BossShop.open:
+    description: Allows to open Shops via command/sign
+    default: op
+  BossShop.open.sign:
+    description: Allows to open Shops via sign
+    default: op
+  BossShop.open.command:
+    description: Allows to open Shops via command
+    default: op
+  BossShop.open.other:
+    description: Allows to open Shops for an other Player
+    default: op
+  BossShop.close:
+    description: Allows to close the Inventories of Players
+    default: op
+  BossShop.check:
+    description: Allows to use the "/bs check" command
+    default: op
+  BossShop.reload:
+    description: Allows to reload the Plugin
+    default: op
+  BossShop.createSign:
+    description: Allows to create BossShop Signs
+    default: op
