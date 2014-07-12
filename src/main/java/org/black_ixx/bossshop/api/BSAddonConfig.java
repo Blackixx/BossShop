@@ -14,21 +14,38 @@ public class BSAddonConfig {
 	private Plugin plugin;
 	private File file;
 	private YamlConfiguration config;
+	boolean isSaving = false;
 
-	public BSAddonConfig(Plugin plugin, String file_name){
-		this.plugin=plugin;
-		file = new File(plugin.getDataFolder().getAbsolutePath()+ "/"+file_name+".yml");
+	public BSAddonConfig(Plugin plugin, String file_name) {
+		this.plugin = plugin;
+		file = new File(plugin.getDataFolder().getAbsolutePath() + "/" + file_name + ".yml");
 		config = YamlConfiguration.loadConfiguration(file);
 	}
 
-
 	public void save() {
+		if (isSaving)
+			return;
+		isSaving = true;
+		
 		try {
 			config.save(file);
 		} catch (IOException e1) {
-			plugin.getLogger().warning(	"File I/O Exception on saving "+file.getName());
+			plugin.getLogger().warning("File I/O Exception on saving " + file.getName());
 			e1.printStackTrace();
 		}
+		
+		isSaving = false;
+	}
+	
+	public void saveAsync() {
+		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
+
+			@Override
+			public void run() {
+				save();
+			}
+			
+		});
 	}
 
 	public void reload() {
@@ -42,11 +59,9 @@ public class BSAddonConfig {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public FileConfiguration getConfig(){
+
+	public FileConfiguration getConfig() {
 		return config;
 	}
-	
-	
+
 }

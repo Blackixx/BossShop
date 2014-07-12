@@ -79,7 +79,7 @@ public class ShopCustomizer {
 				balance = (double)(((double)b)/100);
 			}
 			if(bal_points){
-				balance_points= m.getPointsManager().getPoints(p.getName());
+				balance_points= m.getPointsManager().getPoints(p);
 			}
 		}
 
