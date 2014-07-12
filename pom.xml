@@ -130,6 +130,7 @@
 		</dependency>
 	</dependencies>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>Cp1251</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>Cp1251</project.reporting.outputEncoding>
 	</properties>
 </project>
