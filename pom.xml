@@ -16,6 +16,7 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -129,8 +130,4 @@
 			<scope>system</scope>
 		</dependency>
 	</dependencies>
-	<properties>
-		<project.build.sourceEncoding>Cp1251</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>Cp1251</project.reporting.outputEncoding>
-	</properties>
 </project>
