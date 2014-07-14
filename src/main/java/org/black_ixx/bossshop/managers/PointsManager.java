@@ -43,7 +43,7 @@ public class PointsManager {
 				return;
 
 			case ENJIN_MINECRAFT_PLUGIN:
-				if (Bukkit.getPluginManager().getPlugin("Enjin Minecraft Plugin") == null) {
+				if (Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") == null) {
 					ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
 					return;
 				}
