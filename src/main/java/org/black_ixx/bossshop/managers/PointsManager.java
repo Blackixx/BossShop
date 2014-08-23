@@ -36,7 +36,7 @@ public class PointsManager {
 
 			case COMMANDPOINTS:
 				if (Bukkit.getPluginManager().getPlugin("CommandPoints") == null) {
-					ClassManager.manager.getBugFinder().severe("You defined CommandPoints as Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
+					ClassManager.manager.getBugFinder().severe("You defined CommandPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
 					return;
 				}
 				pa = new CommandPointsAPI();
@@ -44,7 +44,7 @@ public class PointsManager {
 
 			case ENJIN_MINECRAFT_PLUGIN:
 				if (Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") == null) {
-					ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
+					ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
 					return;
 				}
 				pa = new EnjinPointsAPI();
@@ -52,7 +52,7 @@ public class PointsManager {
 
 			case PLAYERPOINTS:
 				if (Bukkit.getPluginManager().getPlugin("PlayerPoints") == null) {
-					ClassManager.manager.getBugFinder().severe("You defined PlayerPoints as Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
+					ClassManager.manager.getBugFinder().severe("You defined PlayerPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
 					return;
 				}
 				pa = new PlayerPointsAPI();
@@ -67,7 +67,7 @@ public class PointsManager {
 			return;
 		}
 
-		ClassManager.manager.getBugFinder().warn("PlayerPoints/CommandPoints was not found... You need one of that plugins if you want to work with Points! Get PlayerPoints there: http://dev.bukkit.org/server-mods/playerpoints/");
+		ClassManager.manager.getBugFinder().warn("PlayerPoints/CommandPoints was not found... You need one of those plugins if you want this plugin to work with Points! Get PlayerPoints here: http://dev.bukkit.org/server-mods/playerpoints/");
 	}
 
 	public int getPoints(OfflinePlayer player) {
