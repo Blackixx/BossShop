@@ -15,6 +15,7 @@ import org.black_ixx.timedCommands.StoreHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -377,7 +378,14 @@ public class BSBuy {
 
 	private void giveRewardPlayerCommand(Player p, List<String> commands) {
 		for (String s : commands) {
-			p.performCommand(ClassManager.manager.getStringManager().transform(s));
+			String command = ClassManager.manager.getStringManager().transform(s);
+			PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(p, command);
+
+			Bukkit.getPluginManager().callEvent(event);
+			 
+			if (!event.isCancelled()) {
+				p.performCommand(event.getMessage());
+			}			
 		}
 	}
 
