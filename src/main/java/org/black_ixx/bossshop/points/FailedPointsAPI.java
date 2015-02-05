@@ -10,22 +10,28 @@ public class FailedPointsAPI extends IPointsAPI {
 	}
 
 	public int getPoints(OfflinePlayer player) {
-		Bukkit.broadcastMessage("PlayerPoints/CommandPoints was not found... " + "You need one of that plugins if you want to work with Points! " + "Get PlayerPoints there: " + "http://dev.bukkit.org/server-mods/playerpoints/");
+		informPlayer(player);
 		return 0;
 	}
 
 	public int setPoints(OfflinePlayer player, int points) {
-		Bukkit.broadcastMessage("PlayerPoints/CommandPoints was not found... " + "You need one of that plugins if you want to work with Points! " + "Get PlayerPoints there: " + "http://dev.bukkit.org/server-mods/playerpoints/");
+		informPlayer(player);
 		return 0;
 	}
 
 	public int takePoints(OfflinePlayer player, int points) {
-		Bukkit.broadcastMessage("PlayerPoints/CommandPoints was not found... " + "You need one of that plugins if you want to work with Points! " + "Get PlayerPoints there: " + "http://dev.bukkit.org/server-mods/playerpoints/");
+		informPlayer(player);
 		return 0;
 	}
 
 	public int givePoints(OfflinePlayer player, int points) {
-		Bukkit.broadcastMessage("PlayerPoints/CommandPoints was not found... " + "You need one of that plugins if you want to work with Points! " + "Get PlayerPoints there: " + "http://dev.bukkit.org/server-mods/playerpoints/");
+		informPlayer(player);
 		return 0;
+	}
+
+	private void informPlayer(OfflinePlayer player) {
+		Bukkit.getConsoleSender().sendMessage("PlayerPoints/CommandPoints was not found... " + "You need one of that plugins if you want to work with Points! " + "Get PlayerPoints there: " + "http://dev.bukkit.org/server-mods/playerpoints/");
+		if(player.isOnline())
+			player.getPlayer().sendMessage("[BossShop] Invalid configuration encountered. Please inform an administrator.");
 	}
 }
