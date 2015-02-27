@@ -4,6 +4,7 @@ import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.PointsManager.PointsPlugin;
 import org.black_ixx.bossshop.points.PointsAPI;
+import org.bukkit.Bukkit;
 
 public class ConfigHandler {
 
@@ -30,15 +31,15 @@ public class ConfigHandler {
 		PointsPlugin p = null;
 		if (points_plugin != null) {
 
-			if (points_plugin.equalsIgnoreCase("PlayerPoints") || points_plugin.equalsIgnoreCase("PP")) {
+			if (points_plugin.equalsIgnoreCase("PlayerPoints") || points_plugin.equalsIgnoreCase("PP") || Bukkit.getPluginManager().getPlugin("PlayerPoints") != null) {
 				p = PointsPlugin.PLAYERPOINTS;
 			}
 
-			if (points_plugin.equalsIgnoreCase("CommandPoints") || points_plugin.equalsIgnoreCase("CP")) {
+			if (points_plugin.equalsIgnoreCase("CommandPoints") || points_plugin.equalsIgnoreCase("CP") || Bukkit.getPluginManager().getPlugin("CommandPoints") != null) {
 				p = PointsPlugin.COMMANDPOINTS;
 			}
 
-			if (points_plugin.equalsIgnoreCase("EnjinMinecraftPlugin") || points_plugin.equalsIgnoreCase("Enjin") || points_plugin.equalsIgnoreCase("EMP")) {
+			if (points_plugin.equalsIgnoreCase("EnjinMinecraftPlugin") || points_plugin.equalsIgnoreCase("Enjin") || points_plugin.equalsIgnoreCase("EMP") || Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") != null) {
 				p = PointsPlugin.ENJIN_MINECRAFT_PLUGIN;
 			}
 
