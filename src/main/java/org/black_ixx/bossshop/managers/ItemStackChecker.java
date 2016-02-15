@@ -172,7 +172,7 @@ public class ItemStackChecker {
 
 		ItemStack s = new ItemStack(i.getType(),amount,i.getDurability());
 		if (!i.getEnchantments().isEmpty()){
-			s.addEnchantments(i.getEnchantments());
+			s.addUnsafeEnchantments(i.getEnchantments());
 		}
 
 		//Max stack size = 1

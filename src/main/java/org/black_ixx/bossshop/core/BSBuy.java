@@ -379,12 +379,12 @@ public class BSBuy {
 	private void giveRewardPlayerCommand(Player p, List<String> commands) {
 		for (String s : commands) {
 			String command = ClassManager.manager.getStringManager().transform(s);
-			PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(p, command);
+			PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(p, "/"+command);
 
 			Bukkit.getPluginManager().callEvent(event);
 			 
 			if (!event.isCancelled()) {
-				p.performCommand(event.getMessage());
+				p.sendMessage(event.getMessage());
 			}			
 		}
 	}
