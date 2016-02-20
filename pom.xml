@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.black_ixx</groupId>
 	<artifactId>BossShop</artifactId>
-	<version>2.1.0</version>
+	<version>2.2.0</version>
 	<name>BossShop</name>
 	<description>Create virtual chest shops</description>
 	<build>
@@ -89,15 +89,21 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.7.9-R0.3-SNAPSHOT</version>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.8.8-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.7.9-R0.3-SNAPSHOT</version>
+			<artifactId>bukkit</artifactId>
+			<version>1.8.8-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -161,6 +167,13 @@
 			<artifactId>OfficialPlugin</artifactId>
 			<version>2.6.5</version>
 			<systemPath>${basedir}/lib/EnjinMinecraftPlugin.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
+			<groupId>me.BukkitPVP</groupId>
+			<artifactId>PointsAPI</artifactId>
+			<version>1.5.1</version>
+			<systemPath>${basedir}/lib/PointsAPI.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
 	</dependencies>
