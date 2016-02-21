@@ -10,6 +10,9 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.2.1:
+*[FIX] Fixed Playercommands
+
 v2.2.0:
 *[ADD] Added PointsAPI support
 *[IMPROVE] When TransactionLog is enabled: No longer logging when player switches the server of clicks a shop-link

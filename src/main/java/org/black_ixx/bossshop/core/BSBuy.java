@@ -384,7 +384,7 @@ public class BSBuy {
 			Bukkit.getPluginManager().callEvent(event);
 			 
 			if (!event.isCancelled()) {
-				p.sendMessage(event.getMessage());
+				p.performCommand(event.getMessage().substring(1));
 			}			
 		}
 	}
