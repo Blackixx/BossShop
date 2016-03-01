@@ -258,35 +258,60 @@ public class ItemStackCreator {
 
 				continue;
 			}
-                        if (Bukkit.getVersion().contains("1.8")) {          // Make sure server is 1.8
-                        if (s.equalsIgnoreCase("banner")) {
-                                if (i.getType()!=Material.BANNER){
-                                        ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (patterns) You can't use \"banner\" on items which are not banners...");
-                                        continue;                                                
-                                }
-                                BannerMeta meta = (BannerMeta)i.getItemMeta();
-                            String[] bdata = a.split("\\+");
-                                DyeColor basecolor = DyeColor.valueOf(bdata[0]);
-                                if(basecolor != null) {
-                                    List<Pattern> patterns = new ArrayList<>();
-                                        for(int y = 1; y < bdata.length; y++) {
-                                            try {
-                                        String[] bpattern = bdata[y].split("-");
-                                        DyeColor patterncolor = DyeColor.valueOf(bpattern[0]);
-                                        PatternType patterntype = PatternType.getByIdentifier(bpattern[1]);
-                                        Pattern pattern = new Pattern(patterncolor, patterntype);
-                                            patterns.add(pattern);
-                                            }catch (Exception e){
-                                            }                                            
-                                        }
-                                        meta.setBaseColor(basecolor);
-                                        meta.setPatterns(patterns);
-                                }
-                                i.setItemMeta(meta);                                                        
-                            continue;                           
-                        }
-                        }else{
-                            continue;
+			if (Bukkit.getVersion().contains("1.8") || Bukkit.getVersion().contains("1.9")) {    // Make sure server is 1.8+
+	                        if (s.equalsIgnoreCase("banner")) {
+	                                if (i.getType()!=Material.BANNER){
+	                                        ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (patterns) You can't use \"banner\" on items which are not banners...");
+	                                        continue;                                                
+	                                }
+	                                BannerMeta meta = (BannerMeta)i.getItemMeta();
+	                            String[] bdata = a.split("\\+");
+	                                DyeColor basecolor = DyeColor.valueOf(bdata[0]);
+	                                if(basecolor != null) {
+	                                    List<Pattern> patterns = new ArrayList<>();
+	                                        for(int y = 1; y < bdata.length; y++) {
+	                                            try {
+	                                        String[] bpattern = bdata[y].split("-");
+	                                        DyeColor patterncolor = DyeColor.valueOf(bpattern[0]);
+	                                        PatternType patterntype = PatternType.getByIdentifier(bpattern[1]);
+	                                        Pattern pattern = new Pattern(patterncolor, patterntype);
+	                                            patterns.add(pattern);
+	                                            }catch (Exception e){
+	                                            }                                            
+	                                        }
+	                                        meta.setBaseColor(basecolor);
+	                                        meta.setPatterns(patterns);
+	                                }
+	                                i.setItemMeta(meta);                                                        
+	                            continue;                           
+	                        }
+	                        
+				if (s.equalsIgnoreCase("hideflags")){
+					a=stringFix(a);
+					ItemMeta meta = i.getItemMeta();
+					if (a.equalsIgnoreCase("all") || a.equalsIgnoreCase("true")) {
+						for (ItemFlag flag : ItemFlag.values()) {
+							meta.addItemFlags(flag);
+						}
+					} else {
+						String par[] = a.split("#");
+						
+						for (String p : par) {
+							p = p.toUpperCase().replace(" ", "_");
+							if (!p.startsWith("HIDE_")) {
+								p = "HIDE_" + p;
+							}
+							try {
+								meta.addItemFlags(ItemFlag.valueOf(p));
+							} catch (Exception e){
+								ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (hideflags) The flag \""+p+"\" does not exist !");
+							}
+						}
+		
+					}
+					i.setItemMeta(meta);
+					continue;
+				}
                         }
                         
 			if (s.equalsIgnoreCase("playerhead")){
