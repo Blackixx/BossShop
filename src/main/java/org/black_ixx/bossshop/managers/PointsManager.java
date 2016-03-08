@@ -9,14 +9,14 @@ public class PointsManager {
 	private IPointsAPI pa;
 
 	public enum PointsPlugin {
-		PLAYERPOINTS, COMMANDPOINTS, ENJIN_MINECRAFT_PLUGIN, CUSTOM;
-		
+		PLAYERPOINTS, COMMANDPOINTS, ENJIN_MINECRAFT_PLUGIN, POINTSAPI, CUSTOM;
+
 		private String name;
-		
+
 		public void setCustom(String name) {
 			this.name = name;
 		}
-		
+
 		public String getCustom() {
 			return name;
 		}
@@ -34,38 +34,49 @@ public class PointsManager {
 
 		switch (p) {
 
-			case COMMANDPOINTS:
-				if (Bukkit.getPluginManager().getPlugin("CommandPoints") == null) {
-					ClassManager.manager.getBugFinder().severe("You defined CommandPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-					return;
-				}
-				pa = new CommandPointsAPI();
+		case COMMANDPOINTS:
+			if (Bukkit.getPluginManager().getPlugin("CommandPoints") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined CommandPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
 				return;
-
-			case ENJIN_MINECRAFT_PLUGIN:
-				if (Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") == null) {
-					ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-					return;
-				}
-				pa = new EnjinPointsAPI();
-				return;
-
-			case PLAYERPOINTS:
-				if (Bukkit.getPluginManager().getPlugin("PlayerPoints") == null) {
-					ClassManager.manager.getBugFinder().severe("You defined PlayerPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-					return;
-				}
-				pa = new PlayerPointsAPI();
-				return;
-
-		}
-
-		IPointsAPI customPoints = PointsAPI.get(p.getCustom());
-
-		if (customPoints != null) {
-			pa = customPoints;
+			}
+			pa = new CommandPointsAPI();
 			return;
+
+		case ENJIN_MINECRAFT_PLUGIN:
+			if (Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
+				return;
+			}
+			pa = new EnjinPointsAPI();
+			return;
+
+		case PLAYERPOINTS:
+			if (Bukkit.getPluginManager().getPlugin("PlayerPoints") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined PlayerPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
+				return;
+			}
+			pa = new PlayerPointsAPI();
+			return;
+
+		case POINTSAPI:
+			if (Bukkit.getPluginManager().getPlugin("PointsAPI") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined PointsAPI as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
+				return;
+			}
+			pa = new PointsAPIPlugin();
+			return;
+
+		case CUSTOM:
+			IPointsAPI customPoints = PointsAPI.get(p.getCustom());
+			if (customPoints != null) {
+				pa = customPoints;
+				return;
+			}	
+			break;
+
 		}
+
+
 
 		ClassManager.manager.getBugFinder().warn("PlayerPoints/CommandPoints was not found... You need one of those plugins if you want this plugin to work with Points! Get PlayerPoints here: http://dev.bukkit.org/server-mods/playerpoints/");
 	}

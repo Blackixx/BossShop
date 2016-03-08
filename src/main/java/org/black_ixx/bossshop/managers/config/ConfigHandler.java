@@ -39,6 +39,10 @@ public class ConfigHandler {
 				p = PointsPlugin.COMMANDPOINTS;
 			}
 
+			if (points_plugin.equalsIgnoreCase("PointsAPI") || points_plugin.equalsIgnoreCase("PAPI") || Bukkit.getPluginManager().getPlugin("PointsAPI") != null) {
+				p = PointsPlugin.POINTSAPI;
+			}
+
 			if (points_plugin.equalsIgnoreCase("EnjinMinecraftPlugin") || points_plugin.equalsIgnoreCase("Enjin") || points_plugin.equalsIgnoreCase("EMP") || Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") != null) {
 				p = PointsPlugin.ENJIN_MINECRAFT_PLUGIN;
 			}

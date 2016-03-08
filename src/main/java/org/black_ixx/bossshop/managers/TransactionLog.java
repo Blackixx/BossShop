@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSBuy;
+import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -63,6 +64,9 @@ public class TransactionLog {
 	}
 	
 	public void addTransaction(Player p, BSBuy buy){
+		if(buy.getBuyType()==BSBuyType.Shop || buy.getBuyType()==BSBuyType.BungeeCordServer){
+			return; //not logging when player switches menu or server
+		}
 		addTransaction("Player "+p.getName()+" bought "+buy.getName()+"("+buy.getBuyType().name()+") for "+buy.getPriceType().name()+".");
 	}
 

@@ -668,6 +668,9 @@ public class DefaultCreator {
 		if (Bukkit.getPluginManager().getPlugin("PlayerPoints")!=null){
 			return true;
 		}
+		if (Bukkit.getPluginManager().getPlugin("PointsAPI")!=null){
+			return true;
+		}
 		if (Bukkit.getPluginManager().getPlugin("CommandPoints")!=null){
 			return true;
 		}

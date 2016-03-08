@@ -3,12 +3,16 @@ package org.black_ixx.bossshop.managers;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.bukkit.Bukkit;
 
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.block.banner.Pattern;
+import org.bukkit.block.banner.PatternType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -18,12 +22,12 @@ import org.bukkit.material.Colorable;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class ItemStackCreator {
+public class ItemStackCreator {    
 
 	@SuppressWarnings("deprecation")
 	public ItemStack createItemStack(List<String> itemData){
 		ItemStack i = new ItemStack(Material.STONE);
-
+                
 		for (String x : itemData){
 
 			String parts[] = x.split(":",2);
@@ -254,6 +258,62 @@ public class ItemStackCreator {
 
 				continue;
 			}
+			if (Bukkit.getVersion().contains("1.8") || Bukkit.getVersion().contains("1.9")) {    // Make sure server is 1.8+
+	                        if (s.equalsIgnoreCase("banner")) {
+	                                if (i.getType()!=Material.BANNER){
+	                                        ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (patterns) You can't use \"banner\" on items which are not banners...");
+	                                        continue;                                                
+	                                }
+	                                BannerMeta meta = (BannerMeta)i.getItemMeta();
+	                            String[] bdata = a.split("\\+");
+	                                DyeColor basecolor = DyeColor.valueOf(bdata[0]);
+	                                if(basecolor != null) {
+	                                    List<Pattern> patterns = new ArrayList<>();
+	                                        for(int y = 1; y < bdata.length; y++) {
+	                                            try {
+	                                        String[] bpattern = bdata[y].split("-");
+	                                        DyeColor patterncolor = DyeColor.valueOf(bpattern[0]);
+	                                        PatternType patterntype = PatternType.getByIdentifier(bpattern[1]);
+	                                        Pattern pattern = new Pattern(patterncolor, patterntype);
+	                                            patterns.add(pattern);
+	                                            }catch (Exception e){
+	                                            }                                            
+	                                        }
+	                                        meta.setBaseColor(basecolor);
+	                                        meta.setPatterns(patterns);
+	                                }
+	                                i.setItemMeta(meta);                                                        
+	                            continue;                           
+	                        }
+	                        
+				if (s.equalsIgnoreCase("hideflags")){
+					a=stringFix(a);
+					ItemMeta meta = i.getItemMeta();
+					if (a.equalsIgnoreCase("all") || a.equalsIgnoreCase("true")) {
+						for (ItemFlag flag : ItemFlag.values()) {
+							meta.addItemFlags(flag);
+						}
+					} else {
+						String par[] = a.split("#");
+						
+						for (String p : par) {
+							p = p.toUpperCase().replace(" ", "_");
+							if (!p.startsWith("HIDE_")) {
+								p = "HIDE_" + p;
+							}
+							try {
+								meta.addItemFlags(ItemFlag.valueOf(p));
+							} catch (Exception e){
+								ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (hideflags) The flag \""+p+"\" does not exist !");
+							}
+						}
+		
+					}
+					i.setItemMeta(meta);
+					continue;
+				}
+                        }
+                        
 			if (s.equalsIgnoreCase("playerhead")){
 				if (i.getType()!=Material.SKULL_ITEM){
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (playerhead) You can't use \"PlayerHead\" on items which are not skulls...");
@@ -339,7 +399,7 @@ public class ItemStackCreator {
 
 		return i;
 	}
-
+          
 	private boolean isInteger(String str)  
 	{  
 		try  

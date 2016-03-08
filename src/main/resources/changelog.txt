@@ -10,10 +10,20 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.2.1:
+*[FIX] Fixed Playercommands
+
+v2.2.0:
+*[ADD] Added PointsAPI support
+*[IMPROVE] When TransactionLog is enabled: No longer logging when player switches the server of clicks a shop-link
+*[IMPROVE] Players can now sell items with unsafe enchantments
+*[FIX] Updated Serverpinging
+*[FIX] Other tiny fixes
+
 v2.1.0:
-*[Improve] API Updates, custom points no longer use BossAPI. If you have a plugin which uses BossAPI for points, please update it
-*[FIX] Fixed Enjin Integration
 *[IMPROVE] Now uses UUIDs for PlayerPoints
+*[IMPROVE] API Updates, custom points no longer use BossAPI. If you have a plugin which uses BossAPI for points, please update it
+*[FIX] Fixed Enjin Integration
 
 v2.0.5:
 
