@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemStackChecker {
+	
+	private final static int OFF_HAND_SLOT = 40;
 
 	public ItemStackChecker(){
 	}
@@ -32,16 +34,20 @@ public class ItemStackChecker {
 	}
 
 	public void takeItem(ItemStack i, Player p){
-
 		int a = 0;
+		int slot = -1;
 
 
 
 		if (!i.getEnchantments().isEmpty()){
 			for (ItemStack s : p.getInventory().getContents()){
+				slot++;
 				if (s!=null){
 
 					if (!canSell(p, s)){
+						continue;
+					}
+					if(slot==OFF_HAND_SLOT){
 						continue;
 					}
 
@@ -66,9 +72,13 @@ public class ItemStackChecker {
 
 
 		for (ItemStack s : p.getInventory().getContents()){
+			slot++;
 			if (s!=null){
 
 				if (!canSell(p, s)){
+					continue;
+				}
+				if(slot==OFF_HAND_SLOT){
 					continue;
 				}
 
@@ -105,7 +115,6 @@ public class ItemStackChecker {
 
 
 	private boolean containsSameEnchantments(ItemStack i, ItemStack s){
-
 		for (Enchantment e : i.getEnchantments().keySet()){
 			if (!s.containsEnchantment(e)){
 				return false;
@@ -127,13 +136,18 @@ public class ItemStackChecker {
 
 	private int getAmountOfSameItems(Player p, ItemStack i){
 		int a = 0;
+		int slot = -1;
 
 
 		if (!i.getEnchantments().isEmpty()){
 			for (ItemStack s : p.getInventory().getContents()){
+				slot++;
 				if (s!=null){
 
 					if (!canSell(p, s)){
+						continue;
+					}
+					if(slot==OFF_HAND_SLOT){
 						continue;
 					}
 
@@ -151,9 +165,13 @@ public class ItemStackChecker {
 		}
 
 		for (ItemStack s : p.getInventory().getContents()){
+			slot++;
 			if (s!=null){
 
 				if (!canSell(p, s)){
+					continue;
+				}
+				if(slot==OFF_HAND_SLOT){
 					continue;
 				}
 
@@ -169,7 +187,6 @@ public class ItemStackChecker {
 
 
 	private void addItem(ItemStack i, Player p, int amount){
-
 		ItemStack s = new ItemStack(i.getType(),amount,i.getDurability());
 		if (!i.getEnchantments().isEmpty()){
 			s.addUnsafeEnchantments(i.getEnchantments());
@@ -212,7 +229,6 @@ public class ItemStackChecker {
 
 	public void tellPlayerItemsNeeded(List<ItemStack> items, Player p){
 		for (ItemStack i : items){
-
 			if (!inventoryContainsItem(p, i)){
 				p.sendMessage(ChatColor.RED+"- "+i.getAmount()+" "+i.getType().name());
 			}else{
@@ -232,9 +248,6 @@ public class ItemStackChecker {
 	}
 
 	private boolean canSell(Player p, ItemStack i){
-		if(p.getInventory().getItemInOffHand() == i){ //Players should not be able to sell items in their offhand because that leads to glitches
-			return false;
-		}
 		return isTool(i)?i.getDurability()==0:true;
 	}
 

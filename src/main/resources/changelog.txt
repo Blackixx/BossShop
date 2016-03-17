@@ -10,10 +10,13 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+
+*v2.2.4 BETA
+*[FIX] Players can no longer glitch by selling items which are in their off-hand (http://dev.bukkit.org/bukkit-plugins/bossshop/tickets/257-bug-second-hand-slot/)
+
 *v2.2.3 BETA
 *[UPDATE] Now supporting Enjin x3! (Beta. Please test it out!)
 *[ADD] Added Itemflag support
-*[FIX] Players can no longer glitch by selling items which are in their off-hand
 
 v2.2.2:
 *[UPDATE] Updated to 1.9
