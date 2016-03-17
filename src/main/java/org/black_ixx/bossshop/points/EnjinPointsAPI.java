@@ -5,9 +5,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.Plugin;
 
-import com.enjin.officialplugin.points.ErrorConnectingToEnjinException;
-import com.enjin.officialplugin.points.PlayerDoesNotExistException;
-import com.enjin.officialplugin.points.PointsAPI.Type;
+import com.enjin.core.EnjinServices;
+import com.enjin.rpc.mappings.mappings.general.RPCData;
+import com.enjin.rpc.mappings.services.PointService;
+
 
 public class EnjinPointsAPI extends IPointsAPI {
 
@@ -24,46 +25,22 @@ public class EnjinPointsAPI extends IPointsAPI {
 	}
 
 	public int getPoints(OfflinePlayer player) {
-		try {
-			return com.enjin.officialplugin.points.PointsAPI.getPointsForPlayer(player.getName());
-		} catch (PlayerDoesNotExistException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to get Player " + player.getName() + ". Not Existing!");
-		} catch (ErrorConnectingToEnjinException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to connect to Enjin!");
-		}
-		return 0;
+		RPCData<Integer> data = EnjinServices.getService(PointService.class).get(player.getName());
+		return data.getResult();
 	}
 
 	public int setPoints(OfflinePlayer player, int points) {
-		com.enjin.officialplugin.points.PointsAPI.modifyPointsToPlayerAsynchronously(player.getName(), points, Type.SetPoints);
+		EnjinServices.getService(PointService.class).set(player.getName(), points);
 		return points;
 	}
 
 	public int takePoints(OfflinePlayer player, int points) {
-		String name = player.getName();
-		try {
-			return com.enjin.officialplugin.points.PointsAPI.modifyPointsToPlayer(name, points, Type.RemovePoints);
-		} catch (NumberFormatException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to take Points... \"NumberFormatException\" Tried to take " + points + " Points from " + name + ".");
-		} catch (PlayerDoesNotExistException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to get Player " + name + ". Not Existing!");
-		} catch (ErrorConnectingToEnjinException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to connect to Enjin!");
-		}
+		EnjinServices.getService(PointService.class).remove(player.getName(), points);
 		return getPoints(player);
 	}
 
 	public int givePoints(OfflinePlayer player, int points) {
-		String name = player.getName();
-		try {
-			return com.enjin.officialplugin.points.PointsAPI.modifyPointsToPlayer(name, points, Type.AddPoints);
-		} catch (NumberFormatException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to take Points... \"NumberFormatException\" Tried to take " + points + " Points from " + name + ".");
-		} catch (PlayerDoesNotExistException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to get Player " + name + ". Not Existing!");
-		} catch (ErrorConnectingToEnjinException e) {
-			ClassManager.manager.getBugFinder().warn("[Enjin Minecraft Plugin] Not able to connect to Enjin!");
-		}
+		EnjinServices.getService(PointService.class).add(player.getName(), points);
 		return getPoints(player);
 	}
 }

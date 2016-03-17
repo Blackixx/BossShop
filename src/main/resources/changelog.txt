@@ -10,6 +10,9 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+*v2.2.3 BETA
+*[UPDATE] Now supporting Enjin x3!
+
 v2.2.2:
 *[UPDATE] Updated to 1.9
 
