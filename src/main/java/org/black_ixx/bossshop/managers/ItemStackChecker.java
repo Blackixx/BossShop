@@ -41,7 +41,7 @@ public class ItemStackChecker {
 			for (ItemStack s : p.getInventory().getContents()){
 				if (s!=null){
 
-					if (!canSell(s)){
+					if (!canSell(p, s)){
 						continue;
 					}
 
@@ -68,7 +68,7 @@ public class ItemStackChecker {
 		for (ItemStack s : p.getInventory().getContents()){
 			if (s!=null){
 
-				if (!canSell(s)){
+				if (!canSell(p, s)){
 					continue;
 				}
 
@@ -133,7 +133,7 @@ public class ItemStackChecker {
 			for (ItemStack s : p.getInventory().getContents()){
 				if (s!=null){
 
-					if (!canSell(s)){
+					if (!canSell(p, s)){
 						continue;
 					}
 
@@ -153,7 +153,7 @@ public class ItemStackChecker {
 		for (ItemStack s : p.getInventory().getContents()){
 			if (s!=null){
 
-				if (!canSell(s)){
+				if (!canSell(p, s)){
 					continue;
 				}
 
@@ -224,14 +224,17 @@ public class ItemStackChecker {
 	}
 
 	private boolean isTool(ItemStack i){
-//		String n = i.getType().name().toLowerCase();
-//		if (n.contains("steal")||n.contains("wood")||n.contains("stone")||n.contains("iron")||n.contains("gold")||n.contains("diamond")||n.contains("chain")||n.contains("leather")){
-//			return true;
-//		}
+		//		String n = i.getType().name().toLowerCase();
+		//		if (n.contains("steal")||n.contains("wood")||n.contains("stone")||n.contains("iron")||n.contains("gold")||n.contains("diamond")||n.contains("chain")||n.contains("leather")){
+		//			return true;
+		//		}
 		return false;
 	}
 
-	private boolean canSell(ItemStack i){
+	private boolean canSell(Player p, ItemStack i){
+		if(p.getInventory().getItemInOffHand() == i){ //Players should not be able to sell items in their offhand because that leads to glitches
+			return false;
+		}
 		return isTool(i)?i.getDurability()==0:true;
 	}
 

@@ -28,7 +28,7 @@ public class ItemStackCreator {
 	@SuppressWarnings("deprecation")
 	public ItemStack createItemStack(List<String> itemData){
 		ItemStack i = new ItemStack(Material.STONE);
-                
+
 		for (String x : itemData){
 
 			String parts[] = x.split(":",2);
@@ -50,7 +50,7 @@ public class ItemStackCreator {
 						//Do not change anything
 					}
 				}
-				
+
 				if (!isInteger(a)){
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (id) needs to be a number!");
 					continue;
@@ -66,7 +66,7 @@ public class ItemStackCreator {
 
 			if (s.equalsIgnoreCase("type")){
 				a=stringFix(a);
-				
+
 				if(a.contains(":")){
 					String pa[] = a.split(":", 2);
 					String type = pa[0].trim();
@@ -80,7 +80,7 @@ public class ItemStackCreator {
 					}
 				}
 				a=a.toUpperCase();
-				
+
 				if (Material.getMaterial(a)==null){
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (type) is no valid Material!");
 					continue;
@@ -161,7 +161,7 @@ public class ItemStackCreator {
 					if (isInteger(eType)){
 						e=Enchantment.getById((Integer)Integer.parseInt(eType));
 					}else{
-					e = Enchantment.getByName(eType);
+						e = Enchantment.getByName(eType);
 					}
 
 					if (e == null){
@@ -260,33 +260,33 @@ public class ItemStackCreator {
 				continue;
 			}
 			if (Bukkit.getVersion().contains("1.8") || Bukkit.getVersion().contains("1.9")) {    // Make sure server is 1.8+
-	                        if (s.equalsIgnoreCase("banner")) {
-	                                if (i.getType()!=Material.BANNER){
-	                                        ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (patterns) You can't use \"banner\" on items which are not banners...");
-	                                        continue;                                                
-	                                }
-	                                BannerMeta meta = (BannerMeta)i.getItemMeta();
-	                            String[] bdata = a.split("\\+");
-	                                DyeColor basecolor = DyeColor.valueOf(bdata[0]);
-	                                if(basecolor != null) {
-	                                    List<Pattern> patterns = new ArrayList<>();
-	                                        for(int y = 1; y < bdata.length; y++) {
-	                                            try {
-	                                        String[] bpattern = bdata[y].split("-");
-	                                        DyeColor patterncolor = DyeColor.valueOf(bpattern[0]);
-	                                        PatternType patterntype = PatternType.getByIdentifier(bpattern[1]);
-	                                        Pattern pattern = new Pattern(patterncolor, patterntype);
-	                                            patterns.add(pattern);
-	                                            }catch (Exception e){
-	                                            }                                            
-	                                        }
-	                                        meta.setBaseColor(basecolor);
-	                                        meta.setPatterns(patterns);
-	                                }
-	                                i.setItemMeta(meta);                                                        
-	                            continue;                           
-	                        }
-	                        
+				if (s.equalsIgnoreCase("banner")) {
+					if (i.getType()!=Material.BANNER){
+						ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (patterns) You can't use \"banner\" on items which are not banners...");
+						continue;                                                
+					}
+					BannerMeta meta = (BannerMeta)i.getItemMeta();
+					String[] bdata = a.split("\\+");
+					DyeColor basecolor = DyeColor.valueOf(bdata[0]);
+					if(basecolor != null) {
+						List<Pattern> patterns = new ArrayList<>();
+						for(int y = 1; y < bdata.length; y++) {
+							try {
+								String[] bpattern = bdata[y].split("-");
+								DyeColor patterncolor = DyeColor.valueOf(bpattern[0]);
+								PatternType patterntype = PatternType.getByIdentifier(bpattern[1]);
+								Pattern pattern = new Pattern(patterncolor, patterntype);
+								patterns.add(pattern);
+							}catch (Exception e){
+							}                                            
+						}
+						meta.setBaseColor(basecolor);
+						meta.setPatterns(patterns);
+					}
+					i.setItemMeta(meta);                                                        
+					continue;                           
+				}
+
 				if (s.equalsIgnoreCase("hideflags")){
 					a=stringFix(a);
 					ItemMeta meta = i.getItemMeta();
@@ -296,7 +296,7 @@ public class ItemStackCreator {
 						}
 					} else {
 						String par[] = a.split("#");
-						
+
 						for (String p : par) {
 							p = p.toUpperCase().replace(" ", "_");
 							if (!p.startsWith("HIDE_")) {
@@ -308,13 +308,13 @@ public class ItemStackCreator {
 								ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (hideflags) The flag \""+p+"\" does not exist !");
 							}
 						}
-		
+
 					}
 					i.setItemMeta(meta);
 					continue;
 				}
-                        }
-                        
+			}
+
 			if (s.equalsIgnoreCase("playerhead")){
 				if (i.getType()!=Material.SKULL_ITEM){
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (playerhead) You can't use \"PlayerHead\" on items which are not skulls...");
@@ -323,6 +323,14 @@ public class ItemStackCreator {
 
 				SkullMeta meta = (SkullMeta) i.getItemMeta();
 				meta.setOwner(a);
+				i.setItemMeta(meta);				
+				continue;
+			}
+
+
+			if (s.equalsIgnoreCase("itemflag")){
+				ItemMeta meta =  i.getItemMeta();
+				meta.addItemFlags(ItemFlag.valueOf(a));
 				i.setItemMeta(meta);				
 				continue;
 			}
@@ -358,9 +366,9 @@ public class ItemStackCreator {
 
 				continue;
 			}
-			
-			
-			
+
+
+
 
 			if (s.equalsIgnoreCase("guishopmanageritem")||s.equalsIgnoreCase("gsmitem")||s.equalsIgnoreCase("guishopmanager")||s.equalsIgnoreCase("gsm")){
 				ItemStack gi = new GuiShopManagerManager().getGuiShopManagerItem(a);
@@ -370,12 +378,12 @@ public class ItemStackCreator {
 				i=gi; 
 				continue;
 			}
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
 
 			//			if (s.equalsIgnoreCase("splashpotion")){
 			//
@@ -400,7 +408,7 @@ public class ItemStackCreator {
 
 		return i;
 	}
-          
+
 	private boolean isInteger(String str)  
 	{  
 		try  
@@ -427,27 +435,27 @@ public class ItemStackCreator {
 		}  
 		return true;  
 	}
-	
+
 	private String stringFix(String s){
 		if (s.contains(" ")){
 			s=s.replaceAll(" ", "");
 		}
 		return s;
 	}
-	
+
 	private int getTicksFromSeconds(String s){
 		try{
 			Double d = Double.parseDouble(s);
 			return (int) (d*20);			
 		}catch(Exception e){
 		}
-		
+
 		try{
 			Integer i = Integer.parseInt(s);
 			return (int) (i*20);
 		}catch (Exception e){
 		}
-		
+
 		return 0;
 	}
 
