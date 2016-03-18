@@ -10,11 +10,19 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+
+v2.2.6
+*[FIX] Fixed an other Minecraft 1.9 exploit
+
+
 v2.2.5
+*[IMPROVE] Improved the default configuration by adding example ItemFlags
 *[FIX] Points-plugin detection has been fixed and improved.
+
 
 v2.2.4 BETA
 *[FIX] Players can no longer glitch by selling items which are in their off-hand (http://dev.bukkit.org/bukkit-plugins/bossshop/tickets/257-bug-second-hand-slot/)
+
 
 v2.2.3 BETA
 *[UPDATE] Now supporting Enjin x3!
@@ -23,8 +31,10 @@ v2.2.3 BETA
 v2.2.2:
 *[UPDATE] Updated to 1.9
 
+
 v2.2.1:
 *[FIX] Fixed Playercommands
+
 
 v2.2.0:
 *[ADD] Added PointsAPI support
@@ -32,6 +42,7 @@ v2.2.0:
 *[IMPROVE] Players can now sell items with unsafe enchantments
 *[FIX] Updated Serverpinging
 *[FIX] Other tiny fixes
+
 
 v2.1.0:
 *[IMPROVE] Now uses UUIDs for PlayerPoints
@@ -47,7 +58,6 @@ v2.0.5:
 
 
 v2.0.4:
-
 *[ADD] New API Methods were added!
 *[IMPROVE] Better Balance Display:
 ** Player Money - 461.041873205712964194561
@@ -56,7 +66,6 @@ v2.0.4:
 
 
 v2.0.3:
-
 *[ADD] New API methods and possibilities were added
 *[IMPROVE] Now supporting even more symbols:**
 **[<3] -> ❤
@@ -75,8 +84,8 @@ v2.0.3:
 **[note] -> ♩ 
 *[IMPROVE] Better Enchantment-Debugging (In case of Config mistakes)
 
-v2.0.2:
 
+v2.0.2:
 *[ADD] Added a new RewardType: 'Enchantment'. Now you can sell Enchantments!
 *[ADD] You can color the titles of your Inventories now
 *[ADD] Now Inventories are updated after a transaction if the shop works with overlapping items or displays the players balance
@@ -85,7 +94,6 @@ v2.0.2:
 
 
 v2.0.1
-
 *[Add] Added the /bs open <shop> <player> command. Allows to open Shops for other Players!
 *[IMPROVE] Improved the Debugger Structure
 *[NOTE] Cooming soon:
@@ -95,11 +103,10 @@ v2.0.1
 
 
 v2.0.0 (Boss Update)
-
 *[Add] Added a Config Header
 
-v1.9.2 (Still Beta. If you want a stable version, use v1.8.3)
 
+v1.9.2 (Still Beta. If you want a stable version, use v1.8.3)
 *[ADD] Added Update Notifications (Optional)
 *[ADD] Added the "BossShop.open.command.<shopname>" permission. 
 **BossShop.open - Gives access to all Shops
@@ -112,13 +119,11 @@ v1.9.2 (Still Beta. If you want a stable version, use v1.8.3)
 
 
 v1.9.1 (Beta):
-
 *[FIX] Minor Bugs were fixed
 *[NOTE] Program for easier Config Setup is cooming soon! 
 
 
 v1.9.0 (Beta):
-
 ***[WARNING]** This update breaks the old version of GuiShopManager and BS-SingleUse. Sorry... but therefor it contains a better Shop System!
 *[REWROTE] The whole shop system was rewritten
 *[ADD] Added a command to close the currently opened inventory of a player: /bs close <name>
@@ -129,7 +134,6 @@ v1.9.0 (Beta):
 
 
 v1.8.3:
-
 *[Add] Added better API for BossShop Addons
 **New Event: BSReloadedEvent
 **New Class: BossShopAddon
@@ -138,7 +142,6 @@ v1.8.3:
 
 
 v1.8.2:
-
 *[ADD] Added Custom Events for Plugin Devs
 **BSPlayerPurchaseEvent - Triggered when a player clicks an item and has enough permissions in order to buy it
 **BSPlayerPurchasedEvent - Triggered after a player clicked an item when he successfully bought it
@@ -149,7 +152,6 @@ v1.8.2:
 
 
 v1.8.1:
-
 *[Add] Added Metrics
 *[ADD] Now you can check for groups instead of permissions (Optional) with using "ExtraPermission: [Group Name]"
 *[IMPROVE] Improved the GuiShopManager support
@@ -158,7 +160,6 @@ v1.8.1:
 
 
 v1.8.0:
-
 *[ADD] Now you can add GuiShopManager Items to the config. Just add this line to an item: "GuiShopManagerItem:<Name>". 
 <Name> is the name of the item defined in the config. It's not the display name but the name of the path in the config.
 *[ADD] Now you can add variables like %player% and %itemname% to the name/lore of Reward Items
@@ -166,19 +167,16 @@ v1.8.0:
 
 
 v1.7.0:
-
 *[ADD] Now the Shop is closed when a player buys an Item with RewardType "Shop" and Reward '' (Empty Line)
 *[ADD] Added optional price multipliers (working with Permissions)
 *[IMPROVE] Improved the BossShop API
 
 
 v1.6.6 (Beta):
-
 *[FIX] Fixed a tiny Server Pinging bug
 
 
 v1.6.5 (Beta):
-
 *[ADD] Added a Server Pinging system which is able to display MOTD and player count of servers
 **Tags: %players% -> Player count; %motd% -> MOTD
 **You can add this Tags to the Displayname/Lore of your MenuItems
@@ -190,13 +188,11 @@ v1.6.5 (Beta):
 
 
 v1.6.4:
-
 *[ADD] Now you can choose one PointsPlugin BossShop shall hook into when you are using multiple Points Plugins
 *[FIX] Enchantmentbooks finally work now (Also with anvils :D) 
 
 
 v1.6.3 (BETA):
-
 *[ADD] Added an optional feature which hides Items if players don't have permissions for them
 *[ADD] Now you can add more "tags" to the Names/Lores of your Items
 **%balance% will display the current Money Balance of a Player
@@ -205,17 +201,14 @@ v1.6.3 (BETA):
 
 
 v1.6.2:
-
 *[IMPROVE] Now when somebody uses PlayerPoints AND Enjin (Containing Enjin Points) BossShop hooks into PlayerPoints
 
 
 v1.6.1:
-
 *[FIX] Fixed the color mixer (It's creating the Dye colors for leather armor. Before, the blue color was missing.)
 
 
 v1.6.0
-
 *[ADD] Added Color Support: Now you can define the Color of Leather Armor etc. ("color:<red number>#<green number>#<blue number>") 
 ** List of RGB Colors: http://www.farb-tabelle.de/de/farbtabelle.htm
 *[IMPROVE] Improved the BossShop Reload Feature
@@ -225,24 +218,20 @@ v1.6.0
 
 
 v1.5.9:
-
 *[FIX] Symbol replacement [#]->âœ¹ was changed into [**]->âœ¹ (Because "#" is already used to "skip" lines in lores)
 
 
 v1.5.8:
-
 *[ADD] Added Enjin Points Support!
 
 
 v1.5.7
-
 *[FIX] Fixed problems caused by MenuItems which had no lore/name
 *[IMPROVE] BossShop won't reset Config Files containing Mistakes anymore! Instead it will tell the Mistake Line to make your life easier.
 *[NOTE] Ingame Setup is cooming soon!
 
 
 v1.5.6:
-
 *[ADD] Added Symbol Support:
 **[<3] -> ❤
 **[*] -> ★
@@ -254,27 +243,23 @@ v1.5.6:
 
 
 v1.5.5:
-
 *[FIX] Fixed a little Tag Bug (The %name% tag was not working properly)
 *[CHANGE] Renamed the %name% tag into %itemname% (%name% is already used to display the player-name)
 *[IMPROVE] Improved the Default Configs, added a few more example Tags
 
 
 v1.5.4:
-
 *[ADD] Added a second Server-Menu (Working with LilyPad) to the default Shop
 *[FIX] Now when closing a shop and the message line is empty, no message is sent (Before an empty line was sent)!
 
 
 v1.5.3:
-
 *[ADD] Added new RewardType: BungeeCordServer. Sends player to the named BungeeCord Server!
 *[ADD] Added a Server-Menu to the default Shops
 *[ADD] Improved a few Default Shop Settings
 
 
 v1.5.2:
-
 *[ADD] Added more "Tags" to the config: 
 **%name% - Name of the ShopItem
 **%rewardtype% - The name of the RewardType
@@ -287,13 +272,11 @@ v1.5.2:
 
 
 v1.5.1:
-
 *[FIX] BossShop will no longer send "empty" text lines
 *[FIX] Players are no longer able to sell damaged Items (Armor & Tools & Weapons. Before it was possible to cheat using them)
 
 
 v1.5.0:
-
 *[ADD] Added more advanced BossShop API
 *[FIX] Now you can give the Shops all names you want. BossShop is able to detect whether the Inventory is a Shop-Inventory or not.
 *[CHANGE] BossShop now handles the inventories using ids instead of names
@@ -303,42 +286,35 @@ v1.5.0:
 
 
 v1.4.1:
-
 *[ADD] Added CommandPoints (http://dev.bukkit.org/bukkit-plugins/commandpoints/) support
 
 
 v1.4.0:
-
 *[ADD] PlayerHead support: Just add "playerhead:<name>" to the ItemData to rename your heads!
 *[ADD] New RewardType: PlayerCommand. A list of commands which will be executed by the player.
 *[ADD] An example head and an example Warp-Menu was added to the Default Configs
 
 
 v1.3.4:
-
 *[FIX] Empty messages are no longer sent
 *[FIX] BossShop is now able to detect and take renamed/modified items
 
 
 v1.3.3:
-
 *[FIX] When reloading BossShop the MenuItems were not updated properly
 *[FIX] Was not able to detect the reward number at RewardType Money
 
 
 v1.3.2:
-
 *[IMPROVE] Improves "BugFinder". Now it will find almost all Config Mistakes. It will even try to fix them! 
 *[ADD] Added "/bs check" Command which will display information about loaded Shops etc.
 
 
 v1.3.1:
-
 *[REMOVE] Removed the create-example command (It was not really useful)
 
 
 v1.3:
-
 *[REWRITE] The whole Inventory system was rewritten. BossShop now supports multiple (infinite) GUIs!
 *[ADD] Added RewardType: shop. It allows you to open an other GUI through an item. Now you can create complex Shop structures with menus etc.
 *[REWRITE] The old Shop examples were removed and new better ones were created!
@@ -346,15 +322,12 @@ v1.3:
 
 
 v1.2:
-
 *[ADD] Added a command which allows you to create "ShopItem" examples with all kinds of RewardTypes and PriceTypes: /BossShop createExample <name> <rewardType> <priceType>
 
 
 v1.1:
-
 *[ADD] Added PriceType: "free". Now you can allow your players to get ShopItems for free!
 
 
 v1.0:
-
 * Release

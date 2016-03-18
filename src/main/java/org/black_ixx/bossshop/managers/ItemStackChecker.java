@@ -9,45 +9,31 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemStackChecker {
-	
-	private final static int OFF_HAND_SLOT = 40;
+
+	private final static int INVENTORY_SLOT_START = 0;
+	private final static int INVENTORY_SLOT_END = 35;
 
 	public ItemStackChecker(){
 	}
 
 
 	public boolean inventoryContainsItem(Player p, ItemStack i){
-
-		//		if (i.getEnchantments().isEmpty()&&i.getDurability()==0){
-		//			if (p.getInventory().contains(i.getType(),i.getAmount())){
-		//				return true;
-		//			}
-		//			return false;
-		//		}
-
 		if (getAmountOfSameItems(p, i)>=i.getAmount()){
 			return true;
 		}
 		return false;
-
-
 	}
 
 	public void takeItem(ItemStack i, Player p){
 		int a = 0;
 		int slot = -1;
 
-
-
 		if (!i.getEnchantments().isEmpty()){
 			for (ItemStack s : p.getInventory().getContents()){
 				slot++;
 				if (s!=null){
 
-					if (!canSell(p, s)){
-						continue;
-					}
-					if(slot==OFF_HAND_SLOT){
+					if (!canSell(p, s, slot)){
 						continue;
 					}
 
@@ -70,15 +56,11 @@ public class ItemStackChecker {
 			return;
 		}
 
-
 		for (ItemStack s : p.getInventory().getContents()){
 			slot++;
 			if (s!=null){
 
-				if (!canSell(p, s)){
-					continue;
-				}
-				if(slot==OFF_HAND_SLOT){
+				if (!canSell(p, s, slot)){
 					continue;
 				}
 
@@ -96,9 +78,6 @@ public class ItemStackChecker {
 			addItem(i, p, a);
 		}
 		return;
-
-
-
 	}
 
 	private void remove(Player p, ItemStack toR){
@@ -138,16 +117,12 @@ public class ItemStackChecker {
 		int a = 0;
 		int slot = -1;
 
-
 		if (!i.getEnchantments().isEmpty()){
 			for (ItemStack s : p.getInventory().getContents()){
 				slot++;
 				if (s!=null){
 
-					if (!canSell(p, s)){
-						continue;
-					}
-					if(slot==OFF_HAND_SLOT){
+					if (!canSell(p, s, slot)){
 						continue;
 					}
 
@@ -168,10 +143,7 @@ public class ItemStackChecker {
 			slot++;
 			if (s!=null){
 
-				if (!canSell(p, s)){
-					continue;
-				}
-				if(slot==OFF_HAND_SLOT){
+				if (!canSell(p, s, slot)){
 					continue;
 				}
 
@@ -247,7 +219,11 @@ public class ItemStackChecker {
 		return false;
 	}
 
-	private boolean canSell(Player p, ItemStack i){
+	private boolean canSell(Player p, ItemStack i, int slot){
+		if(slot<INVENTORY_SLOT_START || slot>INVENTORY_SLOT_END){
+			return false;
+		}
+
 		return isTool(i)?i.getDurability()==0:true;
 	}
 
