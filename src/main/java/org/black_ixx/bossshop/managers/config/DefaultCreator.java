@@ -155,13 +155,13 @@ public class DefaultCreator {
 		if (add!=""){
 			item.add(add);
 		}
+		item.add("hideflags:ALL");
 
 
 		return item;
 	}
 
 	private void setSettings(FileConfiguration config, String shopName, String displayname){
-
 		config.set("ShopName", shopName);
 		config.set("DisplayName", displayname);
 		config.set("signs.text", "["+shopName+"]");
@@ -353,7 +353,7 @@ public class DefaultCreator {
 			w3.add("warp shop");
 
 			addDefault(config,"Spawn", "playercommand","free",   w1 ,null , createMenuItem("&aSpawn", "&8Warp to the Spawn", "COMPASS", "amount:1") , null, 1, "");
-			addDefault(config,"PvP",  "playercommand","free",  w2 ,null , createMenuItem("&aPvP", "&8Warp to the PvP Arena", "DIAMOND_SWORD", "amount:1") , null, 2, "");
+			addDefault(config,"PvP",  "playercommand","free",  w2 ,null , createMenuItem("&aPvP", "&8Warp to the PvP Arena", "DIAMOND_SWORD", "amount:1", "ItemFlag:HIDE_ATTRIBUTES") , null, 2, "");
 			addDefault(config,"Shop", "playercommand","free",   w3 , null ,createMenuItem("&aShop", "&8Warp to the Shop", "GOLD_INGOT", "amount:1") , null, 3, "");
 
 
