@@ -27,37 +27,33 @@ public class ConfigHandler {
 		ClassManager.manager.getSettings().setMetricsEnabled((!plugin.getConfig().getBoolean("DisableMetrics")));
 		ClassManager.manager.getSettings().setUpdaterEnabled((!plugin.getConfig().getBoolean("DisableUpdateNotifications")));
 		ClassManager.manager.getSettings().setUnsafeEnchantmentsEnabled((!plugin.getConfig().getBoolean("AllowUnsafeEnchantments")));
-		String points_plugin = plugin.getConfig().getString("PointsPlugin");
-		PointsPlugin p = null;
-		if (points_plugin != null) {
+		ClassManager.manager.getSettings().setPointsPlugin(findPointsPlugin(plugin.getConfig().getString("PointsPlugin")));
+	}
 
-			if (points_plugin.equalsIgnoreCase("PlayerPoints") || points_plugin.equalsIgnoreCase("PP") || Bukkit.getPluginManager().getPlugin("PlayerPoints") != null) {
-				p = PointsPlugin.PLAYERPOINTS;
+	private PointsPlugin findPointsPlugin(String config_points_plugin){
+		if (config_points_plugin != null) {
+			for(PointsPlugin pp : PointsPlugin.values()){
+				for(String nick : pp.getNicknames()){
+					if(nick.equalsIgnoreCase(config_points_plugin)){
+						return pp;
+					}
+				}
 			}
-
-			if (points_plugin.equalsIgnoreCase("CommandPoints") || points_plugin.equalsIgnoreCase("CP") || Bukkit.getPluginManager().getPlugin("CommandPoints") != null) {
-				p = PointsPlugin.COMMANDPOINTS;
-			}
-
-			if (points_plugin.equalsIgnoreCase("PointsAPI") || points_plugin.equalsIgnoreCase("PAPI") || Bukkit.getPluginManager().getPlugin("PointsAPI") != null) {
-				p = PointsPlugin.POINTSAPI;
-			}
-
-			if (points_plugin.equalsIgnoreCase("EnjinMinecraftPlugin") || points_plugin.equalsIgnoreCase("Enjin") || points_plugin.equalsIgnoreCase("EMP") || Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") != null) {
-				p = PointsPlugin.ENJIN_MINECRAFT_PLUGIN;
-			}
-
-			if (PointsAPI.get(points_plugin) != null) {
-				p = PointsPlugin.CUSTOM;
-				p.setCustom(points_plugin);
+		}
+		//Either had no plugin entered or was not successful at searching
+		for(PointsPlugin pp : PointsPlugin.values()){
+			if(Bukkit.getPluginManager().getPlugin(pp.getPluginName()) != null){
+				return pp;
 			}
 
 		}
-
-		if (p != null) {
-			ClassManager.manager.getSettings().setPointsPlugin(p);
+		//Having custom points plugin
+		if (PointsAPI.get(config_points_plugin) != null) {
+			PointsPlugin.CUSTOM.setCustom(config_points_plugin);
+			return PointsPlugin.CUSTOM;
 		}
 
+		return null;
 	}
 
 	// /////////////////////////////////////// <- Variables

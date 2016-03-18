@@ -10,12 +10,14 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.2.5
+*[FIX] Points-plugin detection has been fixed and improved.
 
-*v2.2.4 BETA
+v2.2.4 BETA
 *[FIX] Players can no longer glitch by selling items which are in their off-hand (http://dev.bukkit.org/bukkit-plugins/bossshop/tickets/257-bug-second-hand-slot/)
 
-*v2.2.3 BETA
-*[UPDATE] Now supporting Enjin x3! (Beta. Please test it out!)
+v2.2.3 BETA
+*[UPDATE] Now supporting Enjin x3!
 *[ADD] Added Itemflag support
 
 v2.2.2:

@@ -9,9 +9,14 @@ public class PointsManager {
 	private IPointsAPI pa;
 
 	public enum PointsPlugin {
-		PLAYERPOINTS, COMMANDPOINTS, ENJIN_MINECRAFT_PLUGIN, POINTSAPI, CUSTOM;
-
+		PLAYERPOINTS("PlayerPoints", "PP"), COMMANDPOINTS("CommandPoints", "CP"), ENJIN_MINECRAFT_PLUGIN("EnjinMinecraftPlugin", "Enjin",  "EMP"), POINTSAPI("PointsAPI", "PAPI"), CUSTOM;
+		
+		private String[] nicknames;
 		private String name;
+		
+		private PointsPlugin(String... nicknames){
+			this.nicknames = nicknames;
+		}
 
 		public void setCustom(String name) {
 			this.name = name;
@@ -20,17 +25,24 @@ public class PointsManager {
 		public String getCustom() {
 			return name;
 		}
+		public String[] getNicknames(){
+			return nicknames;
+		}
+		public String getPluginName(){
+			if(getNicknames()==null){
+				return null;
+			}
+			return getNicknames()[0];
+		}
 	}
 
 	public PointsManager() {
-
 		PointsPlugin p = ClassManager.manager.getSettings().getPointsPlugin();
 		if (p == null) {
 			pa = new FailedPointsAPI();
 			return;
 		}
 
-		Bukkit.getLogger().info("[BossShop] Seems like you defined a Points Plugin in the config... " + p.name().toLowerCase() + ". I hope it's installed on this server!");
 
 		switch (p) {
 
@@ -78,7 +90,7 @@ public class PointsManager {
 
 
 
-		ClassManager.manager.getBugFinder().warn("PlayerPoints/CommandPoints was not found... You need one of those plugins if you want this plugin to work with Points! Get PlayerPoints here: http://dev.bukkit.org/server-mods/playerpoints/");
+		ClassManager.manager.getBugFinder().warn("No PointsPlugin was found... You need one if you want BossShop to work with Points! Get PlayerPoints here: http://dev.bukkit.org/server-mods/playerpoints/");
 	}
 
 	public int getPoints(OfflinePlayer player) {

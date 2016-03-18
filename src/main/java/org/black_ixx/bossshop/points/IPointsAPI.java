@@ -1,11 +1,13 @@
 package org.black_ixx.bossshop.points;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
 public abstract class IPointsAPI {
 	private final String name;
 	
 	public IPointsAPI(String name) {
+		Bukkit.getLogger().info("[BossShop] Successfully hooked into the Points plugin '" + name + "'!");
 		this.name = name;
 	}
 	
