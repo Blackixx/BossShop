@@ -32,6 +32,9 @@ public class PointsManager {
 			if(getNicknames()==null){
 				return null;
 			}
+			if(getNicknames().length==0){
+				return null;
+			}
 			return getNicknames()[0];
 		}
 	}

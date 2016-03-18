@@ -42,8 +42,11 @@ public class ConfigHandler {
 		}
 		//Either had no plugin entered or was not successful at searching
 		for(PointsPlugin pp : PointsPlugin.values()){
-			if(Bukkit.getPluginManager().getPlugin(pp.getPluginName()) != null){
-				return pp;
+			String plugin_name = pp.getPluginName();
+			if(plugin_name!=null){
+				if(Bukkit.getPluginManager().getPlugin(plugin_name) != null){
+					return pp;
+				}
 			}
 
 		}

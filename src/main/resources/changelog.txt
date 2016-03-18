@@ -11,8 +11,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 <</quote>>
 
 
+v2.3.0
+*[FIX] Fixed an error caused by not having a points plugin (Should be a stable build now!)
+
 v2.2.6
-*[FIX] Fixed an other Minecraft 1.9 exploit
+*[FIX] Fixed an other Minecraft 1.9 exploit: Duping by having items in the armor slot
 
 
 v2.2.5
