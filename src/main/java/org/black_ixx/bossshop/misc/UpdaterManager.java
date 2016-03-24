@@ -38,13 +38,14 @@ public class UpdaterManager{
 	
 	public void run() {
 		
-		if(!ClassManager.manager.getSettings().isUpdaterEnabled()){
+		if(!ClassManager.manager.getSettings().getUpdaterEnabled()){
 			return;
 		}
 		
 		BossShop plugin = ClassManager.manager.getPlugin();
 
-		Updater updater = new Updater(plugin, 65031, plugin.getDataFolder(), UpdateType.NO_DOWNLOAD, true);
+		boolean auto_download_update = ClassManager.manager.getSettings().getAutoDownloadUpdateEnabled();
+		Updater updater = new Updater(plugin, 65031, plugin.getDataFolder(), auto_download_update?UpdateType.DEFAULT:UpdateType.NO_DOWNLOAD, true);
 		update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
 		name = updater.getLatestName(); // Get the latest name
 		version = updater.getLatestGameVersion(); // Get the latest game version

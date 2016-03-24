@@ -18,28 +18,35 @@ public class BSShops {
 		
 		File folder = new File(plugin.getDataFolder().getAbsolutePath()+ "/shops/");
 		if (!folder.isFile()&!folder.isDirectory()){
-
-			createDefaults();
-			
+			createDefaults();			
 		}
+		
+		loadShops(plugin, folder);
+		
+		Bukkit.getLogger().info("[BossShop] Loaded "+shops.size()+" Shops!");
+		
+		
+	}
+	
+	private void loadShops(BossShop plugin, File folder){
 		for (File f : folder.listFiles()){
 			if (f!=null){
-				if (!f.isDirectory()){
+				if (f.isDirectory()){
+					if(plugin.getClassManager().getSettings().getLoadSubfoldersEnabled()){
+						loadShops(plugin, f);
+					}
+					continue;
+				}
+				
 					if (f.isFile()){
 						
 						if (f.getName().contains(".yml")){
 						loadShop(f);
 						}
 						
-						
 					}
-				}
 			}			
-		}
-		
-		Bukkit.getLogger().info("[BossShop] Loaded "+shops.size()+" Shops!");
-		
-		
+		}		
 	}
 	
 	/////////////////////////////// <- Variables

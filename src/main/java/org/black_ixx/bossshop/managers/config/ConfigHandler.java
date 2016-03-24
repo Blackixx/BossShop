@@ -28,6 +28,8 @@ public class ConfigHandler {
 		ClassManager.manager.getSettings().setUpdaterEnabled((!plugin.getConfig().getBoolean("DisableUpdateNotifications")));
 		ClassManager.manager.getSettings().setUnsafeEnchantmentsEnabled((!plugin.getConfig().getBoolean("AllowUnsafeEnchantments")));
 		ClassManager.manager.getSettings().setPointsPlugin(findPointsPlugin(plugin.getConfig().getString("PointsPlugin")));
+		ClassManager.manager.getSettings().setAutoDownloadUpdateEnabled((!plugin.getConfig().getBoolean("DisableUpdateAutoDownload")));
+		ClassManager.manager.getSettings().setLoadSubfoldersEnabled(plugin.getConfig().getBoolean("SearchSubfoldersForShops"));
 	}
 
 	private PointsPlugin findPointsPlugin(String config_points_plugin){
@@ -75,13 +77,13 @@ public class ConfigHandler {
 		plugin.getConfig().addDefault("MainShop", "Menu");
 		plugin.getConfig().addDefault("HideItemsPlayersDoNotHavePermissionsFor", false);
 		plugin.getConfig().addDefault("EnableTransactionLog", false);
+		plugin.getConfig().addDefault("SearchSubfoldersForShops", false);
 		plugin.getConfig().addDefault("ServerPingingDelay", 20);
 		plugin.getConfig().addDefault("AllowUnsafeEnchantments", false);
 		plugin.getConfig().addDefault("DisableUpdateNotifications", false);
+		plugin.getConfig().addDefault("DisableUpdateAutoDownload", false);
 		plugin.getConfig().addDefault("MultiplierGroups.Enabled", false);
-		plugin.getConfig().addDefault("MultiplierGroups.List", new String[] { "Permission.Node:<type>:<multiplier>", "BossShop.PriceMultiplier.Points1:points:0.75", "BossShop.PriceMultiplier.Points1:points:0.5", "BossShop.PriceMultiplier.Money1:money:0.75", "BossShop.PriceMultiplier.Money2:money:0.5", "BossShop.PriceMultiplier.MoneyNegative:money:2.0", "BossShop.PriceMultiplier.Exp:exp:0.8",
-
-		});
+		plugin.getConfig().addDefault("MultiplierGroups.List", new String[] { "Permission.Node:<type>:<multiplier>", "BossShop.PriceMultiplier.Points1:points:0.75", "BossShop.PriceMultiplier.Points1:points:0.5", "BossShop.PriceMultiplier.Money1:money:0.75", "BossShop.PriceMultiplier.Money2:money:0.5", "BossShop.PriceMultiplier.MoneyNegative:money:2.0", "BossShop.PriceMultiplier.Exp:exp:0.8"});
 		plugin.getConfig().addDefault("PointsPlugin", "auto-detect");
 		plugin.getConfig().options().copyDefaults(true);
 		plugin.saveConfig();

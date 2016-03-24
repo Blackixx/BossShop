@@ -25,6 +25,8 @@ public class Settings {
 	private boolean metrics = true;
 	private boolean updater = true;
 	private boolean unsafe_enchantments;
+	private boolean load_subfolders;
+	private boolean auto_download_update;
 	
 	private String mainshop;
 	
@@ -104,6 +106,14 @@ public class Settings {
 		unsafe_enchantments=b;
 	}
 	
+	public void setLoadSubfoldersEnabled(boolean b){
+		load_subfolders=b;
+	}
+	
+	public void setAutoDownloadUpdateEnabled(boolean b){
+		auto_download_update=b;
+	}
+	
 	public boolean getMetricsEnabled(){
 		return metrics;
 	}
@@ -167,13 +177,21 @@ public class Settings {
 	public int getServerPingingSpeed(){
 		return server_pinging_speed;
 	}
-	
-	public boolean isUpdaterEnabled(){
+
+	public boolean getUpdaterEnabled(){
 		return updater;
 	}
 	
-	public boolean isUnsafeEnchantmentsEnabled(){
+	public boolean getUnsafeEnchantmentsEnabled(){
 		return unsafe_enchantments;
+	}
+	
+	public boolean getLoadSubfoldersEnabled(){
+		return load_subfolders;
+	}
+	
+	public boolean getAutoDownloadUpdateEnabled(){
+		return auto_download_update;
 	}
 	
 	

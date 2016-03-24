@@ -12,6 +12,8 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 v2.3.1
 *[ADD] Added new Reward type: Nothing (Can be used for decoration)
+*[ADD] New optional feature: Let BossShop load shops which are in subfolders -> makes managing shops easier when you have more than 100 shops
+*[ADD] New optional feature: Auto-download BossShop updates
 
 v2.3.0
 *[FIX] Fixed an error caused by not having a points plugin (Should be a stable build now!)
