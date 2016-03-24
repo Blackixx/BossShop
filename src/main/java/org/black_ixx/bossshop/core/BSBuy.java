@@ -366,6 +366,8 @@ public class BSBuy {
 			case Enchantment:
 				giveRewardEnchantment(p, (Enchant) reward);
 				return;
+			case Nothing:
+				return;
 		}
 
 	}
@@ -474,8 +476,8 @@ public class BSBuy {
 	}
 
 	private void giveRewardEnchantment(Player p, Enchant e) {
-		if (p.getItemInHand() != null) {
-			p.getItemInHand().addUnsafeEnchantment(e.getType(), e.getLevel());
+		if (p.getInventory().getItemInMainHand() != null) {
+			p.getInventory().getItemInMainHand().addUnsafeEnchantment(e.getType(), e.getLevel());
 		}
 	}
 

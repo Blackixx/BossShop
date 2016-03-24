@@ -13,7 +13,8 @@ public class BSEnums {
 		Shop,
 		PlayerCommand,
 		BungeeCordServer,
-		Custom
+		Custom,
+		Nothing
 		
 	}
 	
