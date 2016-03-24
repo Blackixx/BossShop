@@ -14,6 +14,9 @@ v2.3.1
 *[ADD] Added new Reward type: Nothing (Can be used for decoration)
 *[ADD] New optional feature: Let BossShop load shops which are in subfolders -> makes managing shops easier when you have more than 100 shops
 *[ADD] New optional feature: Auto-download BossShop updates
+*[ADD] Optional feature: Prevent players from selling items with greater enchants than needed
+*[IMPROVE] Improved the Item-Selling code a lot
+*[IMPROVE] Some minor improvements
 
 v2.3.0
 *[FIX] Fixed an error caused by not having a points plugin (Should be a stable build now!)

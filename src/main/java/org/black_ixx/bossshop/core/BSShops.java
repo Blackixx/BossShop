@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.managers.ClassManager;
+import org.black_ixx.bossshop.managers.Settings;
 import org.black_ixx.bossshop.managers.config.BSConfigShop;
 import org.black_ixx.bossshop.managers.config.DefaultCreator;
 import org.bukkit.Bukkit;
@@ -11,7 +12,7 @@ import org.bukkit.entity.Player;
 
 public class BSShops {
 
-	public BSShops(BossShop plugin){
+	public BSShops(BossShop plugin, Settings settings){
 		shops = new HashMap<Integer, BSShop>();
 		shopsIds = new HashMap<String, Integer>();
 		
@@ -21,27 +22,26 @@ public class BSShops {
 			createDefaults();			
 		}
 		
-		loadShops(plugin, folder);
+		loadShops(folder, settings, "");
 		
 		Bukkit.getLogger().info("[BossShop] Loaded "+shops.size()+" Shops!");
 		
 		
 	}
 	
-	private void loadShops(BossShop plugin, File folder){
+	private void loadShops(File folder, Settings settings, String parent_path){
 		for (File f : folder.listFiles()){
 			if (f!=null){
 				if (f.isDirectory()){
-					if(plugin.getClassManager().getSettings().getLoadSubfoldersEnabled()){
-						loadShops(plugin, f);
+					if(settings.getLoadSubfoldersEnabled()){
+						loadShops(f, settings, f.getName()+"/");
 					}
 					continue;
 				}
 				
-					if (f.isFile()){
-						
+					if (f.isFile()){						
 						if (f.getName().contains(".yml")){
-						loadShop(f);
+						loadShop(f, parent_path);
 						}
 						
 					}
@@ -66,8 +66,8 @@ public class BSShops {
 		shopsIds.put(shop.getShopName().toLowerCase(), shop.getShopId());
 	}
 	
-	public BSShop loadShop(File f){
-		String name = f.getName();
+	public BSShop loadShop(File f, String parent_path){
+		String name = parent_path+f.getName();
 		BSShop shop = new BSConfigShop(createId(), name);
 		
 		addShop(shop);

@@ -17,69 +17,36 @@ public class ItemStackChecker {
 	}
 
 
-	public boolean inventoryContainsItem(Player p, ItemStack i){
-		if (getAmountOfSameItems(p, i)>=i.getAmount()){
+	public boolean inventoryContainsItem(Player p, ItemStack i, boolean can_player_sell_item_with_greater_enchants){
+		if (getAmountOfSameItems(p, i, can_player_sell_item_with_greater_enchants)>=i.getAmount()){
 			return true;
 		}
 		return false;
 	}
 
-	public void takeItem(ItemStack i, Player p){
+	public void takeItem(ItemStack shop_item, Player p, boolean can_player_sell_item_with_greater_enchants){
 		int a = 0;
 		int slot = -1;
 
-		if (!i.getEnchantments().isEmpty()){
-			for (ItemStack s : p.getInventory().getContents()){
+			for (ItemStack player_item : p.getInventory().getContents()){
 				slot++;
-				if (s!=null){
-
-					if (!canSell(p, s, slot)){
-						continue;
-					}
-
-					if (s.getType()==i.getType()){
-						if (sameDurability(i, s)){
-							if (!s.getEnchantments().isEmpty()){
-								if (containsSameEnchantments(i, s)){
-									a=a+s.getAmount();
-									//p.getInventory().remove(s);
-									remove(p, s);
-								}}
+				if (player_item!=null){					
+					if(canSell(p, player_item, shop_item, slot, can_player_sell_item_with_greater_enchants)){
+						a+=player_item.getAmount();
+						remove(p, player_item);						
+						if(a>=shop_item.getAmount()){ //Reached amount. Can stop!
+							break;
 						}
 					}
 				}
 			}
-			a=a-i.getAmount();
+			
+			a=a-shop_item.getAmount();
 			if (a>0){
-				addItem(i, p, a);
+				addItem(shop_item, p, a);
 			}
 			return;
-		}
-
-		for (ItemStack s : p.getInventory().getContents()){
-			slot++;
-			if (s!=null){
-
-				if (!canSell(p, s, slot)){
-					continue;
-				}
-
-				if (s.getType()==i.getType()){
-					if (i.getDurability()==s.getDurability()){
-						a=a+s.getAmount();
-						//p.getInventory().remove(s);
-						remove(p, s);
-					}
-				}
-			}
-		}
-		a=a-i.getAmount();
-		if (a>0){
-			addItem(i, p, a);
-		}
-		return;
 	}
-
 	private void remove(Player p, ItemStack toR){
 		if (toR.hasItemMeta()){
 			ItemMeta m = toR.getItemMeta();
@@ -92,71 +59,20 @@ public class ItemStackChecker {
 
 	}
 
-
-	private boolean containsSameEnchantments(ItemStack i, ItemStack s){
-		for (Enchantment e : i.getEnchantments().keySet()){
-			if (!s.containsEnchantment(e)){
-				return false;
-			}
-			if (s.getEnchantmentLevel(e)<i.getEnchantmentLevel(e)){
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	private boolean sameDurability(ItemStack i, ItemStack s){
-		if (i.getDurability()==s.getDurability()){
-			return true;
-		}
-		return false;
-	}
-
-	private int getAmountOfSameItems(Player p, ItemStack i){
+	private int getAmountOfSameItems(Player p, ItemStack shop_item, boolean can_player_sell_item_with_greater_enchants){
 		int a = 0;
 		int slot = -1;
 
-		if (!i.getEnchantments().isEmpty()){
-			for (ItemStack s : p.getInventory().getContents()){
+			for (ItemStack player_item : p.getInventory().getContents()){
 				slot++;
-				if (s!=null){
-
-					if (!canSell(p, s, slot)){
-						continue;
-					}
-
-					if (s.getType()==i.getType()){
-						if (sameDurability(i, s)){
-							if (!s.getEnchantments().isEmpty()){
-								if (containsSameEnchantments(i, s)){
-									a=a+s.getAmount();
-								}}
-						}
+				if (player_item!=null){
+					if(canSell(p, player_item, shop_item, slot, can_player_sell_item_with_greater_enchants)){
+						a+=player_item.getAmount();
 					}
 				}
 			}
 			return a;
-		}
-
-		for (ItemStack s : p.getInventory().getContents()){
-			slot++;
-			if (s!=null){
-
-				if (!canSell(p, s, slot)){
-					continue;
-				}
-
-				if (s.getType()==i.getType()){
-					if (i.getDurability()==s.getDurability()){
-						a=a+s.getAmount();
-					}
-				}
-			}
-		}
-		return a;
 	}
-
 
 	private void addItem(ItemStack i, Player p, int amount){
 		ItemStack s = new ItemStack(i.getType(),amount,i.getDurability());
@@ -195,13 +111,12 @@ public class ItemStackChecker {
 				return;
 			}
 		}
-
 		p.getInventory().addItem(i);
 	}
 
-	public void tellPlayerItemsNeeded(List<ItemStack> items, Player p){
+	public void tellPlayerItemsNeeded(List<ItemStack> items, Player p, boolean can_player_sell_item_with_greater_enchants){
 		for (ItemStack i : items){
-			if (!inventoryContainsItem(p, i)){
+			if (!inventoryContainsItem(p, i, can_player_sell_item_with_greater_enchants)){
 				p.sendMessage(ChatColor.RED+"- "+i.getAmount()+" "+i.getType().name());
 			}else{
 				p.sendMessage(ChatColor.GREEN+"- "+i.getAmount()+" "+i.getType().name());
@@ -211,21 +126,28 @@ public class ItemStackChecker {
 		}
 	}
 
-	private boolean isTool(ItemStack i){
-		//		String n = i.getType().name().toLowerCase();
-		//		if (n.contains("steal")||n.contains("wood")||n.contains("stone")||n.contains("iron")||n.contains("gold")||n.contains("diamond")||n.contains("chain")||n.contains("leather")){
-		//			return true;
-		//		}
-		return false;
-	}
 
-	private boolean canSell(Player p, ItemStack i, int slot){
-		if(slot<INVENTORY_SLOT_START || slot>INVENTORY_SLOT_END){
+	private boolean canSell(Player p, ItemStack player_item, ItemStack shop_item, int slot, boolean can_player_sell_item_with_greater_enchants){
+		if(slot<INVENTORY_SLOT_START || slot>INVENTORY_SLOT_END){ //Has to be inside normal inventory
+			return false;
+		}
+		
+		if (player_item.getType()!=shop_item.getType()){ //Both need to be the same item type
+			return false;
+		}
+		
+		if (!sameDurability(player_item, shop_item)){ //Both need to have the same durability
 			return false;
 		}
 
-		return isTool(i)?i.getDurability()==0:true;
+		if(!containsSameEnchantments(shop_item, player_item, can_player_sell_item_with_greater_enchants)){ //Both need to have the same enchants
+			return false;
+		}
+
+
+		return true;
 	}
+
 
 	public boolean isValidEnchantment(ItemStack item, Enchantment enchantment, int level){
 		try{
@@ -235,6 +157,32 @@ public class ItemStackChecker {
 		}
 		return true;
 	}
-
+	private boolean containsSameEnchantments(ItemStack shop_item, ItemStack player_item, boolean can_player_sell_item_with_greater_enchants){
+		for (Enchantment e : shop_item.getEnchantments().keySet()){
+			if (!player_item.containsEnchantment(e)){
+				return false;
+			}
+			if (player_item.getEnchantmentLevel(e)<shop_item.getEnchantmentLevel(e)){
+				return false;
+			}
+		}
+		if(!can_player_sell_item_with_greater_enchants){
+			for (Enchantment e : player_item.getEnchantments().keySet()){
+				if (!shop_item.containsEnchantment(e)){
+					return false;
+				}
+				if (shop_item.getEnchantmentLevel(e)<player_item.getEnchantmentLevel(e)){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	private boolean sameDurability(ItemStack i, ItemStack s){
+		if (i.getDurability()==s.getDurability()){
+			return true;
+		}
+		return false;
+	}
 
 }

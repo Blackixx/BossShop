@@ -41,7 +41,7 @@ public class ClassManager {
 
 		////////////////<- Dependent Classes
 
-		shops = new BSShops(plugin);
+		shops = new BSShops(plugin, settings);
 		
 
 		if (settings.getPointsEnabled()){

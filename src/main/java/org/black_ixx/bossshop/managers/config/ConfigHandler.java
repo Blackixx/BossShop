@@ -30,6 +30,7 @@ public class ConfigHandler {
 		ClassManager.manager.getSettings().setPointsPlugin(findPointsPlugin(plugin.getConfig().getString("PointsPlugin")));
 		ClassManager.manager.getSettings().setAutoDownloadUpdateEnabled((!plugin.getConfig().getBoolean("DisableUpdateAutoDownload")));
 		ClassManager.manager.getSettings().setLoadSubfoldersEnabled(plugin.getConfig().getBoolean("SearchSubfoldersForShops"));
+		ClassManager.manager.getSettings().setCanPlayersSellItemsWithGreaterEnchants(plugin.getConfig().getBoolean("CanPlayersSellItemsWithGreaterEnchants"));
 	}
 
 	private PointsPlugin findPointsPlugin(String config_points_plugin){
@@ -76,6 +77,7 @@ public class ConfigHandler {
 		plugin.getConfig().addDefault("EnableSigns", true);
 		plugin.getConfig().addDefault("MainShop", "Menu");
 		plugin.getConfig().addDefault("HideItemsPlayersDoNotHavePermissionsFor", false);
+		plugin.getConfig().addDefault("CanPlayersSellItemsWithGreaterEnchants", false);
 		plugin.getConfig().addDefault("EnableTransactionLog", false);
 		plugin.getConfig().addDefault("SearchSubfoldersForShops", false);
 		plugin.getConfig().addDefault("ServerPingingDelay", 20);

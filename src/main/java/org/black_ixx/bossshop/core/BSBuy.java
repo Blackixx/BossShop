@@ -224,7 +224,7 @@ public class BSBuy {
 	private boolean hasItems(Player p, List<ItemStack> items) {
 
 		for (ItemStack i : items) {
-			if (!ClassManager.manager.getItemStackChecker().inventoryContainsItem(p, i)) {
+			if (!ClassManager.manager.getItemStackChecker().inventoryContainsItem(p, i, ClassManager.manager.getSettings().getCanPlayersSellItemsWithGreaterEnchants())) {
 				ClassManager.manager.getMessageHandler().sendMessage("NotEnough.Item", p);
 				return false;
 			}
@@ -299,7 +299,7 @@ public class BSBuy {
 
 	private String takeItems(Player p, List<ItemStack> items) {
 		for (ItemStack i : items) {
-			ClassManager.manager.getItemStackChecker().takeItem(i, p);
+			ClassManager.manager.getItemStackChecker().takeItem(i, p, ClassManager.manager.getSettings().getCanPlayersSellItemsWithGreaterEnchants());
 		}
 		return null;
 	}

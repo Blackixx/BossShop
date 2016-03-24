@@ -27,6 +27,7 @@ public class Settings {
 	private boolean unsafe_enchantments;
 	private boolean load_subfolders;
 	private boolean auto_download_update;
+	private boolean can_players_sell_items_with_greater_enchants;
 	
 	private String mainshop;
 	
@@ -114,6 +115,10 @@ public class Settings {
 		auto_download_update=b;
 	}
 	
+	public void setCanPlayersSellItemsWithGreaterEnchants(boolean b){
+		can_players_sell_items_with_greater_enchants=b;
+	}
+	
 	public boolean getMetricsEnabled(){
 		return metrics;
 	}
@@ -192,6 +197,10 @@ public class Settings {
 	
 	public boolean getAutoDownloadUpdateEnabled(){
 		return auto_download_update;
+	}
+	
+	public boolean getCanPlayersSellItemsWithGreaterEnchants(){
+		return can_players_sell_items_with_greater_enchants;
 	}
 	
 	

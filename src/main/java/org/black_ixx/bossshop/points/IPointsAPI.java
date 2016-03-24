@@ -5,12 +5,14 @@ import org.bukkit.OfflinePlayer;
 
 public abstract class IPointsAPI {
 	private final String name;
-	
+
 	public IPointsAPI(String name) {
-		Bukkit.getLogger().info("[BossShop] Successfully hooked into the Points plugin '" + name + "'!");
+		if(!(this instanceof FailedPointsAPI)){
+			Bukkit.getLogger().info("[BossShop] Successfully hooked into the Points plugin '" + name + "'!");
+		}
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -22,7 +24,7 @@ public abstract class IPointsAPI {
 	public abstract int takePoints(OfflinePlayer player, int points);
 
 	public abstract int givePoints(OfflinePlayer player, int points);
-	
+
 	public void register() {
 		PointsAPI.register(this);
 	}
