@@ -4,6 +4,7 @@ description: The BOSS Shop Plugin
 author: Black_ixx
 website: http://felix.neuby.de
 main: org.black_ixx.bossshop.BossShop
+softdepend: [GuiShopManager, PlayerPoints, BS-SingleUse, ScheduledCommands, CommandPoints, PointsAPI, Vault, EnjinMinecraftPlugin, PlaceholderAPI]
 commands:
   bs:
    description: BossShop Command

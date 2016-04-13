@@ -10,6 +10,10 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.3.2
+*[ADD] Added optional PlaceholderAPI support
+
+
 v2.3.1
 *[ADD] Added new Reward type: Nothing (Can be used for decoration)
 *[ADD] New optional feature: Let BossShop load shops which are in subfolders -> makes managing shops easier when you have more than 100 shops

@@ -1,4 +1,4 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.external;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

@@ -203,13 +203,8 @@ public abstract class BSShop {
 			ItemMeta meta = menu_item.getItemMeta();
 			if (meta.hasDisplayName()){
 				String st = buy.transformMessage(meta.getDisplayName());
-				meta.setDisplayName(st);			
-
-				if(st.contains("%balance%")||st.contains("%balancepoints%")){
-					customizable=true;
-					displaying=true;
-				}
-
+				meta.setDisplayName(st);
+				submitItemText(st);
 			}
 			if (meta.hasLore()){
 				List<String> list = meta.getLore();
@@ -221,10 +216,7 @@ public abstract class BSShop {
 					meta.setLore(l);
 
 					for(String lore_line : l){
-						if(lore_line.contains("%balance%")||lore_line.contains("%balancepoints%")){
-							customizable=true;
-							displaying=true;
-						}
+						submitItemText(lore_line);
 					}
 
 				}
@@ -233,6 +225,20 @@ public abstract class BSShop {
 		}
 
 		shop_items.put(menu_item, buy);
+	}
+	
+	
+	private void submitItemText(String s){
+		if(s.contains("%balance%")||s.contains("%balancepoints%")){
+			customizable=true;
+			displaying=true;
+		}
+		if(ClassManager.manager.getPlaceholderHandler()!=null){
+			if(ClassManager.manager.getPlaceholderHandler().containsPlaceholder(s)){
+				customizable=true;
+				displaying=true;
+			}
+		}
 	}
 
 	public void removeItem(int inv_loc){
@@ -278,7 +284,6 @@ public abstract class BSShop {
 			}
 			return inventory;
 		}
-
 		return manager.getShopCustomizer().createInventory(this, shop_items, displaying, p, manager);
 
 	}
@@ -302,41 +307,7 @@ public abstract class BSShop {
 
 	public int getInventorySize(int i){
 		i++;
-
-		int size = 9;
-
-		if(i>9){
-			size=18;
-		}
-
-		if(i>18){
-			size=27;
-		}
-
-		if(i>27){
-			size=36;
-		}
-
-		if(i>36){
-			size=45;
-		}
-
-		if(i>45){
-			size=54;
-		}
-
-		if(i>54){
-			size=63;
-		}
-
-		if(i>63){
-			size=72;
-		}
-
-		if(i>72){
-			size=81;
-		}
-		return size;
+		return i+9-i%9;
 	}
 
 	public void openInventory(Player p){

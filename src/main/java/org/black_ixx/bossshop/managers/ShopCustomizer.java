@@ -47,7 +47,6 @@ public class ShopCustomizer {
 
 
 	public Inventory createInventory(BSShop shop,HashMap<ItemStack, BSBuy> shop_items, boolean displaying, Player p, ClassManager m){
-
 		BSShopHolder holder = new BSShopHolder(shop);
 		Inventory inventory = Bukkit.createInventory(holder, shop.getInventorySize(), shop.getDisplayName());
 
@@ -64,11 +63,8 @@ public class ShopCustomizer {
 		}
 	}
 
-	public Inventory createInventory(BSShop shop,HashMap<ItemStack, BSBuy> shop_items, boolean displaying, Player p, ClassManager m, Inventory inventory, BSShopHolder holder){
-
-		
-		inventory.clear();
-		
+	public Inventory createInventory(BSShop shop,HashMap<ItemStack, BSBuy> shop_items, boolean displaying, Player p, ClassManager m, Inventory inventory, BSShopHolder holder){		
+		inventory.clear();		
 		
 		double balance = 0;
 		int balance_points = 0;
@@ -107,59 +103,39 @@ public class ShopCustomizer {
 
 					if(item.hasItemMeta()){
 						ItemMeta meta = item.getItemMeta();
-						boolean ac = false;
+						boolean meta_change = false;
 
 						if(meta.hasDisplayName()){
 							String name = item.getItemMeta().getDisplayName();
-
-							if(bal&&name.contains("%balance%")){
-								name=name.replace("%balance%",  ""+balance);
-								item.getItemMeta().setDisplayName(name);
-								ac=true;
+							String new_name = updateString(name, p, balance, balance_points, item);
+							if(!new_name.equals(name)){
+								meta.setDisplayName(new_name);
+								meta_change = true;
 							}
-
-							if(bal_points&&name.contains("%balancepoints%")){
-								name=name.replace("%balancepoints%",  ""+balance_points);
-								item.getItemMeta().setDisplayName(name);
-								ac=true;
-							}
-
-
 						}
 
 						if(meta.hasLore()){
-
-							boolean b = false;
+							boolean lore_change = false;
 							List<String> lore =meta.getLore();
 
 							int co = 0;
 							for (String line : lore){
-
-								if(bal&&line.contains("%balance%")){
-									line=line.replace("%balance%",  ""+balance);
-									lore.set(co, line);
-									b=true;
+								String new_line = updateString(line, p, balance, balance_points, item);
+								if(!line.equals(new_line)){
+									lore.set(co, new_line);
+									lore_change = true;
 								}
-
-								if(bal_points&&line.contains("%balancepoints%")){
-									line=line.replace("%balancepoints%",  ""+balance_points);
-									lore.set(co, line);
-									b=true;
-								}
-
-
 								co++;
 							}
-
-							if(b){
+							
+							if(lore_change){
 								meta.setLore(lore);
-								ac=true;
+								meta_change = true;
 							}
+						}
 
-							if(ac){
-								item.setItemMeta(meta);
-							}
-
+						if(meta_change){
+							item.setItemMeta(meta);
 						}
 					}
 
@@ -172,6 +148,21 @@ public class ShopCustomizer {
 		}
 		holder.setItems(locs);
 		return inventory;
+	}
+	
+	
+	private String updateString(String s, Player p, double balance, int balance_points, ItemStack item){
+		if(ClassManager.manager.getPlaceholderHandler()!=null){
+			s = ClassManager.manager.getPlaceholderHandler().transformString(s, p);
+		}
+		if(bal&&s.contains("%balance%")){
+			s=s.replace("%balance%",  ""+balance);
+		}
+
+		if(bal_points&&s.contains("%balancepoints%")){
+			s=s.replace("%balancepoints%",  ""+balance_points);
+		}
+		return s;
 	}
 
 }

@@ -3,6 +3,9 @@ package org.black_ixx.bossshop.managers;
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSShops;
 import org.black_ixx.bossshop.managers.config.ConfigHandler;
+import org.black_ixx.bossshop.managers.external.BungeeCordManager;
+import org.black_ixx.bossshop.managers.external.PlaceholderAPIHandler;
+import org.black_ixx.bossshop.managers.external.VaultHandler;
 import org.black_ixx.bossshop.managers.serverpinging.ServerPingingManager;
 import org.black_ixx.bossshop.misc.UpdaterManager;
 import org.bukkit.Bukkit;
@@ -37,6 +40,10 @@ public class ClassManager {
 		messagehandler= new MessageHandler(plugin);
 		
 		multiplierHandler = new MultiplierHandler(plugin);
+		
+		if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
+			placeholderhandler = new PlaceholderAPIHandler();
+		}
 		
 
 		////////////////<- Dependent Classes
@@ -84,6 +91,7 @@ public class ClassManager {
 	private StringManager stringmanager;
 	private PointsManager pointsmanager;
 	private VaultHandler vaulthandler;
+	private PlaceholderAPIHandler placeholderhandler;
 	private MessageHandler messagehandler;
 	private TimeHandler timehandler;
 	private ItemStackCreator itemstackCreator;
@@ -120,6 +128,10 @@ public class ClassManager {
 
 	public VaultHandler getVaultHandler(){
 		return vaulthandler;
+	}
+	
+	public PlaceholderAPIHandler getPlaceholderHandler(){
+		return placeholderhandler;
 	}
 
 	public MessageHandler getMessageHandler(){

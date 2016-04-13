@@ -1,8 +1,9 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.external;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
+import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.misc.NoEconomy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

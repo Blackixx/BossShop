@@ -1,6 +1,7 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.external;
 
 import org.black_ixx.bossshop.BossShop;
+import org.black_ixx.bossshop.managers.ClassManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;

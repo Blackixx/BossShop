@@ -29,6 +29,9 @@ public class StringManager {
 	}
 
 	public String transform(String s, Player target){
+		if(ClassManager.manager.getPlaceholderHandler()!=null){
+			s = ClassManager.manager.getPlaceholderHandler().transformString(s, target);
+		}
 		s=s.replace("%name%", target.getName()).replace("%player%", target.getName());
 		return transform(s);
 	}

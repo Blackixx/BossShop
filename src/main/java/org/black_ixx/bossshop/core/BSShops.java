@@ -89,10 +89,8 @@ public class BSShops {
 		if (!isShop(name)){
 			ClassManager.manager.getMessageHandler().sendMessage("Main.ShopNotExisting", p);
 			return;
-		}
-		
-		openShop(p, getShopFast(name));
-		
+		}		
+		openShop(p, getShopFast(name));		
 	}
 
 	public void openShop(Player p, BSShop shop){		

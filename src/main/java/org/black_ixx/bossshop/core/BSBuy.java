@@ -457,14 +457,7 @@ public class BSBuy {
 	}
 
 	private void giveRewardShop(Player p, String shopName) {
-		if (shopName == null || shopName == "" || shopName.length() < 1) { // Shop
-																			// ==
-																			// ""
-																			// oder
-																			// ''
-																			// ->
-																			// Close
-																			// Inventory
+		if (shopName == null || shopName == "" || shopName.length() < 1) {
 			p.closeInventory();
 			return;
 		}

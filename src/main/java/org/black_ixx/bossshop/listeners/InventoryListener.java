@@ -48,20 +48,13 @@ public class InventoryListener implements Listener{
 			return;
 		}
 
-
 		BSShopHolder holder = (BSShopHolder)event.getInventory().getHolder();
-
 
 		event.setCancelled(true);
 		event.setResult(Result.DENY);
 		//event.setCurrentItem(null);
 
-
-
 		if (event.getWhoClicked() instanceof Player){
-
-
-
 			if (event.getCurrentItem()==null){
 				event.setCancelled(true);
 				return;							
@@ -76,19 +69,14 @@ public class InventoryListener implements Listener{
 				return;
 			}
 
-
-
 			BSBuy buy = holder.getShopItem(event.getRawSlot());
 			if(buy==null){
 				return;
 			}
 			if (buy.getInventoryLocation()==event.getRawSlot()){
-
-
 				event.setCancelled(true);
 
 				Player p = (Player) event.getWhoClicked();
-
 				if (!buy.hasPermission(p,true)){
 					return;
 				}
@@ -110,7 +98,7 @@ public class InventoryListener implements Listener{
 					plugin.getClassManager().getMessageHandler().sendMessage("Main.AlreadyBought", p);
 					return;
 				}
-				
+
 				if(buy.getBuyType()==BSBuyType.Enchantment){
 					Enchant e = (Enchant) buy.getReward();
 					if(p.getInventory().getItemInMainHand()==null |! plugin.getClassManager().getItemStackChecker().isValidEnchantment(p.getInventory().getItemInMainHand(), e.getType(), e.getLevel()) &! plugin.getClassManager().getSettings().getUnsafeEnchantmentsEnabled()){
@@ -119,9 +107,7 @@ public class InventoryListener implements Listener{
 					}
 				}
 
-
 				String o = buy.takePrice(p);
-
 				String s = buy.getMessage();
 				if (s!=null){
 					s = plugin.getClassManager().getStringManager().transform(buy.getMessage(), p);
@@ -129,7 +115,6 @@ public class InventoryListener implements Listener{
 						s=s.replace("%left%", o);
 					}
 				}
-
 
 				buy.giveReward(p);
 
@@ -145,18 +130,16 @@ public class InventoryListener implements Listener{
 					p.sendMessage(s);
 				}
 
-
 				if(shop.isCustomizable()){
-					shop.updateInventory(event.getInventory(), p, plugin.getClassManager());//NEW
+					if(p.getOpenInventory() == event.getView()){ //only when inventory is still open
+						shop.updateInventory(event.getInventory(), p, plugin.getClassManager());//NEW
+					}
 				}
-
-
 
 			}
 
 		}
 	}
-
 
 
 }

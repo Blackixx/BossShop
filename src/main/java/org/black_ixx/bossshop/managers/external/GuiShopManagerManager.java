@@ -1,7 +1,8 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.external;
 
 
 import org.black_ixx.bossshop.addon.guishopmanager.GuiShopManager;
+import org.black_ixx.bossshop.managers.ClassManager;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
