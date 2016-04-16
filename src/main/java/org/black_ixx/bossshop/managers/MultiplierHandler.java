@@ -64,5 +64,12 @@ public class MultiplierHandler {
 	public Set<BSMultiplier> getMultipliers(){
 		return multipliers;
 	}
+	
+	public boolean hasMultipliers(){
+		if(multipliers==null){
+			return false;
+		}
+		return !multipliers.isEmpty();
+	}
 
 }

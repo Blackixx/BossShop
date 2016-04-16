@@ -107,7 +107,7 @@ public class ShopCustomizer {
 
 						if(meta.hasDisplayName()){
 							String name = item.getItemMeta().getDisplayName();
-							String new_name = updateString(name, p, balance, balance_points, item);
+							String new_name = updateString(name, p, balance, balance_points, shop, buy);
 							if(!new_name.equals(name)){
 								meta.setDisplayName(new_name);
 								meta_change = true;
@@ -120,7 +120,7 @@ public class ShopCustomizer {
 
 							int co = 0;
 							for (String line : lore){
-								String new_line = updateString(line, p, balance, balance_points, item);
+								String new_line = updateString(line, p, balance, balance_points, shop, buy);
 								if(!line.equals(new_line)){
 									lore.set(co, new_line);
 									lore_change = true;
@@ -151,7 +151,7 @@ public class ShopCustomizer {
 	}
 	
 	
-	private String updateString(String s, Player p, double balance, int balance_points, ItemStack item){
+	private String updateString(String s, Player p, double balance, int balance_points, BSShop shop, BSBuy buy){
 		if(ClassManager.manager.getPlaceholderHandler()!=null){
 			s = ClassManager.manager.getPlaceholderHandler().transformString(s, p);
 		}
@@ -161,6 +161,9 @@ public class ShopCustomizer {
 
 		if(bal_points&&s.contains("%balancepoints%")){
 			s=s.replace("%balancepoints%",  ""+balance_points);
+		}
+		if(s.contains("%price%")){
+			s=buy.transformMessage(s, shop, p);
 		}
 		return s;
 	}

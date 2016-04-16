@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class BSShop {
 
+	private final static int ROWS_LIMIT = 6;
 
 	//////////////////////////// <- Variables
 
@@ -104,6 +105,10 @@ public abstract class BSShop {
 	public void setCustomizable(boolean b){
 		customizable=b;
 	}
+	public void setDisplaying(boolean b){
+		displaying=b;
+	}
+
 
 	public void setDisplayName(String displayname){
 		if(displayname!=null){
@@ -178,7 +183,6 @@ public abstract class BSShop {
 	//////////////////////////// <- Other Methods
 
 	public void addShopItem(BSBuy buy, ItemStack menu_item, ClassManager manager){
-
 		if(hiding){
 			if(!customizable){
 				if(buy.isExtraPermissionExisting()){
@@ -202,7 +206,7 @@ public abstract class BSShop {
 		if(menu_item.hasItemMeta()){
 			ItemMeta meta = menu_item.getItemMeta();
 			if (meta.hasDisplayName()){
-				String st = buy.transformMessage(meta.getDisplayName());
+				String st = buy.transformMessage(meta.getDisplayName(), this, null);
 				meta.setDisplayName(st);
 				submitItemText(st);
 			}
@@ -210,7 +214,7 @@ public abstract class BSShop {
 				List<String> list = meta.getLore();
 				List<String> l = new ArrayList<String>();
 				for (String s : list){
-					l.add(buy.transformMessage(s));
+					l.add(buy.transformMessage(s, this, null));
 				}
 				if (l!=null&&l.size()>0){
 					meta.setLore(l);
@@ -226,8 +230,8 @@ public abstract class BSShop {
 
 		shop_items.put(menu_item, buy);
 	}
-	
-	
+
+
 	private void submitItemText(String s){
 		if(s.contains("%balance%")||s.contains("%balancepoints%")){
 			customizable=true;
@@ -259,7 +263,6 @@ public abstract class BSShop {
 	}
 
 	public void createInventory(){
-
 		BSShopHolder holder = new BSShopHolder(this);
 		inventory = Bukkit.createInventory(holder, inventory_size, displayname);
 
@@ -269,7 +272,11 @@ public abstract class BSShop {
 			BSBuy b = shop_items.get(item);
 			if(b!=null){
 				locs.put(b.getInventoryLocation(), b);
-				inventory.setItem(b.getInventoryLocation(), item);
+				if(b.getInventoryLocation()>ROWS_LIMIT*9){
+					ClassManager.manager.getBugFinder().warn("Unable to add shop-item '"+b.getName()+"' to shop '"+getShopName()+"': Highest possible inventory location of "+(ROWS_LIMIT*9-1)+" can't be exceeded!");
+				}else{
+					inventory.setItem(b.getInventoryLocation(), item);
+				}
 			}
 		}
 
@@ -307,7 +314,11 @@ public abstract class BSShop {
 
 	public int getInventorySize(int i){
 		i++;
-		return i+9-i%9;
+		int rest = i%9;
+		if(rest>0){
+			i+=9-i%9;
+		}
+		return Math.min(ROWS_LIMIT*9, i);
 	}
 
 	public void openInventory(Player p){
@@ -319,7 +330,7 @@ public abstract class BSShop {
 		}
 		p.openInventory(createInventory(p, ClassManager.manager));
 	}
-	
+
 	public void close(){
 		if(inventory!=null){
 			for (HumanEntity h : inventory.getViewers()){
@@ -336,11 +347,11 @@ public abstract class BSShop {
 			createInventory();
 		}
 	}
-	
+
 	//////////////////////////// <- Abstract
 
 	public abstract void reloadShop();
-	
+
 
 
 

@@ -34,8 +34,7 @@ public class PointsAPIPlugin extends IPointsAPI {
 
 	@Override
 	public int takePoints(OfflinePlayer player, int points) {
-		pp.removePoints(player, points);
-		return getPoints(player);
+		return setPoints(player, getPoints(player)-points);
 	}
 
 	@Override

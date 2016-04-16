@@ -340,10 +340,10 @@ public class ItemStackCreator {
 			if (s.equalsIgnoreCase("potioneffect")){
 				a=stringFix(a);
 				boolean splash = false;
-				if(i.getType()==Material.SPLASH_POTION){
-					splash = true;
-					i.setType(Material.POTION);
-				}
+				//				if(i.getType()==Material.SPLASH_POTION){ not used yet anyways & not included in older minecraft versions
+				//					splash = true;
+				//					i.setType(Material.POTION);
+				//				}
 				if (i.getType()!=Material.POTION){
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (potioneffect) You can't add PotionEffects to items which are not potions...");
 					continue;
@@ -369,11 +369,11 @@ public class ItemStackCreator {
 					PotionEffect effect = new PotionEffect(type, getTicksFromSeconds(pTime), Integer.parseInt(pLvl));
 					meta.addCustomEffect(effect, true);
 					i.setItemMeta(meta);
-					
+
 					if(splash){
 						//TODO
 					}
-					
+
 
 				} catch (Exception e){
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (potioneffect) contains mistakes!");
@@ -381,7 +381,6 @@ public class ItemStackCreator {
 
 				continue;
 			}
-
 
 
 
@@ -395,28 +394,6 @@ public class ItemStackCreator {
 			}
 
 
-
-
-
-
-
-			//			if (s.equalsIgnoreCase("splashpotion")){
-			//
-			//				boolean b = true;
-			//				if (a.equalsIgnoreCase("false")){
-			//					b=false;
-			//				}
-			//				if (i.getType()!=Material.POTION){
-			//					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (splashpotion) You can't set items which are not potions to SplashPotions...");
-			//					continue;
-			//				}
-			//				Potion splash = new Potion(1);
-			//				splash.setSplash(b);
-			//				splash.apply(i);
-			//				//TODO Funktioniert noch nicht richtig
-			//				continue;
-			//			}
-
 		}
 
 
@@ -424,8 +401,7 @@ public class ItemStackCreator {
 		return i;
 	}
 
-	private boolean isInteger(String str)  
-	{  
+	private boolean isInteger(String str){  
 		try  
 		{  
 			Integer.parseInt(str);  
@@ -438,8 +414,7 @@ public class ItemStackCreator {
 	}
 
 
-	private boolean isShort(String str)  
-	{  
+	private boolean isShort(String str){  
 		try  
 		{  
 			Short.parseShort(str);  
@@ -473,5 +448,7 @@ public class ItemStackCreator {
 
 		return 0;
 	}
+	
+	
 
 }

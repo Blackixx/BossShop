@@ -180,8 +180,8 @@ public class DefaultCreator {
 			setSettings(config, name,"&lMenu");
 			addDefault(config,"MenuBuyShop", "shop", "free", "BuyShop" ,null , createMenuItem("&9&lBuyShop &6[+]", "&8Here you can buy Items", "GLASS","") , "", 1, "");
 			addDefault(config,"MenuSellShop", "shop", "free", "SellShop" ,null , createMenuItem("&b&lSellShop &6[+]", "&8Here you can sell Items", "COBBLESTONE","") , "", 3, "");
-			addDefault(config,"MenuPotions", "shop", "free", "Potions" ,null , createMenuItem("&5&lPotions &6[**]", "&8Here you can buy Potions", "POTION","potioneffect:SPEED#1#1") , "", 5, "");
-			addDefault(config,"MenuSpells", "shop", "free", "Spells" ,null , createMenuItem("&4&lSpells &6[*]", "&8Here you can buy magical Spells", "WRITTEN_BOOK","") , "", 7, "");
+			addDefault(config,"MenuPotions", "shop", "free", "Potions" ,null , createMenuItem("&5&lPotions &6[**]", "&8Here you can buy Potions", "POTION","potioneffect:SPEED#1#1","hideflags:all") , "", 5, "");
+			addDefault(config,"MenuSpells", "shop", "free", "Spells" ,null , createMenuItem("&4&lSpells &6[*]", "&8Here you can buy magical Spells", "WRITTEN_BOOK","hideflags:all") , "", 7, "");
 			
 			String mpsl = "&8Here you can buy Points #"+ (simplePointsPluginCheck()? "#&b&lYour Points: &r&9%balancepoints%":"") +"#&b&lYour Money: &r&9%balance% ##&cOnly for VIPs";
 			
@@ -324,9 +324,9 @@ public class DefaultCreator {
 			FileConfiguration config = getConfig(f);
 			setSettings(config, name, "&6&lPointShop &2[v]");
 
-			addDefault(config,"100Points", "points", "money", 100 , 1000 , createMenuItem("&6100 Points", "&cPrice: 1000 Money", "DIAMOND", "amount:1") , "&eYou bought 100 Points! Money left: &c%left%", 1, "");
-			addDefault(config,"500Points", "points", "money", 500 , 5000 , createMenuItem("&6500 Points", "&cPrice: 5000 Money", "DIAMOND", "amount:5") , "&eYou bought 500 Points! Money left: &c%left%", 2, "");
-			addDefault(config,"1000Points", "points", "money", 1000 , 10000 , createMenuItem("&61000 Points", "&cPrice: 10000 Money", "DIAMOND", "amount:10") , "&eYou bought 1000 Points! Money left: &c%left%", 3, "");
+			addDefault(config,"100Points", "points", "money", 100 , 1000 , createMenuItem("&6%reward% %rewardtype%", "&cPrice: %price% %pricetype%", "DIAMOND", "amount:1") , "&eYou bought %reward% %rewardtype%! Money left: &c%left%", 1, "");
+			addDefault(config,"500Points", "points", "money", 500 , 5000 , createMenuItem("&6%reward% %rewardtype%", "&cPrice: %price% %pricetype%", "DIAMOND", "amount:5") , "&eYou bought %reward% %rewardtype%! Money left: &c%left%", 2, "");
+			addDefault(config,"1000Points", "points", "money", 1000 , 10000 , createMenuItem("&6%reward% %rewardtype%", "&cPrice: %price% %pricetype%", "DIAMOND", "amount:10") , "&eYou bought %reward% %rewardtype%! Money left: &c%left%", 3, "");
 
 			addDefault(config,"500Money", "money", "points", 500 , 100 , createMenuItem("&6500 Money", "&cPrice: 100 Points", "EMERALD", "amount:5") , "&eYou bought 500 Money! Points left: &c%left%", 19, "");
 			addDefault(config,"1000Money", "money", "points", 1000 , 200 , createMenuItem("&61000 Money", "&cPrice: 200 Points", "EMERALD", "amount:10") , "&eYou bought 1000 Money! Points left: &c%left%", 20, "");

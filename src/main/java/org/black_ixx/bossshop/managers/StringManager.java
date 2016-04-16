@@ -1,7 +1,9 @@
 package org.black_ixx.bossshop.managers;
 
 import org.black_ixx.bossshop.core.BSBuy;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
 
 public class StringManager {
 
@@ -20,11 +22,16 @@ public class StringManager {
 	    s = s.replace("[moon]", "☾");
 	    s = s.replace("[crown]", "♔");
 	    s = s.replace("[note]", "♩ ");
-		return s.replace("&", "\u00a7");	
+	    	    
+		s = ChatColor.translateAlternateColorCodes('&', s); //Has been changed but nothing else done: Needs Testing, Changelog update and Version update!
+
+	    s = s.replace("[and]", "&");
+	    s = s.replace("[colon]", ":");
+	    return s;
 	}
 
 	public String transform(String s, BSBuy item){
-		s=item.transformMessage(s);
+		s=item.transformMessage(s, null, null);
 		return transform(s);	
 	}
 

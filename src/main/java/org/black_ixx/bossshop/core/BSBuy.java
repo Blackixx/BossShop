@@ -44,7 +44,7 @@ public class BSBuy {
 		this.reward = reward;
 		this.price = price;
 		this.name = name;
-		this.msg = transformMessage(msg);
+		this.msg = transformMessage(msg, null, null);
 		this.location = location;
 
 	}
@@ -158,7 +158,7 @@ public class BSBuy {
 			for (String s : (List<String>) reward) { // Loop durch Perms
 
 				if (!p.hasPermission(s)) { // Sobald ein Spieler eine Perm nicht
-											// hat wird false returned
+					// hat wird false returned
 					return false;
 				}
 			}
@@ -177,35 +177,35 @@ public class BSBuy {
 		switch (priceT) {
 
 		// EXP
-			case Exp:
-				// return hasExp(p, (Integer)price); old
-				return hasExp(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
+		case Exp:
+			// return hasExp(p, (Integer)price); old
+			return hasExp(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
 
-				// Item
-			case Item:
-				return hasItems(p, (List<ItemStack>) price);
+			// Item
+		case Item:
+			return hasItems(p, (List<ItemStack>) price);
 
-				// Money
-			case Money:
-				if (price instanceof Integer) {
-					// return hasMoney(p, (Integer)price); old
-					return hasMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
-				}
+			// Money
+		case Money:
+			if (price instanceof Integer) {
 				// return hasMoney(p, (Integer)price); old
-				return hasMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Double) price));
+				return hasMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
+			}
+			// return hasMoney(p, (Integer)price); old
+			return hasMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Double) price));
 
-				// Points
-			case Points:
-				// return hasPoints(p, (Integer)price); old
-				return hasPoints(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
+			// Points
+		case Points:
+			// return hasPoints(p, (Integer)price); old
+			return hasPoints(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
 
-				// Free
-			case Free:
-				return true;
+			// Free
+		case Free:
+			return true;
 
-				// Nothing
-			case Nothing:
-				return true;
+			// Nothing
+		case Nothing:
+			return true;
 
 		}
 		return false;
@@ -261,31 +261,31 @@ public class BSBuy {
 		switch (priceT) {
 
 		// EXP
-			case Exp:
-				return takeExp(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
+		case Exp:
+			return takeExp(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
 
-				// Item
-			case Item:
-				return takeItems(p, (List<ItemStack>) price);
+			// Item
+		case Item:
+			return takeItems(p, (List<ItemStack>) price);
 
-				// Money
-			case Money:
-				if (price instanceof Integer) {
-					return takeMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
-				}
-				return takeMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Double) price));
+			// Money
+		case Money:
+			if (price instanceof Integer) {
+				return takeMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
+			}
+			return takeMoney(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Double) price));
 
-				// Points
-			case Points:
-				return takePoints(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
+			// Points
+		case Points:
+			return takePoints(p, ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (Integer) price));
 
-				// Free
-			case Free:
-				return null;
+			// Free
+		case Free:
+			return null;
 
-				// Nothing
-			case Nothing:
-				return null;
+			// Nothing
+		case Nothing:
+			return null;
 		}
 
 		return null;
@@ -324,50 +324,50 @@ public class BSBuy {
 
 		switch (buyT) {
 
-			case Command:
-				giveRewardCommand(p, (List<String>) reward);
-				return;
+		case Command:
+			giveRewardCommand(p, (List<String>) reward);
+			return;
 
-			case PlayerCommand:
-				giveRewardPlayerCommand(p, (List<String>) reward);
-				return;
+		case PlayerCommand:
+			giveRewardPlayerCommand(p, (List<String>) reward);
+			return;
 
-			case TimeCommand:
-				giveRewardTimeCommand(p, (HashMap<Integer, String>) reward);
-				return;
+		case TimeCommand:
+			giveRewardTimeCommand(p, (HashMap<Integer, String>) reward);
+			return;
 
-			case Item:
-				giveRewardItem(p, (List<ItemStack>) reward);
-				return;
+		case Item:
+			giveRewardItem(p, (List<ItemStack>) reward);
+			return;
 
-			case Permission:
-				giveRewardPermission(p, (List<String>) reward);
-				return;
+		case Permission:
+			giveRewardPermission(p, (List<String>) reward);
+			return;
 
-			case Money:
-				if (reward instanceof Integer) {
-					giveRewardMoney(p, (Integer) reward);
-					return;
-				}
-				giveRewardMoney(p, (Double) reward);
+		case Money:
+			if (reward instanceof Integer) {
+				giveRewardMoney(p, (Integer) reward);
 				return;
-			case Points:
-				giveRewardPoints(p, (Integer) reward);
-				return;
-			case Custom:
-				giveRewardCustom(p, (BSCustomLink) reward);
-				return;
-			case Shop:
-				giveRewardShop(p, (String) reward);
-				return;
-			case BungeeCordServer:
-				giveRewardBungeeCordServer(p, (String) reward);
-				return;
-			case Enchantment:
-				giveRewardEnchantment(p, (Enchant) reward);
-				return;
-			case Nothing:
-				return;
+			}
+			giveRewardMoney(p, (Double) reward);
+			return;
+		case Points:
+			giveRewardPoints(p, (Integer) reward);
+			return;
+		case Custom:
+			giveRewardCustom(p, (BSCustomLink) reward);
+			return;
+		case Shop:
+			giveRewardShop(p, (String) reward);
+			return;
+		case BungeeCordServer:
+			giveRewardBungeeCordServer(p, (String) reward);
+			return;
+		case Enchantment:
+			giveRewardEnchantment(p, (Enchant) reward);
+			return;
+		case Nothing:
+			return;
 		}
 
 	}
@@ -384,7 +384,7 @@ public class BSBuy {
 			PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(p, "/"+command);
 
 			Bukkit.getPluginManager().callEvent(event);
-			 
+
 			if (!event.isCancelled()) {
 				p.performCommand(event.getMessage().substring(1));
 			}			
@@ -410,15 +410,15 @@ public class BSBuy {
 				}
 				int free = 0;
 				for (ItemStack item : p.getInventory().getContents()) { // Loop
-																		// durch
-																		// Inventar
+					// durch
+					// Inventar
 					if (item != null) {
 						if (item.getType() == i.getType() && item.getDurability() == i.getDurability()) { // Selbes
-																											// Item?
+							// Item?
 							free += item.getMaxStackSize() - item.getAmount(); // Freier
-																				// Platz
-																				// wird
-																				// addiert
+							// Platz
+							// wird
+							// addiert
 						}
 					}
 				}
@@ -476,8 +476,7 @@ public class BSBuy {
 
 	// //////////////////////////////// <- Transform messages
 
-	public String transformMessage(String msg) {
-
+	public String transformMessage(String msg, BSShop shop, Player p) {
 		if (reward == null) {
 			reward = 1;
 		}
@@ -489,7 +488,7 @@ public class BSBuy {
 			return "";
 		}
 
-		String priceM = "" + price;
+		String priceM = String.valueOf(price);
 		if (price instanceof List<?>) {
 			List<?> list = (List<?>) price;
 			if ((!list.isEmpty()) && list.get(0) instanceof ItemStack) {
@@ -507,7 +506,31 @@ public class BSBuy {
 			}
 		}
 
-		String rewardM = "" + reward;
+
+		if(shop!=null){
+			if(!shop.isCustomizable()){ //if shop is not customizable yet but contains placeholders that depend on a player -> make it customizable
+				if(msg.contains("%price%") && (priceT==BSPriceType.Money || priceT==BSPriceType.Exp || priceT==BSPriceType.Points)){
+					if(ClassManager.manager.getMultiplierHandler().hasMultipliers()){
+						shop.setCustomizable(true);
+						shop.setDisplaying(true);
+					}
+				}
+			}
+			if(shop.isCustomizable()){
+				if(p == null){
+					priceM = null; //When shop is customizable, the price needs to be adapted to the player and can not be set here!				
+				}else{
+					if(price instanceof Integer){
+						priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
+					}
+					if(price instanceof Double){
+						priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
+					}
+				}
+			}
+		}
+
+		String rewardM = String.valueOf(reward);
 		if (reward instanceof List<?>) {
 			List<?> list = (List<?>) reward;
 			if ((!list.isEmpty()) && list.get(0) instanceof ItemStack) {

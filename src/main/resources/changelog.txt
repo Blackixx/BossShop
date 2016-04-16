@@ -10,6 +10,20 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.3.5
+*[IMPROVE] Price placeholders now adapt to the players price-multipliers and bonuses (if multipliers are enabled)
+*[IMPROVE] Small chat formatting improvements (including "&" now only being replaced when immediately followed by 0-9, A-F, a-f, K-O, k-o, R or r)
+*[IMPROVE] Improved default shops
+
+
+v2.3.4
+*[ADD] Added new symbol: "[and]" -> "&" (because a plain "&" is replaced by color codes)
+
+
+v2.3.3
+*[IMPROVE] Shops can not exceed the Minecraft inventory slot limit anymore, to prevent buggy inventories
+
+
 v2.3.2
 *[ADD] Added optional PlaceholderAPI support
 
@@ -21,6 +35,7 @@ v2.3.1
 *[ADD] Optional feature: Prevent players from selling items with greater enchants than needed
 *[IMPROVE] Improved the Item-Selling code a lot
 *[IMPROVE] Some minor improvements
+
 
 v2.3.0
 *[FIX] Fixed an error caused by not having a points plugin (Should be a stable build now!)
@@ -43,6 +58,7 @@ v2.2.3 BETA
 *[UPDATE] Now supporting Enjin x3!
 *[ADD] Added Itemflag support
 
+
 v2.2.2:
 *[UPDATE] Updated to 1.9
 
@@ -64,8 +80,8 @@ v2.1.0:
 *[IMPROVE] API Updates, custom points no longer use BossAPI. If you have a plugin which uses BossAPI for points, please update it
 *[FIX] Fixed Enjin Integration
 
-v2.0.5:
 
+v2.0.5:
 *[ADD] Added BossAPI support
 *[ADD] Added Unsafe Enchantment Support (Optional): Now you can add "cheat" enchantments like Sharpness X (10)!
 *[IMPROVE] API Updates
@@ -171,7 +187,6 @@ v1.8.1:
 *[ADD] Now you can check for groups instead of permissions (Optional) with using "ExtraPermission: [Group Name]"
 *[IMPROVE] Improved the GuiShopManager support
 *[FIX] Fixed a little Item Bug: http://dev.bukkit.org/bukkit-plugins/bossshop/tickets/64-selling-items-with-meta-data/
-
 
 
 v1.8.0:
@@ -283,7 +298,6 @@ v1.5.2:
 **%price% - The price of the ShopItem
 *[FIX] Now closing all Shop Inventories when the server is reloaded to prevent glitching
 *[FIX] Players are no longer able to sell damaged Leather Armor (Before it was possible to cheat using them)
-
 
 
 v1.5.1:

@@ -100,9 +100,7 @@ public class BossShop extends JavaPlugin{
 
 	/////////////////////////////////////////////////
 
-	public void reloadPlugin(CommandSender sender){
-		
-		
+	public void reloadPlugin(CommandSender sender){		
 		reloadPlayerAction();
 		
 		reloadConfig();
@@ -128,13 +126,10 @@ public class BossShop extends JavaPlugin{
 		}
 		
 		BSReloadedEvent event = new BSReloadedEvent(this);
-		Bukkit.getPluginManager().callEvent(event);
-		
-		
+		Bukkit.getPluginManager().callEvent(event);		
 	}
 	
-	private void unloadClasses(){
-		
+	private void unloadClasses(){		
 		if(manager==null){
 			return;
 		}
@@ -150,9 +145,7 @@ public class BossShop extends JavaPlugin{
 		if(manager.getSettings().getServerPingingEnabled()){
 			manager.getServerPingingManager().clearItems();
 			manager.getServerPingingManager().getServerPingingRunnableHandler().stop();			
-		}
-		
-		
+		}		
 	}
 	
 	private void reloadPlayerAction(){
@@ -174,9 +167,7 @@ public class BossShop extends JavaPlugin{
 					hu.closeInventory();
 				}
 			}
-		}
-		
-		
+		}		
 	}
 	
 	
