@@ -23,7 +23,7 @@ public class StringManager {
 	    s = s.replace("[crown]", "♔");
 	    s = s.replace("[note]", "♩ ");
 	    	    
-		s = ChatColor.translateAlternateColorCodes('&', s); //Has been changed but nothing else done: Needs Testing, Changelog update and Version update!
+		s = ChatColor.translateAlternateColorCodes('&', s); 
 
 	    s = s.replace("[and]", "&");
 	    s = s.replace("[colon]", ":");
