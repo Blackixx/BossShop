@@ -4,7 +4,6 @@ package org.black_ixx.bossshop.listeners;
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSBuy;
 import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
-import org.black_ixx.bossshop.core.BSInventoryHolder;
 import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.core.BSShopHolder;
 import org.black_ixx.bossshop.events.BSPlayerPurchaseEvent;
@@ -29,10 +28,9 @@ public class InventoryListener implements Listener{
 
 	@EventHandler
 	public void closeShop(InventoryCloseEvent e){
-		if (!(e.getInventory().getHolder() instanceof BSInventoryHolder)){
+		if (!(e.getInventory().getHolder() instanceof BSShopHolder)){
 			return;
 		}
-
 
 		if (e.getPlayer() instanceof Player){
 			plugin.getClassManager().getMessageHandler().sendMessage("Main.CloseShop", (Player)e.getPlayer());

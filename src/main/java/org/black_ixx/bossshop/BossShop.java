@@ -6,6 +6,7 @@ import java.util.List;
 import org.black_ixx.bossshop.api.BossShopAPI;
 import org.black_ixx.bossshop.api.BossShopAddon;
 import org.black_ixx.bossshop.core.BSShop;
+import org.black_ixx.bossshop.core.BSShopHolder;
 import org.black_ixx.bossshop.events.BSReloadedEvent;
 import org.black_ixx.bossshop.listeners.InventoryListener;
 import org.black_ixx.bossshop.listeners.PlayerJoinListener;
@@ -17,6 +18,7 @@ import org.black_ixx.bossshop.misc.UpdaterManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -49,7 +51,7 @@ public class BossShop extends JavaPlugin{
 
 		sl = new SignListener(manager.getSettings().getSignsEnabled(),this);
 		getServer().getPluginManager().registerEvents(sl, this);
-		
+
 		jl = new PlayerJoinListener();
 		getServer().getPluginManager().registerEvents(jl, this);
 
@@ -59,7 +61,7 @@ public class BossShop extends JavaPlugin{
 			{
 				new MetricsManager().sendData(ClassManager.manager.getPlugin());
 				new UpdaterManager().run();
-				
+
 			}
 		}.runTaskLaterAsynchronously(this, 5);
 	}
@@ -70,14 +72,14 @@ public class BossShop extends JavaPlugin{
 		unloadClasses();
 		Bukkit.getLogger().info("[BossShop] Disabling... bye!");
 	}
-	
+
 	/////////////////////////////////////////////////
 
 	private ClassManager manager;
 	private InventoryListener il;
 	private SignListener sl;
 	private PlayerJoinListener jl;
-	
+
 	private BossShopAPI api;
 
 	/////////////////////////////////////////////////
@@ -85,15 +87,15 @@ public class BossShop extends JavaPlugin{
 	public ClassManager getClassManager(){
 		return manager;
 	}
-	
+
 	public SignListener getSignListener(){
 		return sl;
 	}
-	
+
 	public PlayerJoinListener getPlayerJoinListener(){
 		return jl;
 	}
-	
+
 	public BossShopAPI getAPI(){
 		return api;
 	}
@@ -102,38 +104,47 @@ public class BossShop extends JavaPlugin{
 
 	public void reloadPlugin(CommandSender sender){		
 		reloadPlayerAction();
-		
+
 		reloadConfig();
 		manager.getMessageHandler().reloadConfig();
-		
+
 		for (String s : manager.getShops().getShopIds().keySet()){
 			BSShop shop = manager.getShops().getShops().get(s);
 			if (shop!=null){
-			shop.reloadShop();
+				shop.reloadShop();
 			}
 		}
-		
+		for(Player p : Bukkit.getOnlinePlayers()){
+			if(p.getOpenInventory() != null){
+				if(p.getOpenInventory().getTopInventory()!=null){
+					if(p.getOpenInventory().getTopInventory().getHolder() instanceof BSShopHolder){
+						p.closeInventory();
+					}
+				}
+			}
+		}
+
 		sl.setSignsEnabled(false); // Wird durch ConfigHandler umgesetzt (ClassManager laedt ConfigHandler)
-		
+
 		unloadClasses();
-		
+
 		manager = new ClassManager(this);
-		
+
 		if(api.getEnabledAddons()!=null){
 			for (BossShopAddon addon : api.getEnabledAddons()){
 				addon.bossShopReloaded(sender);
 			}
 		}
-		
+
 		BSReloadedEvent event = new BSReloadedEvent(this);
 		Bukkit.getPluginManager().callEvent(event);		
 	}
-	
+
 	private void unloadClasses(){		
 		if(manager==null){
 			return;
 		}
-		
+
 		if(manager.getSettings()==null){
 			return;
 		}
@@ -141,13 +152,13 @@ public class BossShop extends JavaPlugin{
 		if (manager.getSettings().getTransactionLogEnabled()){
 			manager.getTransactionLog().saveConfig();
 		}
-		
+
 		if(manager.getSettings().getServerPingingEnabled()){
 			manager.getServerPingingManager().clearItems();
 			manager.getServerPingingManager().getServerPingingRunnableHandler().stop();			
 		}		
 	}
-	
+
 	private void reloadPlayerAction(){
 		if (manager==null||manager.getShops()==null||manager.getShops().getShops()==null){
 			return;
@@ -169,7 +180,7 @@ public class BossShop extends JavaPlugin{
 			}
 		}		
 	}
-	
-	
+
+
 
 }

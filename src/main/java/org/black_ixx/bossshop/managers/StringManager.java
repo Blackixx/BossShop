@@ -21,7 +21,17 @@ public class StringManager {
 	    s = s.replace("[peace]", "☮");
 	    s = s.replace("[moon]", "☾");
 	    s = s.replace("[crown]", "♔");
+	    s = s.replace("[snowman]", "☃");
+	    s = s.replace("[tools]", "⚒");
+	    s = s.replace("[swords]", "⚔");
 	    s = s.replace("[note]", "♩ ");
+	    s = s.replace("[block]", "█");
+	    s = s.replace("[triangle]", "▲");
+	    s = s.replace("[warn]", "⚠");
+	    s = s.replace("[left]", "←");
+	    s = s.replace("[right]", "→");
+	    s = s.replace("[up]", "↑");
+	    s = s.replace("[down]", "↓");
 	    	    
 		s = ChatColor.translateAlternateColorCodes('&', s); 
 

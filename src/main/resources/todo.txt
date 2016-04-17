@@ -1,3 +1,2 @@
 *Add splash-potion support
 *Add support for different spawn-egg types
-*Make the price placeholder adapt to price-multipliers

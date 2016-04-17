@@ -10,9 +10,9 @@ import org.black_ixx.bossshop.core.BSBuy;
 import org.black_ixx.bossshop.core.BSCustomActions;
 import org.black_ixx.bossshop.core.BSCustomLink;
 import org.black_ixx.bossshop.core.BSShop;
+import org.black_ixx.bossshop.core.BSShopHolder;
 import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
 import org.black_ixx.bossshop.core.BSEnums.BSPriceType;
-import org.black_ixx.bossshop.core.BSInventoryHolder;
 import org.black_ixx.bossshop.core.BSShops;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.config.BSConfigShop;
@@ -25,8 +25,7 @@ import org.bukkit.plugin.Plugin;
 public class BossShopAPI {
 	
 	
-	
-	
+		
 	
 	private BossShop plugin;
 	private List<BossShopAddon> enabled_addons;
@@ -37,10 +36,9 @@ public class BossShopAPI {
 	}
 	
 	
-	//For Single Shop
-	
+	//For Single Shop	
 	public boolean isValidShop(Inventory i){
-		return (i.getHolder() instanceof BSInventoryHolder && plugin.getClassManager().getShops().getShopIds().containsKey(i.getName().toLowerCase()));
+		return (i.getHolder() instanceof BSShopHolder && plugin.getClassManager().getShops().getShopIds().containsKey(i.getName().toLowerCase()));
 	}
 	
 	
@@ -64,14 +62,12 @@ public class BossShopAPI {
 	}
 	
 	//Get Managers
-
 	public BSShops getShopHandler(){
 		return plugin.getClassManager().getShops();
 	}
 	
 	
-	//Modify Shop/Shops
-	
+	//Modify Shop/Shops	
 	public void addItemToShop(ItemStack menu_item, BSBuy shop_item, BSShop shop){
 		shop.addShopItem(shop_item, menu_item, ClassManager.manager);
 	}
@@ -83,7 +79,6 @@ public class BossShopAPI {
 	
 	
 	//Create Things
-
 	public BSBuy createBSBuy(String name, BSBuyType reward_type, BSPriceType price_type, Object reward, Object price, String msg, int location, String permission){
 		return new BSBuy(reward_type, price_type, reward, price, msg, location, permission,name);
 	}
@@ -106,8 +101,7 @@ public class BossShopAPI {
 		return new BSCustomLink(action_id, actions);
 	}
 	
-	//Get Shop Items
-	
+	//Get Shop Items	
 	public HashMap<BSShop, List<BSBuy>> getAllShopItems(){
 		HashMap<BSShop, List<BSBuy>> all= new HashMap<BSShop, List<BSBuy>>();
 		for (int i : plugin.getClassManager().getShops().getShops().keySet()){
@@ -155,8 +149,7 @@ public class BossShopAPI {
 	}
 	
 
-	//Addon API
-	
+	//Addon API	
 	protected void addEnabledAddon(BossShopAddon addon){
 		Plugin addonplugin = Bukkit.getPluginManager().getPlugin(addon.getAddonName());
 		if(addonplugin==null){

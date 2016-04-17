@@ -10,6 +10,22 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.3.6
+*[ADD] Added new symbols
+**[left] -> ←
+**[right] -> →
+**[up] -> ↑
+**[down] -> ↓
+**[block] -> █
+**[triangle] -> ▲
+**[snowman] -> ☃
+**[tools] -> ⚒
+**[swords] -> ⚔
+**[warn] -> ⚠
+*[IMPROVE] Now closing all shop inventories  when BossShop is reloaded
+*[FIX] BossShop is again able to send a message to a player when he closes a shop (optional)
+
+
 v2.3.5
 *[IMPROVE] Price placeholders now adapt to the players price-multipliers and bonuses (if multipliers are enabled)
 *[IMPROVE] Small chat formatting improvements (including "&" now only being replaced when immediately followed by 0-9, A-F, a-f, K-O, k-o, R or r)
