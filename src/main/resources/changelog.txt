@@ -10,6 +10,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.4.0
+*[IMPROVE] Some default files export improvements
+*MORE COOMING HERE! v2.4.0 is not done with this little improvement.
+
+
 v2.3.6
 *[ADD] Added new symbols
 **[left] -> ←

@@ -1,0 +1,125 @@
+ShopName: Menu
+DisplayName: '&lMenu'
+signs:
+  text: '[Menu]'
+  NeedPermissionToCreateSign: true
+shop:
+  MenuBuyShop:
+    RewardType: shop
+    PriceType: free
+    Reward: BuyShop
+    MenuItem:
+    - type:GLASS
+    - amount:1
+    - name:&9&lBuyShop &6[+]
+    - lore:&8Here you can buy Items
+    Message: ''
+    InventoryLocation: 1
+    ExtraPermission: ''
+  MenuSellShop:
+    RewardType: shop
+    PriceType: free
+    Reward: SellShop
+    MenuItem:
+    - type:COBBLESTONE
+    - amount:1
+    - name:&b&lSellShop &6[+]
+    - lore:&8Here you can sell Items
+    Message: ''
+    InventoryLocation: 3
+    ExtraPermission: ''
+  MenuPotions:
+    RewardType: shop
+    PriceType: free
+    Reward: Potions
+    MenuItem:
+    - type:POTION
+    - amount:1
+    - name:&5&lPotions &6[**]
+    - lore:&8Here you can buy Potions
+    - potioneffect:SPEED#1#1
+    - hideflags:all
+    Message: ''
+    InventoryLocation: 5
+    ExtraPermission: ''
+  MenuSpells:
+    RewardType: shop
+    PriceType: free
+    Reward: Spells
+    MenuItem:
+    - type:WRITTEN_BOOK
+    - amount:1
+    - name:&4&lSpells &6[*]
+    - lore:&8Here you can buy magical Spells
+    - hideflags:all
+    Message: ''
+    InventoryLocation: 7
+    ExtraPermission: ''
+  MenuPointShop:
+    RewardType: shop
+    PriceType: free
+    Reward: PointShop
+    MenuItem:
+    - type:DIAMOND
+    - amount:1
+    - name:&6&lPointShop &a[v]
+    - 'lore:&8Here you can buy Points ##&b&lYour Points: &r&9%balancepoints%#&b&lYour
+      Money: &r&9%balance% ##&cOnly for VIPs'
+    Message: ''
+    InventoryLocation: 9
+    ExtraPermission: Permission.Vip
+  MenuWarps:
+    RewardType: shop
+    PriceType: free
+    Reward: Warps
+    MenuItem:
+    - type:PAPER
+    - amount:1
+    - name:&a&lWarps &6[x]
+    - lore:&8Free Teleportation
+    Message: ''
+    InventoryLocation: 10
+    ExtraPermission: ''
+  MenuBungeeCordServers:
+    RewardType: shop
+    PriceType: free
+    Reward: BungeeCordServers
+    MenuItem:
+    - type:COMPASS
+    - amount:1
+    - name:&c&lServers &6[x]
+    - lore:&8Available Servers &7(Working with BungeeCord)
+    Message: ''
+    InventoryLocation: 12
+    ExtraPermission: ''
+  MenuLilyPadServers:
+    RewardType: shop
+    PriceType: free
+    Reward: LilyPadServers
+    MenuItem:
+    - type:WATER_LILY
+    - amount:1
+    - name:&c&lServers &6[x]
+    - lore:&8Available Servers &7(Working with LilyPad)
+    Message: ''
+    InventoryLocation: 14
+    ExtraPermission: ''
+  Black_ixxHead:
+    RewardType: item
+    PriceType: free
+    Reward:
+    - type:SKULL_ITEM
+    - durability:3
+    - playerhead:Black_ixx
+    - name:&4Black_ixx
+    - 'lore:&cDeveloper.#&b&lName: &r&bFelix N.#&b&lWebsite: &r&bfelix.neuby.de'
+    MenuItem:
+    - type:SKULL_ITEM
+    - durability:3
+    - playerhead:Black_ixx
+    - name:&4Black_ixx
+    - 'lore:&cDeveloper.#&b&lName: &r&bFelix N.#&b&lWebsite: &r&bfelix.neuby.de##&8Click
+      to get his head! &c[<3]'
+    Message: '&6You just got a free Black_ixx head!'
+    InventoryLocation: 18
+    ExtraPermission: ''

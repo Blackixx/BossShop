@@ -1,0 +1,66 @@
+ShopName: SellShop
+DisplayName: '&b&lSellShop'
+signs:
+  text: '[SellShop]'
+  NeedPermissionToCreateSign: true
+shop:
+  Diamond:
+    RewardType: money
+    PriceType: item
+    Price:
+    - - type:DIAMOND
+      - amount:1
+    Reward: 100
+    MenuItem:
+    - type:DIAMOND
+    - amount:1
+    - name:&b1 Diamond
+    - 'lore:&2Reward: 100 Money'
+    - amount:1
+    Message: '&eYou sold %price% for %reward% %rewardtype%!'
+    InventoryLocation: 1
+    ExtraPermission: ''
+  Cobblestone:
+    RewardType: money
+    PriceType: item
+    Price:
+    - - type:COBBLESTONE
+      - amount:32
+    Reward: 20
+    MenuItem:
+    - type:COBBLESTONE
+    - amount:1
+    - name:&b32 Cobblestone
+    - 'lore:&2Reward: 20 Money'
+    - amount:32
+    Message: '&eYou sold &eYou sold %price% for %reward% %rewardtype%!'
+    InventoryLocation: 2
+    ExtraPermission: ''
+  GLASS:
+    RewardType: money
+    PriceType: item
+    Price:
+    - - type:GLASS
+      - amount:32
+    Reward: 30
+    MenuItem:
+    - type:GLASS
+    - amount:1
+    - name:&b32 Glass
+    - 'lore:&2Reward: 30 Money'
+    - amount:32
+    Message: '&eYou sold %price% for %reward% %rewardtype%!'
+    InventoryLocation: 3
+    ExtraPermission: ''
+  Back:
+    RewardType: shop
+    PriceType: free
+    Reward: menu
+    MenuItem:
+    - type:REDSTONE
+    - amount:1
+    - name:&cBack
+    - lore:&8Back to Menu
+    Message: '&6Leaving the ItemShop...'
+    InventoryLocation: 27
+    ExtraPermission: ''

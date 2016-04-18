@@ -1,0 +1,58 @@
+ShopName: Warps
+DisplayName: '&a&lWarps'
+signs:
+  text: '[Warps]'
+  NeedPermissionToCreateSign: true
+shop:
+  Spawn:
+    RewardType: playercommand
+    PriceType: free
+    Reward:
+    - warp spawn
+    MenuItem:
+    - type:COMPASS
+    - amount:1
+    - name:&aSpawn
+    - lore:&8Warp to the Spawn
+    - amount:1
+    InventoryLocation: 1
+    ExtraPermission: ''
+  PvP:
+    RewardType: playercommand
+    PriceType: free
+    Reward:
+    - warp pvp
+    MenuItem:
+    - type:DIAMOND_SWORD
+    - amount:1
+    - name:&aPvP
+    - lore:&8Warp to the PvP Arena
+    - amount:1
+    - ItemFlag:HIDE_ATTRIBUTES
+    InventoryLocation: 2
+    ExtraPermission: ''
+  Shop:
+    RewardType: playercommand
+    PriceType: free
+    Reward:
+    - warp shop
+    MenuItem:
+    - type:GOLD_INGOT
+    - amount:1
+    - name:&aShop
+    - lore:&8Warp to the Shop
+    - amount:1
+    InventoryLocation: 3
+    ExtraPermission: ''
+  Back:
+    RewardType: shop
+    PriceType: free
+    Reward: menu
+    MenuItem:
+    - type:REDSTONE
+    - amount:1
+    - name:&cBack
+    - lore:&8Back to Menu
+    Message: '&6Leaving the ItemShop...'
+    InventoryLocation: 27
+    ExtraPermission: ''

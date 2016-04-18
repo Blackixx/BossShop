@@ -1,0 +1,93 @@
+ShopName: Spells
+DisplayName: '&4&lSpells'
+signs:
+  text: '[Spells]'
+  NeedPermissionToCreateSign: true
+shop:
+  SpellFireball:
+    RewardType: permission
+    PriceType: exp
+    Price: 10
+    Reward:
+    - Permission.Fireball
+    MenuItem:
+    - type:WRITTEN_BOOK
+    - amount:1
+    - name:&4Fireball
+    - 'lore:&8Allows you to shoot Fireballs #&cPrice: 10 Levels'
+    - hideflags:ALL
+    Message: '&eYou bought the Fireball Spell!'
+    InventoryLocation: 1
+    ExtraPermission: ''
+  SpellPoison:
+    RewardType: permission
+    PriceType: exp
+    Price: 20
+    Reward:
+    - Permission.Poison
+    MenuItem:
+    - type:WRITTEN_BOOK
+    - amount:1
+    - name:&4Poison &2[radioactive]
+    - 'lore:&8Allows you to poison your enemies #&cPrice: 20 Levels'
+    - hideflags:ALL
+    Message: '&eYou bought the Poison Spell!'
+    InventoryLocation: 2
+    ExtraPermission: ''
+  SpellBolt:
+    RewardType: permission
+    PriceType: exp
+    Price: 30
+    Reward:
+    - Permission.Bolt
+    MenuItem:
+    - type:WRITTEN_BOOK
+    - amount:1
+    - name:&4Bolt
+    - 'lore:&8Allows you to strike your enemies with Bolts #&cPrice: 30 Levels'
+    - hideflags:ALL
+    Message: '&eYou bought the Bolt Spell!'
+    InventoryLocation: 3
+    ExtraPermission: ''
+  SpellVanish:
+    RewardType: permission
+    PriceType: exp
+    Price: 40
+    Reward:
+    - Permission.Vanish
+    MenuItem:
+    - type:WRITTEN_BOOK
+    - amount:1
+    - name:&4Vanish
+    - 'lore:&8Allows you to vanish for a few seconds #&cPrice: 40 Levels'
+    - hideflags:ALL
+    Message: '&eYou bought the Vanish Spell!'
+    InventoryLocation: 4
+    ExtraPermission: ''
+  SpellFreeze:
+    RewardType: permission
+    PriceType: points
+    Price: 3500
+    Reward:
+    - Permission.Freeze
+    MenuItem:
+    - type:WRITTEN_BOOK
+    - amount:1
+    - name:&4[*] &cFreeze &4[*]
+    - 'lore:&8Allows you to freeze your enemies #&cPrice: 3500 Points'
+    - hideflags:ALL
+    Message: '&eYou bought the Freeze Spell!'
+    InventoryLocation: 6
+    ExtraPermission: ''
+  Back:
+    RewardType: shop
+    PriceType: free
+    Reward: menu
+    MenuItem:
+    - type:REDSTONE
+    - amount:1
+    - name:&cBack
+    - lore:&8Back to Menu
+    Message: '&6Leaving the SpellShop...'
+    InventoryLocation: 9
+    ExtraPermission: ''

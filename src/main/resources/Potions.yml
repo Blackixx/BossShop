@@ -1,0 +1,114 @@
+ShopName: Potions
+DisplayName: '&5&lPotions'
+signs:
+  text: '[Potions]'
+  NeedPermissionToCreateSign: true
+shop:
+  NinjaPotion:
+    RewardType: item
+    PriceType: item
+    Price:
+    - - type:EMERALD
+      - amount:5
+    Reward:
+    - - type:POTION
+      - amount:1
+      - name:&5NinjaPotion
+      - lore:&8No Barrier can stop you!
+      - potioneffect:SPEED#2#600
+      - potioneffect:JUMP#0#600
+      - amount:3
+    MenuItem:
+    - type:POTION
+    - amount:1
+    - name:&5NinjaPotion
+    - 'lore:&8No Barrier can stop you! #&cPrice: 5 Emeralds'
+    - potioneffect:SPEED#2#600
+    - potioneffect:JUMP#0#600
+    - amount:3
+    Message: '&eYou bought 3 NinjaPotions!'
+    InventoryLocation: 1
+    ExtraPermission: ''
+  BeserkerPotion:
+    RewardType: item
+    PriceType: item
+    Price:
+    - - type:GHAST_TEAR
+      - amount:1
+    Reward:
+    - - type:POTION
+      - amount:1
+      - name:&5BeserkerPotion
+      - lore:&8Cut em down!!!
+      - potioneffect:INCREASE_DAMAGE#2#600
+      - potioneffect:CONFUSION#0#600
+      - amount:3
+    MenuItem:
+    - type:POTION
+    - amount:1
+    - name:&5BeserkerPotion
+    - 'lore:&8Cut em down!!! #&cPrice: 1 Ghast Tear'
+    - potioneffect:INCREASE_DAMAGE#2#600
+    - potioneffect:CONFUSION#0#600
+    - amount:3
+    Message: '&eYou bought 3 BeserkerPotions!'
+    InventoryLocation: 2
+    ExtraPermission: ''
+  GhostPotion:
+    RewardType: item
+    PriceType: item
+    Price:
+    - - type:SOUL_SAND
+      - amount:30
+    Reward:
+    - - type:POTION
+      - amount:1
+      - name:&5GhostPotion
+      - lore:&8Where are you? I can't see you!
+      - potioneffect:INVISIBILITY#0#600
+      - potioneffect:NIGHT_VISION#0#600
+      - amount:3
+    MenuItem:
+    - type:POTION
+    - amount:1
+    - name:&5GhostPotion
+    - 'lore:&8Where are you? I can''t see you! #&cPrice: 30 SoulSand'
+    - potioneffect:INVISIBILITY#0#600
+    - potioneffect:NIGHT_VISION#0#600
+    - amount:3
+    Message: '&eYou bought 3 GhostPotions!'
+    InventoryLocation: 3
+    ExtraPermission: ''
+  TitanPotion:
+    RewardType: item
+    PriceType: points
+    Price: 750
+    Reward:
+    - - type:POTION
+      - amount:1
+      - name:&cTitanPotion
+      - lore:&8Ahaha only Gods can defeat you!!!
+      - potioneffect:REGENERATION#1#600
+      - amount:3
+    MenuItem:
+    - type:POTION
+    - amount:1
+    - name:&4[*] &cTitanPotion &4[*]
+    - 'lore:&8Ahaha only Gods can defeat you!!! #&cPrice: 750 Points'
+    - potioneffect:REGENERATION#1#600
+    - amount:3
+    Message: '&eYou bought 3 TitanPotions!'
+    InventoryLocation: 5
+    ExtraPermission: ''
+  Back:
+    RewardType: shop
+    PriceType: free
+    Reward: menu
+    MenuItem:
+    - type:REDSTONE
+    - amount:1
+    - name:&cBack
+    - lore:&8Back to Menu
+    Message: '&6Leaving the ItemShop...'
+    InventoryLocation: 9
+    ExtraPermission: ''

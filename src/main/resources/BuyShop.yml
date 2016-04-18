@@ -1,0 +1,151 @@
+ShopName: BuyShop
+DisplayName: '&9&lBuyShop'
+signs:
+  text: '[BuyShop]'
+  NeedPermissionToCreateSign: true
+shop:
+  Wool:
+    RewardType: item
+    PriceType: money
+    Price: 400
+    Reward:
+    - - type:WOOL
+      - amount:10
+      - durability:14
+    - - type:WOOL
+      - amount:10
+      - durability:11
+    - - type:WOOL
+      - amount:10
+      - durability:4
+    - - type:WOOL
+      - amount:10
+      - durability:5
+    MenuItem:
+    - type:WOOL
+    - amount:1
+    - name:&9Colored Wool
+    - 'lore:&c10 Red, &110 Blue, &e10 Yellow and &a10 Green Wool #&cPrice: 400 Money'
+    - durability:11
+    - amount:40
+    Message: '&eYou bought colored Wool! Money left: &c%left%'
+    InventoryLocation: 1
+    ExtraPermission: ''
+  Diamonds:
+    RewardType: item
+    PriceType: money
+    Price: 5000
+    Reward:
+    - - type:DIAMOND
+      - amount:5
+    MenuItem:
+    - type:DIAMOND
+    - amount:1
+    - name:&95 Diamonds
+    - 'lore:&cPrice: 5000 Money'
+    - amount:5
+    Message: '&eYou bought %reward%! Money left: &c%left%'
+    InventoryLocation: 3
+    ExtraPermission: ''
+  ShadowArmor:
+    RewardType: item
+    PriceType: money
+    Price: 1500
+    Reward:
+    - - type:LEATHER_CHESTPLATE
+      - amount:1
+      - name:&5ShadowArmor
+      - 'lore:'
+      - color:110#10#140
+      - enchantment:PROTECTION_ENVIRONMENTAL#10
+    MenuItem:
+    - type:LEATHER_CHESTPLATE
+    - amount:1
+    - name:&5%itemname%
+    - 'lore:&cPrice: 1500 Money'
+    - color:110#10#140
+    - enchantment:PROTECTION_ENVIRONMENTAL#10
+    Message: '&eYou bought 1 %itemname%! Money left: &c%left%'
+    InventoryLocation: 5
+    ExtraPermission: ''
+  Obsidian:
+    RewardType: item
+    PriceType: money
+    Price: 10000
+    Reward:
+    - - type:OBSIDIAN
+      - amount:64
+    MenuItem:
+    - type:OBSIDIAN
+    - amount:1
+    - name:&964 Obsidian
+    - 'lore:&cPrice: 10000 Money'
+    - amount:64
+    Message: '&eYou bought %reward%! Money left: &c%left%'
+    InventoryLocation: 7
+    ExtraPermission: ''
+  GodApple:
+    RewardType: item
+    PriceType: money
+    Price: 10000
+    Reward:
+    - - type:GOLDEN_APPLE
+      - amount:1
+      - durability:1
+    MenuItem:
+    - type:GOLDEN_APPLE
+    - amount:1
+    - name:&9%itemname%
+    - 'lore:&cPrice: 10000 Money'
+    - durability:1
+    Message: '&eYou bought 1 %itemname%! Money left: &c%left%'
+    InventoryLocation: 9
+    ExtraPermission: ''
+  EnchantUnbreaking:
+    RewardType: enchantment
+    PriceType: exp
+    Price: 25
+    Reward: DURABILITY#3
+    MenuItem:
+    - type:ENCHANTED_BOOK
+    - amount:1
+    - name:&4[crown] &cEnchantment &4[crown]
+    - 'lore:&8Enchants the Item in your hand. #&cPrice: 25 Exp Level ##&cOnly for
+      VIPs!'
+    - enchantment:DURABILITY#3
+    Message: '&eThe Enchantment Unbreaking III was added to your item!'
+    InventoryLocation: 19
+    ExtraPermission: Permission.Vip
+  BossSword:
+    RewardType: item
+    PriceType: points
+    Price: 2000
+    Reward:
+    - - type:DIAMOND_SWORD
+      - amount:1
+      - name:&cBossSword
+      - lore:&8&o%player%'s Sword
+      - enchantment:DAMAGE_ALL#5
+      - enchantment:FIRE_ASPECT#2
+    MenuItem:
+    - type:DIAMOND_SWORD
+    - amount:1
+    - name:&4[*] &c%itemname% &4[*]
+    - 'lore:&cPrice: 2000 Points'
+    - enchantment:DAMAGE_ALL#5
+    - enchantment:FIRE_ASPECT#2
+    Message: '&eYou bought 1 %itemname%! Money left: &c%left%'
+    InventoryLocation: 21
+    ExtraPermission: ''
+  Back:
+    RewardType: shop
+    PriceType: free
+    Reward: menu
+    MenuItem:
+    - type:REDSTONE
+    - amount:1
+    - name:&cBack
+    - lore:&8Back to Menu
+    Message: '&6Leaving the ItemShop...'
+    InventoryLocation: 27
+    ExtraPermission: ''

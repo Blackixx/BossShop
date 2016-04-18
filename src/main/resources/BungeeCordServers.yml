@@ -1,0 +1,90 @@
+ShopName: BungeeCordServers
+DisplayName: '&c&lBungeeCordServers'
+signs:
+  text: '[BungeeCordServers]'
+  NeedPermissionToCreateSign: true
+shop:
+  EarthGame:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: earthgame
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aEarth Game
+    - lore:&7Click to connect!
+    - durability:3
+    InventoryLocation: 2
+    ExtraPermission: ''
+  Creative:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: creative
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aCreative
+    - lore:&7Click to connect!
+    - durability:11
+    InventoryLocation: 3
+    ExtraPermission: ''
+  HungerGames:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: hungergames
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aHunger Games
+    - lore:&7Click to connect!
+    - durability:14
+    InventoryLocation: 4
+    ExtraPermission: ''
+  Survival:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: survival
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aSurvival
+    - lore:&7Click to connect!
+    - durability:10
+    InventoryLocation: 5
+    ExtraPermission: ''
+  PvP:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: pvp
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aPvP
+    - lore:&7Click to connect!
+    - durability:5
+    InventoryLocation: 6
+    ExtraPermission: ''
+  Factions:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: factions
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aFactions
+    - lore:&7Click to connect!
+    - durability:13
+    InventoryLocation: 7
+    ExtraPermission: ''
+  ZombieV:
+    RewardType: bungeecordserver
+    PriceType: free
+    Reward: zombiev
+    MenuItem:
+    - type:STAINED_CLAY
+    - amount:1
+    - name:&aZombieV &6&ONew!
+    - lore:&7Click to connect!
+    - durability:4
+    InventoryLocation: 8
+    ExtraPermission: ''

@@ -1,0 +1,15 @@
+Main:
+  NoPermission: '&cYou are not allowed to do this!'
+  AlreadyBought: '&cYou already purchased that!'
+  ShopNotExisting: '&cThat Shop is not existing...'
+  OpenShop: '&6Opening the BossShop...'
+  CloseShop: ''
+Economy:
+  NoAccount: '&cYou don''t have an economy account!'
+NotEnough:
+  Money: '&cYou don''t have enough Money!'
+  Item: '&cYou don''t have enough Items!'
+  Points: '&cYou don''t have enough Points!'
+  Exp: '&cYou don''t have enough EXP!'
+Enchantment:
+  Invalid: '&cYou can''t enchant that item with this enchantment!'
