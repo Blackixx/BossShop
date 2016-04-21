@@ -87,16 +87,22 @@ public class MetricsManager {
 
 			PointsPlugin ppl = s.getPointsPlugin();
 			if(ppl!=null){
-				Graph pp = metrics.createGraph("Points Plugin (If used)");
+				Graph pp = metrics.createGraph("Points Plugin if used");
 				switch(ppl){
+				case PLAYERPOINTS:
+					addPlotter(pp, "PlayerPoints", 1);
+					break;
 				case COMMANDPOINTS:
 					addPlotter(pp, "CommandPoints", 1);
 					break;
 				case ENJIN_MINECRAFT_PLUGIN:
 					addPlotter(pp, "Enjin Minecraft Plugin", 1);
 					break;
-				case PLAYERPOINTS:
-					addPlotter(pp, "PlayerPoints", 1);
+				case POINTSAPI:
+					addPlotter(pp, "PointsAPI", 1);
+					break;
+				case CUSTOM:
+					addPlotter(pp, "Custom", 1);
 					break;
 				}
 			}
@@ -141,6 +147,8 @@ public class MetricsManager {
 			int itr_points = 0;
 			int itr_shop = 0;
 			int itr_timecommand = 0;
+			int itr_enchantment = 0;
+			int itr_nothing = 0;
 
 			for (int sh : plugin.getClassManager().getShops().getShops().keySet()){
 				BSShop shop = plugin.getClassManager().getShops().getShops().get(sh);
@@ -188,6 +196,12 @@ public class MetricsManager {
 									break;
 								case TimeCommand:
 									itr_timecommand++;
+									break;
+								case Enchantment:
+									itr_enchantment++;
+									break;
+								case Nothing:
+									itr_nothing++;
 									break;
 								}
 
@@ -245,6 +259,8 @@ public class MetricsManager {
 			addPlotter(itemsR, "Points", itr_points);
 			addPlotter(itemsR, "Shop", itr_shop);
 			addPlotter(itemsR, "TimeCommand", itr_timecommand);
+			addPlotter(itemsR, "Enchantment", itr_enchantment);
+			addPlotter(itemsR, "Nothing", itr_nothing);
 
 			if(plugin.getAPI().getEnabledAddons()!=null){
 				Graph addons = metrics.createGraph("Running Addons");

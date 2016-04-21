@@ -11,8 +11,8 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 <</quote>>
 
 v2.4.0
-*[IMPROVE] Some default files export improvements
-*MORE COOMING HERE! v2.4.0 is not done with this little improvement.
+*[ADD] Added Potioneffect support for all possible items (like TIPPED_ARROW, SPLASH_POTION, etc.)
+*[IMPROVE] Some default shops and config files export improvements
 
 
 v2.3.6

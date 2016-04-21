@@ -17,36 +17,60 @@
 # OR you can edit it the Boss way: Use "BossShopConfigure" (An awesome software which allows simple Setup with a few clicks).			
 # You can download BossShopConfigure here: http://dev.bukkit.org/bukkit-plugins/bossshop/			
 # 			
-# 			
+# 				
+# 					
+# 				
 # EnableSigns:			
-# If set EnableSigns to 'false' BossShop signs will be disabled.			
+# If set EnableSigns to 'false' BossShop signs will be disabled.		
+EnableSigns: true	
 # 			
+# 		
 # MainShop:			
 # That's the name of your Main Shop. Whenever someone uses '/bossshop', this Shop is opened. Other Shops can be opened via '/bossshop <shop>'.			
-# Also, all Shops can be opened via Sign (If Signs are enabled) or with clicking a specific Item (If you have 'GuiShopManager installed).			
+# Also, all Shops can be opened via Sign (If Signs are enabled) or with clicking a specific Item (If you have 'GuiShopManager installed).	
+MainShop: Menu	
 # 			
+# 		
 # HideItemsPlayersDoNotHavePermissionsFor:			
 # If enabled all Items your players do not have permissions for will be "hidden". That way you can create cool things like upgrade systems: 			
-# Put multiple Items on the same slot and hide the ones which are not available any more. For example if you work with upgrades, hide the old upgrade and show the next one.			
+# Put multiple Items on the same slot and hide the ones which are not available any more. For example if you work with upgrades, hide the old upgrade and show the next one.	
+HideItemsPlayersDoNotHavePermissionsFor: false	
 # 			
+# 		
+# CanPlayersSellItemsWithGreaterEnchants:
+# If enabled players can sell items with greater enchants than needed to a shop that allows to sell items. That might be helpful when dealing with items with bad enchants,
+# but also might lead to accidently selling items below their worth.
+CanPlayersSellItemsWithGreaterEnchants: false
 # EnableTransactionLog:			
-# If enabled,all Transactions will be logged in a TransactionLog file.			
+# If enabled,all Transactions will be logged in a TransactionLog file.	
+EnableTransactionLog: false	
 # 			
+# 		
 # SearchSubfoldersForShops:			
 # If enabled BossShop will search children folders of the '/shops' directory for shop files. That can be quite helpful for sorting, when dealing with a big amount of shops.
+SearchSubfoldersForShops: false	
 # 			
+# 		
 # ServerPingingDelay:			
 # ServerPinging Delay in seconds. Relevant only when working with ServerPinging: dev.bukkit.org/bukkit-plugins/bossshop/pages/server-pinging/		
+ServerPingingDelay: 20	
 # 			
+# 		
 # AllowUnsafeEnchantments:			
 # If enabled you can set up items with insane enchants like knockback level 10 or a mad cookie that burns players.
+AllowUnsafeEnchantments: false	
 # 			
+# 		
 # DisableUpdateNotifications:			
-# If disabled you won't get Update Notifications any more.		
+# If disabled you won't get Update Notifications any more.	
+DisableUpdateNotifications: false	
 # 			
+# 		
 # DisableUpdateAutoDownload:			
-# If disabled BossShop won't get automatically updated any more.			
+# If disabled BossShop won't get automatically updated any more.
+DisableUpdateAutoDownload: false	
 # 			
+# 		
 # MultiplierGroups:			
 # Here you can set up Price Multipliers.			
 # If enabled, this MultiplierGroups will be loaded and players with the right permissions will get a price decrease/increase.			
@@ -54,26 +78,7 @@
 # <Permission>: Here you can put in whatever you want. If you want a group to have this multiplier, just give that group your permission.			
 # <Type>: Multiplier Type. Valid: Money, Points, Exp			
 # <Multiplier>: Price = old Price * Multiplier			
-# Players can be in multiple "MultiplierGroups" at the same time.			
-# 			
-# PointsPlugin:			
-# Only important if you work with Points.			
-# Here you can enter whatever you want. BossShop will always detect the Points Plugin you are using and it will hook into it 			
-# (If you are using one). If you use multiple Points Plugins fill in the name of the one that you want BossShop to work with.		
-# 'PlayerPoints'/'PP', 'CommandPoints'/'CP', 'Enjin Minecraft Plugin'/'Enjin'/'EMP', 'PointsAPI'/'PAPI'.			
-# 			
-# 			
-
-EnableSigns: true
-MainShop: Menu
-HideItemsPlayersDoNotHavePermissionsFor: false
-CanPlayersSellItemsWithGreaterEnchants: false
-EnableTransactionLog: false
-SearchSubfoldersForShops: false
-ServerPingingDelay: 20
-AllowUnsafeEnchantments: false
-DisableUpdateNotifications: false
-DisableUpdateAutoDownload: false
+# Players can be in multiple "MultiplierGroups" at the same time.	
 MultiplierGroups:
   Enabled: false
   List:
@@ -83,5 +88,12 @@ MultiplierGroups:
   - BossShop.PriceMultiplier.Money1:money:0.75
   - BossShop.PriceMultiplier.Money2:money:0.5
   - BossShop.PriceMultiplier.MoneyNegative:money:2.0
-  - BossShop.PriceMultiplier.Exp:exp:0.8
+  - BossShop.PriceMultiplier.Exp:exp:0.8	
+# 			
+# 		
+# PointsPlugin:			
+# Only important if you work with Points.			
+# Here you can enter whatever you want. BossShop will always detect the Points Plugin you are using and it will hook into it 			
+# (If you are using one). If you use multiple Points Plugins fill in the name of the one that you want BossShop to work with.		
+# 'PlayerPoints'/'PP', 'CommandPoints'/'CP', 'Enjin Minecraft Plugin'/'Enjin'/'EMP', 'PointsAPI'/'PAPI'.			
 PointsPlugin: auto-detect

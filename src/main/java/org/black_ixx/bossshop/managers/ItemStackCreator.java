@@ -339,13 +339,9 @@ public class ItemStackCreator {
 
 			if (s.equalsIgnoreCase("potioneffect")){
 				a=stringFix(a);
-				boolean splash = false;
-				//				if(i.getType()==Material.SPLASH_POTION){ not used yet anyways & not included in older minecraft versions
-				//					splash = true;
-				//					i.setType(Material.POTION);
-				//				}
-				if (i.getType()!=Material.POTION){
-					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (potioneffect) You can't add PotionEffects to items which are not potions...");
+				ItemMeta im = i.getItemMeta();
+				if (!(im instanceof PotionMeta)){
+					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (potioneffect) You can't add PotionEffects to item '"+i.getType().name()+"'!");
 					continue;
 				}
 				PotionMeta meta = (PotionMeta) i.getItemMeta();
@@ -355,9 +351,6 @@ public class ItemStackCreator {
 					String pType = par[0].trim().toUpperCase();
 					String pLvl = par[1].trim();
 					String pTime = par[2].trim();
-					if(par.length>=4){
-						splash = Boolean.parseBoolean(par[3].trim());
-					}
 
 					PotionEffectType type = null;
 					if (isInteger(pType)){
@@ -369,10 +362,6 @@ public class ItemStackCreator {
 					PotionEffect effect = new PotionEffect(type, getTicksFromSeconds(pTime), Integer.parseInt(pLvl));
 					meta.addCustomEffect(effect, true);
 					i.setItemMeta(meta);
-
-					if(splash){
-						//TODO
-					}
 
 
 				} catch (Exception e){

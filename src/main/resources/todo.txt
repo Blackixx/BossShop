@@ -1,2 +1,1 @@
-*Add splash-potion support
 *Add support for different spawn-egg types
