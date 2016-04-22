@@ -14,7 +14,8 @@ public class BSEnums {
 		PlayerCommand,
 		BungeeCordServer,
 		Custom,
-		Nothing
+		Nothing,
+		Close
 		
 	}
 	
