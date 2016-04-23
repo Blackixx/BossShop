@@ -34,6 +34,7 @@ public class MessageHandler {
 		config = YamlConfiguration.loadConfiguration(file);
 		InputStream defConfigStream = plugin.getResource(fileName);
 		if (defConfigStream != null) {
+			@SuppressWarnings("deprecation")
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 			config.setDefaults(defConfig);
 		}

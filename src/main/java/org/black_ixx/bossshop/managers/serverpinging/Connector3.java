@@ -107,7 +107,8 @@ public class Connector3 extends BasicConnector{
 	}
 	
 	
-    public StatusResponse fetchData() throws IOException {
+    @SuppressWarnings("resource")
+	public StatusResponse fetchData() throws IOException {
 
         Socket socket = new Socket();
         OutputStream outputStream;
@@ -141,7 +142,7 @@ public class Connector3 extends BasicConnector{
         dataOutputStream.writeByte(0x01); //size is only 1
         dataOutputStream.writeByte(0x00); //packet id for ping
         DataInputStream dataInputStream = new DataInputStream(inputStream);
-        int size = readVarInt(dataInputStream); //size of packet
+       // int size = readVarInt(dataInputStream); //size of packet
         int id = readVarInt(dataInputStream); //packet id
         
         if (id == -1) {

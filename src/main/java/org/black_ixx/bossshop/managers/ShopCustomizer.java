@@ -142,7 +142,11 @@ public class ShopCustomizer {
 				}
 
 				locs.put(buy.getInventoryLocation(), buy);
-				inventory.setItem(buy.getInventoryLocation(), item);
+				if(buy.getInventoryLocation()>BSShop.ROWS_LIMIT*9){
+					ClassManager.manager.getBugFinder().warn("Unable to add shop-item '"+buy.getName()+"' to shop '"+shop.getShopName()+"': Highest possible inventory location of "+(BSShop.ROWS_LIMIT*9)+" can't be exceeded!");
+				}else{
+					inventory.setItem(buy.getInventoryLocation(), item);
+				}
 			}
 
 		}

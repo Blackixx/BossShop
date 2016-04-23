@@ -149,6 +149,7 @@ public class MetricsManager {
 			int itr_timecommand = 0;
 			int itr_enchantment = 0;
 			int itr_nothing = 0;
+			int itr_close = 0;
 
 			for (int sh : plugin.getClassManager().getShops().getShops().keySet()){
 				BSShop shop = plugin.getClassManager().getShops().getShops().get(sh);
@@ -202,6 +203,9 @@ public class MetricsManager {
 									break;
 								case Nothing:
 									itr_nothing++;
+									break;
+								case Close:
+									itr_close++;
 									break;
 								}
 
@@ -261,6 +265,7 @@ public class MetricsManager {
 			addPlotter(itemsR, "TimeCommand", itr_timecommand);
 			addPlotter(itemsR, "Enchantment", itr_enchantment);
 			addPlotter(itemsR, "Nothing", itr_nothing);
+			addPlotter(itemsR, "Close", itr_close);
 
 			if(plugin.getAPI().getEnabledAddons()!=null){
 				Graph addons = metrics.createGraph("Running Addons");

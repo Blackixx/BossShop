@@ -10,6 +10,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.4.1
+*[ADD] Added new "Close" reward, which closes the open shop
+*[ADD] Added additional exception handling
+
+
 v2.4.0
 *[ADD] Added Potioneffect support for all possible items (like TIPPED_ARROW, SPLASH_POTION, etc.)
 *[IMPROVE] Some default shops and config files export improvements

@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class BSShop {
 
-	private final static int ROWS_LIMIT = 6;
+	public final static int ROWS_LIMIT = 6;
 
 	//////////////////////////// <- Variables
 
@@ -273,7 +273,7 @@ public abstract class BSShop {
 			if(b!=null){
 				locs.put(b.getInventoryLocation(), b);
 				if(b.getInventoryLocation()>ROWS_LIMIT*9){
-					ClassManager.manager.getBugFinder().warn("Unable to add shop-item '"+b.getName()+"' to shop '"+getShopName()+"': Highest possible inventory location of "+(ROWS_LIMIT*9-1)+" can't be exceeded!");
+					ClassManager.manager.getBugFinder().warn("Unable to add shop-item '"+b.getName()+"' to shop '"+getShopName()+"': Highest possible inventory location of "+(ROWS_LIMIT*9)+" can't be exceeded!");
 				}else{
 					inventory.setItem(b.getInventoryLocation(), item);
 				}

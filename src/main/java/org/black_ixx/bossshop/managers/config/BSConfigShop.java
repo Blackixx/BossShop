@@ -98,6 +98,7 @@ public class BSConfigShop extends BSShop{
 		config = YamlConfiguration.loadConfiguration(f);
 		InputStream defConfigStream = ClassManager.manager.getPlugin().getResource(f.getName());
 		if (defConfigStream != null) {
+			@SuppressWarnings("deprecation")
 			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 			config.setDefaults(defConfig);
 		}
