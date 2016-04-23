@@ -368,6 +368,9 @@ public class BSBuy {
 			return;
 		case Nothing:
 			return;
+		case Close:
+			p.closeInventory();
+			return;
 		}
 
 	}
