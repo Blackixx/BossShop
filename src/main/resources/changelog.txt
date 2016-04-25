@@ -13,6 +13,7 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 v2.4.1
 *[ADD] Added new "Close" reward, which closes the open shop
 *[ADD] Added additional exception handling
+*[FIX] Modified configuration file in order to fix a help-lines copy issue
 
 
 v2.4.0

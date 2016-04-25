@@ -1,1 +1,11 @@
-*Add support for different spawn-egg types
+BossShop:
+* Add support for different spawn-egg types
+
+
+
+BS-SingleUse:
+* UUID support
+* Optional Uses-reset after every day/week/month
+
+
+GuiShopManager:
