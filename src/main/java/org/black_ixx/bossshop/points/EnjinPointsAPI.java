@@ -26,6 +26,10 @@ public class EnjinPointsAPI extends IPointsAPI {
 
 	public int getPoints(OfflinePlayer player) {
 		RPCData<Integer> data = EnjinServices.getService(PointService.class).get(player.getName());
+		if(data == null || data.getResult() == null){
+			ClassManager.manager.getBugFinder().warn("Hooked into EnjinMinecraftPlugin but unable to access the points of player "+player.getName()+". Maybe the points database is not set up correctly?");
+			return 0;
+		}
 		return data.getResult();
 	}
 

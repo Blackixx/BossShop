@@ -166,7 +166,7 @@ public class ShopCustomizer {
 		if(bal_points&&s.contains("%balancepoints%")){
 			s=s.replace("%balancepoints%",  ""+balance_points);
 		}
-		if(s.contains("%price%")){
+		if(s.contains("%price%") || s.contains("%reward%")){
 			s=buy.transformMessage(s, shop, p);
 		}
 		return s;

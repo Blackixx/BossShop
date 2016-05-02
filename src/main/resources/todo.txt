@@ -1,6 +1,11 @@
 BossShop:
 * Add support for different spawn-egg types
-* Move BSBuy code into the different enums
+* Move BSBuy code into the different enums. New methods that enums should have:
+**transformReward/transformPrice (transforms it into nice string to display)
+**hasPrice (only for prices)
+**takePrice (only for prices)
+**giveReward (only for rewards)
+therefor, create new helper classes that do stuff like giving rewards
 
 
 

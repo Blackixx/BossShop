@@ -106,9 +106,9 @@ public class InventoryListener implements Listener{
 				}
 
 				String o = buy.takePrice(p);
-				String s = buy.getMessage();
+				String s = buy.transformMessage(buy.getMessage(), shop, p);
 				if (s!=null){
-					s = plugin.getClassManager().getStringManager().transform(buy.getMessage(), p);
+					s = plugin.getClassManager().getStringManager().transform(s, p);
 					if (o!=null&&o!=""&&s.contains("%left%")){
 						s=s.replace("%left%", o);
 					}

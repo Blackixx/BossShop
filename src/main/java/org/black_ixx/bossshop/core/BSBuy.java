@@ -495,7 +495,10 @@ public class BSBuy {
 		}
 
 		String priceM = String.valueOf(price);
-		if (price instanceof List<?>) {
+		String rewardM = String.valueOf(reward);
+
+		//If it's about items
+		if (price instanceof List<?>) {			
 			List<?> list = (List<?>) price;
 			if ((!list.isEmpty()) && list.get(0) instanceof ItemStack) {
 				String m = "";
@@ -511,32 +514,6 @@ public class BSBuy {
 				priceM = m;
 			}
 		}
-
-
-		if(shop!=null){
-			if(!shop.isCustomizable()){ //if shop is not customizable yet but contains placeholders that depend on a player -> make it customizable
-				if(msg.contains("%price%") && (priceT==BSPriceType.Money || priceT==BSPriceType.Exp || priceT==BSPriceType.Points)){
-					if(ClassManager.manager.getMultiplierHandler().hasMultipliers()){
-						shop.setCustomizable(true);
-						shop.setDisplaying(true);
-					}
-				}
-			}
-			if(shop.isCustomizable()){
-				if(p == null){
-					priceM = null; //When shop is customizable, the price needs to be adapted to the player and can not be set here!				
-				}else{
-					if(price instanceof Integer){
-						priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
-					}
-					if(price instanceof Double){
-						priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
-					}
-				}
-			}
-		}
-
-		String rewardM = String.valueOf(reward);
 		if (reward instanceof List<?>) {
 			List<?> list = (List<?>) reward;
 			if ((!list.isEmpty()) && list.get(0) instanceof ItemStack) {
@@ -553,6 +530,47 @@ public class BSBuy {
 				rewardM = m;
 			}
 		}
+
+
+		if(shop!=null){
+			if(!shop.isCustomizable()){ //if shop is not customizable yet but contains placeholders that depend on a player -> make it customizable
+				boolean has_pricevariable = (msg.contains("%price%") && (priceT==BSPriceType.Money || priceT==BSPriceType.Exp || priceT==BSPriceType.Points));
+				boolean has_rewardvariable = (msg.contains("%reward%") && (buyT==BSBuyType.Money || buyT==BSBuyType.Points));
+				if(has_pricevariable || has_rewardvariable){
+					if(ClassManager.manager.getMultiplierHandler().hasMultipliers()){
+						System.out.print("making shop "+shop.getDisplayName()+" customizable because of multipliers enabled and having specific variables. message: "+msg);
+						shop.setCustomizable(true);
+						shop.setDisplaying(true);
+					}
+				}
+			}
+		}
+		
+		boolean possibly_customizable = shop == null;
+		if(shop!=null){
+			possibly_customizable = shop.isCustomizable();
+		}
+		
+		if(possibly_customizable){
+			if(p == null){ //When shop is customizable, the variables needs to be adapted to the player and can not be set here!
+				priceM = null; 
+				rewardM = null;
+			}else{
+				if(price instanceof Integer){
+					priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
+				}
+				if(price instanceof Double){
+					priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
+				}
+				if(reward instanceof Integer){
+					rewardM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward));
+				}
+				if(reward instanceof Double){
+					rewardM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward));
+				}
+			}
+		}
+
 
 		if (name != null && name != "" && name.length() > 0) {
 			msg = msg.replace("%itemname%", name);
