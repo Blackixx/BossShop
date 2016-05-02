@@ -6,8 +6,8 @@ import java.util.List;
 
 import net.milkbowl.vault.permission.Permission;
 
-import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
-import org.black_ixx.bossshop.core.BSEnums.BSPriceType;
+import org.black_ixx.bossshop.core.enums.BSBuyType;
+import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.config.BSConfigShop;
 import org.black_ixx.bossshop.misc.Enchant;
@@ -345,14 +345,17 @@ public class BSBuy {
 			return;
 
 		case Money:
+			double r = 0;
 			if (reward instanceof Integer) {
-				giveRewardMoney(p, (Integer) reward);
+				r = (int) reward;
 				return;
+			}else{
+				r = (double) reward;
 			}
-			giveRewardMoney(p, (Double) reward);
+			giveRewardMoney(p, ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.Money, (r)));
 			return;
 		case Points:
-			giveRewardPoints(p, (Integer) reward);
+			giveRewardPoints(p, ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.Points, ((Integer)reward)));
 			return;
 		case Custom:
 			giveRewardCustom(p, (BSCustomLink) reward);

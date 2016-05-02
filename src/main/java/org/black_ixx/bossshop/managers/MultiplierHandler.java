@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSMultiplier;
-import org.black_ixx.bossshop.core.BSEnums.BSPriceType;
+import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.bukkit.entity.Player;
 
 
@@ -36,27 +36,50 @@ public class MultiplierHandler {
 	}
 
 
-	public double calculateWithMultiplier(Player p, BSPriceType type, double d){
+	public double calculateWithMultiplier(Player p, BSPriceType type, double d){ //Used for prices
 		for(BSMultiplier m : multipliers){
 			if(m.getType()==type){
 				if(m.hasPermission(p)){
-					d=d*m.getMultiplier();		
+					d*=m.getMultiplier();		
 				}
 			}
 		}
 		return d;
 	}
 
-	public int calculateWithMultiplier(Player p, BSPriceType type, int d){
+	public int calculateWithMultiplier(Player p, BSPriceType type, int d){ //Used for prices
 		double x = d;
 		for(BSMultiplier m : multipliers){
 			if(m.getType()==type){
 				if(m.hasPermission(p)){
-					x=x*m.getMultiplier();			
+					x*=m.getMultiplier();			
 				}
 			}
 		}
 		return (int)x;
+	}
+
+	public int calculateRewardWithMultiplier(Player p, BSPriceType type, int d){ //Used for reward; Works the other way around
+		double x = d;
+		for(BSMultiplier m : multipliers){
+			if(m.getType()==type){
+				if(m.hasPermission(p)){
+					x/=m.getMultiplier();			
+				}
+			}
+		}
+		return (int)x;
+	}
+	
+	public double calculateRewardWithMultiplier(Player p, BSPriceType type, double d){ //Used for reward; Works the other way around
+		for(BSMultiplier m : multipliers){
+			if(m.getType()==type){
+				if(m.hasPermission(p)){
+					d/=m.getMultiplier();			
+				}
+			}
+		}
+		return d;
 	}
 
 

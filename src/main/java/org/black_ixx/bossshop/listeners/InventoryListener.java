@@ -3,7 +3,7 @@ package org.black_ixx.bossshop.listeners;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSBuy;
-import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
+import org.black_ixx.bossshop.core.enums.BSBuyType;
 import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.core.BSShopHolder;
 import org.black_ixx.bossshop.events.BSPlayerPurchaseEvent;

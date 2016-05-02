@@ -8,7 +8,7 @@ import java.util.Date;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSBuy;
-import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
+import org.black_ixx.bossshop.core.enums.BSBuyType;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

@@ -1,5 +1,6 @@
 BossShop:
 * Add support for different spawn-egg types
+* Move BSBuy code into the different enums
 
 
 

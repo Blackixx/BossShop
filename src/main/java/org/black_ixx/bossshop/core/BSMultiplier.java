@@ -1,7 +1,7 @@
 package org.black_ixx.bossshop.core;
 
 import org.black_ixx.bossshop.BossShop;
-import org.black_ixx.bossshop.core.BSEnums.BSPriceType;
+import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.bukkit.entity.Player;
 
 public class BSMultiplier {

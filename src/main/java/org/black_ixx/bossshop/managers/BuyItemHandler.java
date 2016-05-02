@@ -2,8 +2,8 @@ package org.black_ixx.bossshop.managers;
 
 
 import org.black_ixx.bossshop.core.BSBuy;
-import org.black_ixx.bossshop.core.BSEnums.BSBuyType;
-import org.black_ixx.bossshop.core.BSEnums.BSPriceType;
+import org.black_ixx.bossshop.core.enums.BSBuyType;
+import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class BuyItemHandler {

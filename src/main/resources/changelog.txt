@@ -10,9 +10,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
-v2.4.2
-*[IMPROVE] Re-structured some code: It's now easier for external projects to work with it
+v2.4.2 (Beta)
+*[WARNING] This update might break custom coded addons. 'BS-SingleUse' and 'GuiShopManager' will still be working fine, however if you wrote custom addons, please update them.
 *[ADD] Re-added optional support for older Enjin versions. Don't worry: Enjin 3.X is still working fine with BossShop ;-)
+*[IMPROVE] Multipliers now work the other way around too. Example: When players have a 50% money price multiplier they will get the double amount of money when they sell items for money.
+*[IMPROVE] Re-structured some code: It's now easier for external projects to work with it
 
 
 v2.4.1
