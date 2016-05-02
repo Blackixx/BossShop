@@ -6,8 +6,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.Plugin;
 
 import com.enjin.core.EnjinServices;
+import com.enjin.officialplugin.api.EnjinAPI;
 import com.enjin.rpc.mappings.mappings.general.RPCData;
 import com.enjin.rpc.mappings.services.PointService;
+
 
 
 public class EnjinPointsAPI extends IPointsAPI {
@@ -21,6 +23,7 @@ public class EnjinPointsAPI extends IPointsAPI {
 			ClassManager.manager.getBugFinder().warn("PlayerPoints was not found... You need it if you want to work with Points! Get it there: http://dev.bukkit.org/server-mods/playerpoints/");
 			return;
 		}
+		new EnjinAPI();
 
 	}
 

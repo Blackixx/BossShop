@@ -3,6 +3,8 @@ package org.black_ixx.bossshop.managers;
 import org.black_ixx.bossshop.points.*;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class PointsManager {
 
@@ -61,6 +63,13 @@ public class PointsManager {
 			if (Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") == null) {
 				ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
 				return;
+			}
+			
+			Plugin enjinplugin = Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin");
+			if(enjinplugin.getDescription().getVersion().startsWith("2")){ //When using an older Enjin version
+				pa = new EnjinPointsAPI_v2();
+				return;
+
 			}
 			pa = new EnjinPointsAPI();
 			return;

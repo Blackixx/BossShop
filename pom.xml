@@ -174,6 +174,13 @@
 			<scope>system</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.enjin</groupId>
+			<artifactId>EnjinMinecraftPlugin_v2</artifactId>
+			<version>2.7.8</version>
+			<systemPath>${basedir}/lib/EnjinMinecraftPlugin_v2.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
 			<groupId>me.BukkitPVP</groupId>
 			<artifactId>PointsAPI</artifactId>
 			<version>1.5.1</version>
