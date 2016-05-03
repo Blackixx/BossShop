@@ -1,6 +1,6 @@
 package org.black_ixx.bossshop.managers;
 
-import org.black_ixx.bossshop.managers.PointsManager.PointsPlugin;
+import org.black_ixx.bossshop.managers.features.PointsManager.PointsPlugin;
 
 public class Settings {
 	
@@ -67,11 +67,11 @@ public class Settings {
 		bungeecord=b;
 	}
 
-	public void setInventoryCustomizingBalanceEnabled(boolean b){
+	public void setBalanceVariableEnabled(boolean b){
 		ic_bal=b;
 	}
 	
-	public void setInventoryCustomizingBalancePointsEnabled(boolean b){
+	public void setBalancePointsVariableEnabled(boolean b){
 		ic_bal_points=b;
 	}
 	
@@ -155,11 +155,11 @@ public class Settings {
 		return bungeecord;
 	}
 
-	public boolean getInventoryCustomizingBalanceEnabled(){
+	public boolean getBalanceVariableEnabled(){//TODO: probably remove this
 		return ic_bal;
 	}
 	
-	public boolean getInventoryCustomizingBalancePointsEnabled(){
+	public boolean getBalancePointsVariableEnabled(){
 		return ic_bal_points;
 	}
 	

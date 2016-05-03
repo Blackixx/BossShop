@@ -1,5 +1,5 @@
 ShopName: PointShop
-DisplayName: '&6&lPointShop &2[v]'
+DisplayName: '&9&lPoints: %balancepoints%  &2&lMoney: %balance%'
 signs:
   text: '[PointShop]'
   NeedPermissionToCreateSign: true

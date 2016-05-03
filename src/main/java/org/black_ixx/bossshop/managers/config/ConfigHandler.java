@@ -2,7 +2,7 @@ package org.black_ixx.bossshop.managers.config;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.managers.ClassManager;
-import org.black_ixx.bossshop.managers.PointsManager.PointsPlugin;
+import org.black_ixx.bossshop.managers.features.PointsManager.PointsPlugin;
 import org.black_ixx.bossshop.points.PointsAPI;
 import org.bukkit.Bukkit;
 

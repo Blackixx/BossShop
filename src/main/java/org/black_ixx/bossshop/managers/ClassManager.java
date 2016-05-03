@@ -6,6 +6,12 @@ import org.black_ixx.bossshop.managers.config.ConfigHandler;
 import org.black_ixx.bossshop.managers.external.BungeeCordManager;
 import org.black_ixx.bossshop.managers.external.PlaceholderAPIHandler;
 import org.black_ixx.bossshop.managers.external.VaultHandler;
+import org.black_ixx.bossshop.managers.features.BugFinder;
+import org.black_ixx.bossshop.managers.features.MultiplierHandler;
+import org.black_ixx.bossshop.managers.features.PointsManager;
+import org.black_ixx.bossshop.managers.features.TimeHandler;
+import org.black_ixx.bossshop.managers.features.TransactionLog;
+import org.black_ixx.bossshop.managers.misc.StringManager;
 import org.black_ixx.bossshop.managers.serverpinging.ServerPingingManager;
 import org.black_ixx.bossshop.misc.UpdaterManager;
 import org.bukkit.Bukkit;
@@ -30,6 +36,8 @@ public class ClassManager {
 		stringmanager= new StringManager();
 
 		itemstackCreator = new ItemStackCreator();
+		
+		itemstackTranslator = new ItemStackTranslator();
 
 		buyItemHandler = new BuyItemHandler();		
 
@@ -68,8 +76,8 @@ public class ClassManager {
 			Bukkit.getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
 		}
 
-		if (settings.getInventoryCustomizingBalanceEnabled()||settings.getInventoryCustomizingBalancePointsEnabled()||settings.getInventoryCustomizingHideEnabled()){
-			customizer = new ShopCustomizer(settings.getInventoryCustomizingBalanceEnabled(), settings.getInventoryCustomizingBalancePointsEnabled(), settings.getInventoryCustomizingHideEnabled(), this);
+		if (settings.getBalanceVariableEnabled()||settings.getBalancePointsVariableEnabled()||settings.getInventoryCustomizingHideEnabled()){
+			customizer = new ShopCustomizer(settings.getInventoryCustomizingHideEnabled(), this);
 		}
 		
 		if (settings.getTransactionLogEnabled()){
@@ -95,6 +103,7 @@ public class ClassManager {
 	private MessageHandler messagehandler;
 	private TimeHandler timehandler;
 	private ItemStackCreator itemstackCreator;
+	private ItemStackTranslator itemstackTranslator;
 	private BuyItemHandler buyItemHandler;
 	private ConfigHandler configHandler;
 	private BugFinder bugfinder;
@@ -145,6 +154,10 @@ public class ClassManager {
 	public ItemStackCreator getItemStackCreator(){
 		return itemstackCreator;
 	}
+	
+	public ItemStackTranslator getItemStackTranslator(){
+		return itemstackTranslator;
+	}
 
 	public BuyItemHandler getBuyItemHandler(){
 		return buyItemHandler;
@@ -172,7 +185,7 @@ public class ClassManager {
 	
 	public ShopCustomizer getShopCustomizer(){
 		if(customizer==null){
-			customizer = new ShopCustomizer(settings.getInventoryCustomizingBalanceEnabled(), settings.getInventoryCustomizingBalancePointsEnabled(), settings.getInventoryCustomizingHideEnabled(), this);
+			customizer = new ShopCustomizer(settings.getInventoryCustomizingHideEnabled(), this);
 		}
 		return customizer;
 	}

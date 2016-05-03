@@ -1,6 +1,5 @@
 package org.black_ixx.bossshop.core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class BSBuy {
 
@@ -44,7 +42,7 @@ public class BSBuy {
 		this.reward = reward;
 		this.price = price;
 		this.name = name;
-		this.msg = transformMessage(msg, null, null);
+		this.msg = ClassManager.manager.getStringManager().transform(msg, this, null, null);
 		this.location = location;
 
 	}
@@ -152,7 +150,6 @@ public class BSBuy {
 
 	@SuppressWarnings("unchecked")
 	public boolean alreadyBought(Player p) {
-
 		if (buyT == BSBuyType.Permission) {
 
 			for (String s : (List<String>) reward) { // Loop durch Perms
@@ -380,13 +377,13 @@ public class BSBuy {
 
 	private void giveRewardCommand(Player p, List<String> commands) {
 		for (String s : commands) {
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ClassManager.manager.getStringManager().transform(s, p));
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ClassManager.manager.getStringManager().transform(s, this, null, p));
 		}
 	}
 
 	private void giveRewardPlayerCommand(Player p, List<String> commands) {
 		for (String s : commands) {
-			String command = ClassManager.manager.getStringManager().transform(s);
+			String command = ClassManager.manager.getStringManager().transform(s, this, null, p);
 			PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(p, "/"+command);
 
 			Bukkit.getPluginManager().callEvent(event);
@@ -407,7 +404,7 @@ public class BSBuy {
 	private void giveRewardItem(Player p, List<ItemStack> items) {
 		for (ItemStack i : items) {
 
-			i = transformRewardItem(i.clone(), p);
+			i = ClassManager.manager.getItemStackTranslator().translateItemStack(this, null, i.clone(), p);
 
 			if (p.getInventory().firstEmpty() == -1) { // Inventory full
 				if (i.getMaxStackSize() == 1) { // Max Stack Size == 1
@@ -482,63 +479,48 @@ public class BSBuy {
 
 	// //////////////////////////////// <- Transform messages
 
+	@SuppressWarnings("unchecked")
 	public String transformMessage(String msg, BSShop shop, Player p) {
-		if (reward == null) {
-			reward = 1;
+		if (msg == null) {
+			return null;
 		}
-		if (price == null) {
-			price = 1;
-		}
-
-		if (msg == null || msg.length() == 0) {
-			return "";
+		if(msg.length()==0){
+			return msg;
 		}
 
-		String priceM = String.valueOf(price);
-		String rewardM = String.valueOf(reward);
-
-		//If it's about items
-		if (price instanceof List<?>) {			
-			List<?> list = (List<?>) price;
-			if ((!list.isEmpty()) && list.get(0) instanceof ItemStack) {
-				String m = "";
-				int x = 0;
-				for (Object i : list) {
-					if (i instanceof ItemStack) {
-						x++;
-						String material = ((ItemStack) i).getType().name().toLowerCase();
-						material = material.replaceFirst(material.substring(0, 1), material.substring(0, 1).toUpperCase());
-						m += "" + ((ItemStack) i).getAmount() + " " + material + (x < list.size() ? ", " : "");
-					}
-				}
-				priceM = m;
+		//Handle reward and price variables
+		if(msg.contains("%price%") || msg.contains("%reward%")){
+			String rewardMessage = String.valueOf(reward);
+			String priceMessage = String.valueOf(price);
+			
+			
+		if(msg.contains("%reward%")){
+			if (reward == null) {
+				reward = 0;
 			}
-		}
-		if (reward instanceof List<?>) {
-			List<?> list = (List<?>) reward;
-			if ((!list.isEmpty()) && list.get(0) instanceof ItemStack) {
-				String m = "";
-				int x = 0;
-				for (Object i : list) {
-					if (i instanceof ItemStack) {
-						x++;
-						String material = ((ItemStack) i).getType().name().toLowerCase();
-						material = material.replaceFirst(material.substring(0, 1), material.substring(0, 1).toUpperCase());
-						m += "" + ((ItemStack) i).getAmount() + " " + material + (x < list.size() ? ", " : "");
-					}
-				}
-				rewardM = m;
+			//Item?
+			if(ClassManager.manager.getItemStackTranslator().isItemList(reward)){
+				rewardMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) reward);
 			}
 		}
 
-
+		if(msg.contains("%price%")){
+			if (price == null) {
+				price = 0;
+			}
+			//Item?
+			if(ClassManager.manager.getItemStackTranslator().isItemList(price)){
+				priceMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) price);
+			}
+		}
+			
+		//Does shop need to be customizable?
 		if(shop!=null){
-			if(!shop.isCustomizable()){ //if shop is not customizable yet but contains placeholders that depend on a player -> make it customizable
+			if(!shop.isCustomizable()){
 				boolean has_pricevariable = (msg.contains("%price%") && (priceT==BSPriceType.Money || priceT==BSPriceType.Exp || priceT==BSPriceType.Points));
 				boolean has_rewardvariable = (msg.contains("%reward%") && (buyT==BSBuyType.Money || buyT==BSBuyType.Points));
 				if(has_pricevariable || has_rewardvariable){
 					if(ClassManager.manager.getMultiplierHandler().hasMultipliers()){
-						System.out.print("making shop "+shop.getDisplayName()+" customizable because of multipliers enabled and having specific variables. message: "+msg);
 						shop.setCustomizable(true);
 						shop.setDisplaying(true);
 					}
@@ -550,102 +532,49 @@ public class BSBuy {
 		if(shop!=null){
 			possibly_customizable = shop.isCustomizable();
 		}
-		
 		if(possibly_customizable){
 			if(p == null){ //When shop is customizable, the variables needs to be adapted to the player and can not be set here!
-				priceM = null; 
-				rewardM = null;
+				priceMessage = null; 
+				rewardMessage = null;
 			}else{
 				if(price instanceof Integer){
-					priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
+					priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
 				}
 				if(price instanceof Double){
-					priceM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
+					priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
 				}
 				if(reward instanceof Integer){
-					rewardM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward));
+					rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward));
 				}
 				if(reward instanceof Double){
-					rewardM = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward));
+					rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward));
 				}
 			}
 		}
 
-
-		if (name != null && name != "" && name.length() > 0) {
-			msg = msg.replace("%itemname%", name);
-			msg = msg.replace("%shopitemname%", name);
+		if (priceMessage != null && priceMessage != "" && priceMessage.length() > 0) {
+			msg = msg.replace("%price%", priceMessage);
 		}
+		if (rewardMessage != null && rewardMessage != "" && rewardMessage.length() > 0) {
+			msg = msg.replace("%reward%", rewardMessage);
+		}
+		}
+
 		if (priceT != null && priceT.name() != "" && priceT.name().length() > 0) {
 			msg = msg.replace("%pricetype%", priceT.name());
-		}
-		if (priceM != null && priceM != "" && priceM.length() > 0) {
-			msg = msg.replace("%price%", priceM);
 		}
 		if (buyT != null && buyT.name() != "" && buyT.name().length() > 0) {
 			msg = msg.replace("%rewardtype%", buyT.name());
 		}
-		if (rewardM != null && rewardM != "" && rewardM.length() > 0) {
-			msg = msg.replace("%reward%", rewardM);
-		}
 
+		//Handle rest
+		if (name != null && name != "" && name.length() > 0) {
+			msg = msg.replace("%itemname%", name);
+			msg = msg.replace("%shopitemname%", name);
+		}
 		return msg;
 	}
 
-	private ItemStack transformRewardItem(ItemStack i, Player p) {
-
-		if (i.hasItemMeta()) {
-
-			ItemMeta meta = i.getItemMeta();
-
-			if (meta.hasDisplayName()) {
-				if (meta.getDisplayName().contains("%name%")) {
-					meta.setDisplayName(meta.getDisplayName().replace("%name%", p.getName()));
-				}
-				if (meta.getDisplayName().contains("%playername%")) {
-					meta.setDisplayName(meta.getDisplayName().replace("%playername%", p.getName()));
-				}
-				if (meta.getDisplayName().contains("%player%")) {
-					meta.setDisplayName(meta.getDisplayName().replace("%player%", p.getName()));
-				}
-				if (meta.getDisplayName().contains("%itemname%")) {
-					meta.setDisplayName(meta.getDisplayName().replace("%itemname%", name));
-				}
-			}
-
-			if (meta.hasLore()) {
-
-				List<String> new_lore = new ArrayList<String>();
-
-				for (String s : meta.getLore()) {
-
-					if (s.contains("%name%")) {
-						s = s.replace("%name%", p.getName());
-					}
-					if (s.contains("%playername%")) {
-						s = s.replace("%playername%", p.getName());
-					}
-					if (s.contains("%player%")) {
-						s = s.replace("%player%", p.getName());
-					}
-
-					if (s.contains("%itemname%")) {
-						s = s.replace("%itemname%", name);
-					}
-
-					new_lore.add(s);
-
-				}
-
-				meta.setLore(new_lore);
-
-			}
-
-			i.setItemMeta(meta);
-		}
-
-		return i;
-	}
 
 	// //////////////////////////////// <- Rest
 

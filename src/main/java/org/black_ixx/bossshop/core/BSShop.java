@@ -12,7 +12,6 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class BSShop {
 
@@ -29,7 +28,7 @@ public abstract class BSShop {
 
 	private boolean customizable = false;
 	private boolean hiding = false;
-	private boolean displaying = false;
+	private boolean displaying = false; //When displaying custom variables
 
 	private int inventory_size = 9;
 	private int shop_id = 0;
@@ -112,7 +111,11 @@ public abstract class BSShop {
 
 	public void setDisplayName(String displayname){
 		if(displayname!=null){
-			this.displayname=ClassManager.manager.getStringManager().transform(displayname);
+			this.displayname=ClassManager.manager.getStringManager().transform(displayname, null, this, null);
+			if(ClassManager.manager.getStringManager().checkStringForFeatures(this.displayname)){
+				customizable = true;
+				displaying = true;
+			}
 		}else{
 			this.displayname=shop_name;
 		}
@@ -204,46 +207,17 @@ public abstract class BSShop {
 		}
 
 		if(menu_item.hasItemMeta()){
-			ItemMeta meta = menu_item.getItemMeta();
-			if (meta.hasDisplayName()){
-				String st = buy.transformMessage(meta.getDisplayName(), this, null);
-				meta.setDisplayName(st);
-				submitItemText(st);
+			if(ClassManager.manager.getItemStackTranslator().checkItemStackForFeatures(menu_item)){
+				customizable = true;
+				displaying = true;
 			}
-			if (meta.hasLore()){
-				List<String> list = meta.getLore();
-				List<String> l = new ArrayList<String>();
-				for (String s : list){
-					l.add(buy.transformMessage(s, this, null));
-				}
-				if (l!=null&&l.size()>0){
-					meta.setLore(l);
-
-					for(String lore_line : l){
-						submitItemText(lore_line);
-					}
-
-				}
-			}
-			menu_item.setItemMeta(meta);
+			ClassManager.manager.getItemStackTranslator().translateItemStack(buy, this, menu_item, null);
 		}
 
 		shop_items.put(menu_item, buy);
 	}
 
 
-	private void submitItemText(String s){
-		if(s.contains("%balance%")||s.contains("%balancepoints%")){
-			customizable=true;
-			displaying=true;
-		}
-		if(ClassManager.manager.getPlaceholderHandler()!=null){
-			if(ClassManager.manager.getPlaceholderHandler().containsPlaceholder(s)){
-				customizable=true;
-				displaying=true;
-			}
-		}
-	}
 
 	public void removeItem(int inv_loc){
 		List<ItemStack> to_remove = new ArrayList<ItemStack>();
@@ -296,6 +270,11 @@ public abstract class BSShop {
 	}
 
 	public void updateInventory(Inventory i, Player p, ClassManager manager){
+		if(ClassManager.manager.getStringManager().checkStringForFeatures(getDisplayName())){ //Title is customizable as well
+			Inventory created = manager.getShopCustomizer().createInventory(this, shop_items, displaying, p, manager);
+			p.openInventory(created);
+			return;
+		}
 		manager.getShopCustomizer().createInventory(this, shop_items, displaying, p, manager, i);
 	}
 

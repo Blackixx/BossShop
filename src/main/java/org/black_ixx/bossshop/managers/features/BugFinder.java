@@ -1,4 +1,4 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.features;
 
 import java.io.File;
 import java.io.IOException;

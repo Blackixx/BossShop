@@ -1,9 +1,10 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.misc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.misc.Enchant;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;

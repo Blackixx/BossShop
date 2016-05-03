@@ -10,6 +10,10 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.4.3 (Beta)
+*[WARNING] This update might break custom coded addons. 'BS-SingleUse' and 'GuiShopManager' will still be working fine, however if you wrote custom addons, please update them.
+*[IMPROVE] Improved placeholder flexibility a lot: Now you can use placeholders like %balance%, %reward% or %name% basically everywhere
+
 v2.4.2 (Beta)
 *[WARNING] This update might break custom coded addons. 'BS-SingleUse' and 'GuiShopManager' will still be working fine, however if you wrote custom addons, please update them.
 *[ADD] Re-added optional support for older Enjin versions. Don't worry: Enjin 3.X is still working fine with BossShop ;-)

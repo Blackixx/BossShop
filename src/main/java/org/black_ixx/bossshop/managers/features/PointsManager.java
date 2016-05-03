@@ -1,5 +1,6 @@
-package org.black_ixx.bossshop.managers;
+package org.black_ixx.bossshop.managers.features;
 
+import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.points.*;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

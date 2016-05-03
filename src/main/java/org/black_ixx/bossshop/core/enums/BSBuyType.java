@@ -1,7 +1,7 @@
 package org.black_ixx.bossshop.core.enums;
 
 import org.black_ixx.bossshop.managers.ClassManager;
-import org.black_ixx.bossshop.managers.InputReader;
+import org.black_ixx.bossshop.managers.misc.InputReader;
 
 public enum BSBuyType{
 	Item{

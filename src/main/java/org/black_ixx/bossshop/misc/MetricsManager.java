@@ -9,7 +9,7 @@ import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.core.enums.BSBuyType;
 import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.black_ixx.bossshop.managers.Settings;
-import org.black_ixx.bossshop.managers.PointsManager.PointsPlugin;
+import org.black_ixx.bossshop.managers.features.PointsManager.PointsPlugin;
 import org.bukkit.inventory.ItemStack;
 import org.mcstats.Metrics;
 import org.mcstats.Metrics.Graph;
@@ -38,11 +38,11 @@ public class MetricsManager {
 				addPlotter(settings, "BungeeCordTeleport", 1);
 			}
 
-			if(s.getInventoryCustomizingBalanceEnabled()){
+			if(s.getBalanceVariableEnabled()){
 				addPlotter(settings, "Balance Display", 1);
 			}
 
-			if(s.getInventoryCustomizingBalancePointsEnabled()){
+			if(s.getBalancePointsVariableEnabled()){
 				addPlotter(settings, "Points Display", 1);
 			}
 

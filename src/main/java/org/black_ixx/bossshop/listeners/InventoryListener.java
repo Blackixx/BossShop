@@ -106,11 +106,11 @@ public class InventoryListener implements Listener{
 				}
 
 				String o = buy.takePrice(p);
-				String s = buy.transformMessage(buy.getMessage(), shop, p);
-				if (s!=null){
-					s = plugin.getClassManager().getStringManager().transform(s, p);
-					if (o!=null&&o!=""&&s.contains("%left%")){
-						s=s.replace("%left%", o);
+				String message = buy.getMessage();
+				if (message!=null){
+					message = plugin.getClassManager().getStringManager().transform(message, buy, shop, p);
+					if (o!=null&&o!=""&&message.contains("%left%")){
+						message=message.replace("%left%", o);
 					}
 				}
 
@@ -124,13 +124,13 @@ public class InventoryListener implements Listener{
 				Bukkit.getPluginManager().callEvent(e2);//Custom Event end
 
 
-				if (s!=null && s!=""&&s.length()!=0){
-					p.sendMessage(s);
+				if (message!=null && message!=""&&message.length()!=0){
+					p.sendMessage(message);
 				}
 
 				if(shop.isCustomizable()){
 					if(p.getOpenInventory() == event.getView()){ //only when inventory is still open
-						shop.updateInventory(event.getInventory(), p, plugin.getClassManager());//NEW
+						shop.updateInventory(event.getInventory(), p, plugin.getClassManager());
 					}
 				}
 

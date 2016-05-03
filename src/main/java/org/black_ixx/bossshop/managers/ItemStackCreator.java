@@ -115,17 +115,7 @@ public class ItemStackCreator {
 
 			if (s.equalsIgnoreCase("name")){
 				ItemMeta meta = i.getItemMeta();
-				meta.setDisplayName(ClassManager.manager.getStringManager().transform(a));
-
-				//ShopCustomizer
-				if(a.contains("%balance%")){
-					ClassManager.manager.getSettings().setInventoryCustomizingBalanceEnabled(true);
-				}
-				if(a.contains("%balancepoints%")){
-					ClassManager.manager.getSettings().setInventoryCustomizingBalancePointsEnabled(true);
-				}
-				//ShopCustomizer
-
+				meta.setDisplayName(a);
 				i.setItemMeta(meta);
 				continue;
 			}
@@ -133,19 +123,10 @@ public class ItemStackCreator {
 			if (s.equalsIgnoreCase("lore")){
 				ItemMeta meta = i.getItemMeta();
 
-				//ShopCustomizer
-				if(a.contains("%balance%")){
-					ClassManager.manager.getSettings().setInventoryCustomizingBalanceEnabled(true);
-				}
-				if(a.contains("%balancepoints%")){
-					ClassManager.manager.getSettings().setInventoryCustomizingBalancePointsEnabled(true);
-				}
-				//ShopCustomizer
-
 				String par[] = a.split("#");
 				List<String> lore = new ArrayList<String>();
 				for (String b : par){
-					lore.add(ClassManager.manager.getStringManager().transform(b));
+					lore.add(b);
 				}
 				meta.setLore(lore);
 				i.setItemMeta(meta);
@@ -385,14 +366,14 @@ public class ItemStackCreator {
 
 		}
 
-
+		ClassManager.manager.getItemStackTranslator().checkItemStackForFeatures(i);
+		ClassManager.manager.getItemStackTranslator().translateItemStack(null, null, i, null);
 
 		return i;
 	}
 
 	private boolean isInteger(String str){  
-		try  
-		{  
+		try  {  
 			Integer.parseInt(str);  
 		}  
 		catch(NumberFormatException nfe)  
@@ -404,8 +385,7 @@ public class ItemStackCreator {
 
 
 	private boolean isShort(String str){  
-		try  
-		{  
+		try  {  
 			Short.parseShort(str);  
 		}  
 		catch(NumberFormatException nfe)  
