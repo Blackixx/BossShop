@@ -11,10 +11,17 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 <</quote>>
 
 
+v2.4.5 (thanks to MTC's suggestions)
+*[ADD] Added possibility to manually set the amount of rows of an inventory ('InventoryRows: <amount>')
+*[IMPROVE] Some shop-refresh improvements
+*[IMPROVE] If PriceType/RewardType is omitted it will no longer cause an error but rather be automatically set to "Nothing"
+*[FIX] Removed a debug message
+*[FIX] Fixed the updater: No longer downloading older builds when working with a new BossShop version that has not been approved by the staff yet
+
 
 v2.4.4
-*[IMPROVE] Improved default configuration tips
-*[IMPROVE] Playerheads can now use placeholders too
+*[ADD] Added placeholder support to playerheads
+*[IMPROVE] Improved default configurations
 
 
 v2.4.3 (Beta)

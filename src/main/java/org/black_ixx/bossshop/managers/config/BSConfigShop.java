@@ -61,12 +61,11 @@ public class BSConfigShop extends BSShop{
 		//Add defaults if not existing already
 		addDefaults();
 
-		String name = config.getString("ShopName");
+		setShopName(config.getString("ShopName"));
+		setDisplayName(config.getString("DisplayName"));
 		setSignText( config.getString("signs.text") );
 		setNeedPermToCreateSign(config.getBoolean("signs.NeedPermissionToCreateSign"));
-		setShopName(name);
-
-		setDisplayName(config.getString("DisplayName"));
+		setManualInventoryRows(config.getInt("InventoryRows", -1));
 		
 		
 		//Load Items

@@ -184,6 +184,9 @@ public enum BSBuyType{
 
 
 	public static BSBuyType detectType(String s){
+		if(s==null){
+			return BSBuyType.Nothing;
+		}
 		for (BSBuyType type : values()){
 			if (s.equalsIgnoreCase(type.name())){
 				return type;

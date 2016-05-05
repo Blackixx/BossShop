@@ -317,62 +317,63 @@ public class BSBuy {
 	// //////////////////////////////// <- Give reward
 
 	@SuppressWarnings("unchecked")
-	public void giveReward(Player p) {
+	public boolean giveReward(Player p) { //Returns true if it might cause the shop to need an update
 
 		switch (buyT) {
 
 		case Command:
 			giveRewardCommand(p, (List<String>) reward);
-			return;
+			return true;
 
 		case PlayerCommand:
 			giveRewardPlayerCommand(p, (List<String>) reward);
-			return;
+			return true;
 
 		case TimeCommand:
 			giveRewardTimeCommand(p, (HashMap<Integer, String>) reward);
-			return;
+			return false;
 
 		case Item:
 			giveRewardItem(p, (List<ItemStack>) reward);
-			return;
+			return false;
 
 		case Permission:
 			giveRewardPermission(p, (List<String>) reward);
-			return;
+			return true;
 
 		case Money:
 			double r = 0;
 			if (reward instanceof Integer) {
 				r = (int) reward;
-				return;
+				return true;
 			}else{
 				r = (double) reward;
 			}
 			giveRewardMoney(p, ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.Money, (r)));
-			return;
+			return true;
 		case Points:
 			giveRewardPoints(p, ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.Points, ((Integer)reward)));
-			return;
+			return true;
 		case Custom:
 			giveRewardCustom(p, (BSCustomLink) reward);
-			return;
+			return true;
 		case Shop:
 			giveRewardShop(p, (String) reward);
-			return;
+			return false;
 		case BungeeCordServer:
 			giveRewardBungeeCordServer(p, (String) reward);
-			return;
+			return false;
 		case Enchantment:
 			giveRewardEnchantment(p, (Enchant) reward);
-			return;
+			return false;
 		case Nothing:
-			return;
+			return false;
 		case Close:
 			p.closeInventory();
-			return;
+			return false;
 		}
 
+		return false;
 	}
 
 	private void giveRewardCommand(Player p, List<String> commands) {

@@ -114,7 +114,7 @@ public class InventoryListener implements Listener{
 					}
 				}
 
-				buy.giveReward(p);
+				boolean need_update = buy.giveReward(p);
 
 				if(plugin.getClassManager().getSettings().getTransactionLogEnabled()){
 					plugin.getClassManager().getTransactionLog().addTransaction(p, buy);
@@ -128,7 +128,7 @@ public class InventoryListener implements Listener{
 					p.sendMessage(message);
 				}
 
-				if(shop.isCustomizable()){
+				if(shop.isCustomizable() && need_update){
 					if(p.getOpenInventory() == event.getView()){ //only when inventory is still open
 						shop.updateInventory(event.getInventory(), p, plugin.getClassManager());
 					}

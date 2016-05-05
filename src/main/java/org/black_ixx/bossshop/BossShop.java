@@ -60,7 +60,7 @@ public class BossShop extends JavaPlugin{
 			public void run() 
 			{
 				new MetricsManager().sendData(ClassManager.manager.getPlugin());
-				new UpdaterManager().run();
+				new UpdaterManager().run(getFile());
 
 			}
 		}.runTaskLaterAsynchronously(this, 5);

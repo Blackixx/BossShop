@@ -36,7 +36,6 @@ public class ItemStackTranslator {
 				if(meta instanceof SkullMeta){
 					SkullMeta skullmeta = (SkullMeta) meta;
 					if(skullmeta.hasOwner()){
-						System.out.print("transforming from "+skullmeta.getOwner()+" to "+ClassManager.manager.getStringManager().transform(skullmeta.getOwner(), buy, shop, target));
 						skullmeta.setOwner(ClassManager.manager.getStringManager().transform(skullmeta.getOwner(), buy, shop, target));
 					}
 				}
@@ -86,7 +85,7 @@ public class ItemStackTranslator {
 						}
 					}
 				}
-				
+
 				//Skull itemdata
 				if(meta instanceof SkullMeta){
 					SkullMeta skullmeta = (SkullMeta) meta;

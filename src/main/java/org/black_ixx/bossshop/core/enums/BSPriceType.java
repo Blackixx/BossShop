@@ -86,6 +86,9 @@ public enum BSPriceType{
 
 
 	public static BSPriceType detectType(String s){
+		if(s==null){
+			return BSPriceType.Nothing;
+		}
 		for (BSPriceType type : values()){
 			if (s.equalsIgnoreCase(type.name())){
 				return type;

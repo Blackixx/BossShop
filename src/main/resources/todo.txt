@@ -1,4 +1,6 @@
 BossShop:
+* Option to manually set rows amount of inventories
+* Heads shall not always be loaded for the client after opening inventories once
 * Add support for different spawn-egg types
 * Move BSBuy code into the different enums. New methods that enums should have:
 **transformReward/transformPrice (transforms it into nice string to display)

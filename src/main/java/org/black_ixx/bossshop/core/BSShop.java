@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 public abstract class BSShop {
 
 	public final static int ROWS_LIMIT = 6;
+	public final static int ROW_ITEMS = 9;
 
 	//////////////////////////// <- Variables
 
@@ -31,6 +32,7 @@ public abstract class BSShop {
 	private boolean displaying = false; //When displaying custom variables
 
 	private int inventory_size = 9;
+	private int manual_inventory_rows;
 	private int shop_id = 0;
 
 	private Inventory inventory;
@@ -39,10 +41,11 @@ public abstract class BSShop {
 
 	//////////////////////////// <- Constructor
 
-	public BSShop(int shop_id, String shop_name, String sign_text, boolean needPermToCreateSign, BossShop plugin, String displayname){
+	public BSShop(int shop_id, String shop_name, String sign_text, boolean needPermToCreateSign, BossShop plugin, String displayname, int manual_inventory_rows){
 		this.shop_id=shop_id;
 		this.shop_name=shop_name;
 		this.sign_text=sign_text;
+		this.manual_inventory_rows = manual_inventory_rows;
 		this.needPermToCreateSign=needPermToCreateSign;
 		hiding = plugin.getClassManager().getSettings().getInventoryCustomizingHideEnabled();
 
@@ -86,6 +89,10 @@ public abstract class BSShop {
 	public Inventory getInventory(){
 		return inventory;
 	}
+	
+	public int getManualInventoryRows(){
+		return manual_inventory_rows;
+	}
 
 	//////////////////////////// <- Methods to set main Variables
 
@@ -108,7 +115,6 @@ public abstract class BSShop {
 		displaying=b;
 	}
 
-
 	public void setDisplayName(String displayname){
 		if(displayname!=null){
 			this.displayname=ClassManager.manager.getStringManager().transform(displayname, null, this, null);
@@ -121,6 +127,10 @@ public abstract class BSShop {
 		}
 	}
 
+	public void setManualInventoryRows(int i){
+		this.manual_inventory_rows = i;
+	}
+	
 	//////////////////////////// <- Methods to get Items
 
 	public HashMap<ItemStack, BSBuy> getItems(){
@@ -293,11 +303,12 @@ public abstract class BSShop {
 
 	public int getInventorySize(int i){
 		i++;
-		int rest = i%9;
+		int rest = i%ROW_ITEMS;
 		if(rest>0){
-			i+=9-i%9;
+			i+=ROW_ITEMS-i%ROW_ITEMS;
 		}
-		return Math.min(ROWS_LIMIT*9, i);
+		
+		return Math.min(ROWS_LIMIT*ROW_ITEMS, Math.max(i, ROW_ITEMS*manual_inventory_rows));
 	}
 
 	public void openInventory(Player p){
