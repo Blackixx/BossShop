@@ -10,9 +10,17 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+
+
+v2.4.4
+*[IMPROVE] Improved default configuration tips
+*[IMPROVE] Playerheads can now use placeholders too
+
+
 v2.4.3 (Beta)
-*[WARNING] This update might break custom coded addons. 'BS-SingleUse' and 'GuiShopManager' will still be working fine, however if you wrote custom addons, please update them.
+*[WARNING] The previous update might break custom coded addons. 'BS-SingleUse' and 'GuiShopManager' will still be working fine, however if you wrote custom addons, please update them.
 *[IMPROVE] Improved placeholder flexibility a lot: Now you can use placeholders like %balance%, %reward% or %name% basically everywhere
+
 
 v2.4.2 (Beta)
 *[WARNING] This update might break custom coded addons. 'BS-SingleUse' and 'GuiShopManager' will still be working fine, however if you wrote custom addons, please update them.

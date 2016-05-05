@@ -8,6 +8,7 @@ import org.black_ixx.bossshop.managers.misc.StringManager;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 public class ItemStackTranslator {
 
@@ -18,6 +19,7 @@ public class ItemStackTranslator {
 			if(item.hasItemMeta()){
 				ItemMeta meta = item.getItemMeta();
 
+				//Normal itemdata
 				if(meta.hasDisplayName()){
 					meta.setDisplayName(ClassManager.manager.getStringManager().transform(meta.getDisplayName(), buy, shop, target));
 				}
@@ -30,12 +32,22 @@ public class ItemStackTranslator {
 					meta.setLore(lore);
 				}
 
+				//Skull itemdata
+				if(meta instanceof SkullMeta){
+					SkullMeta skullmeta = (SkullMeta) meta;
+					if(skullmeta.hasOwner()){
+						System.out.print("transforming from "+skullmeta.getOwner()+" to "+ClassManager.manager.getStringManager().transform(skullmeta.getOwner(), buy, shop, target));
+						skullmeta.setOwner(ClassManager.manager.getStringManager().transform(skullmeta.getOwner(), buy, shop, target));
+					}
+				}
+
+
 				item.setItemMeta(meta);
 			}
 		}
 		return item;
 	}
-	
+
 	public String getFriendlyText(List<ItemStack> items){
 		if(items!=null){
 			String msg = "";
@@ -51,7 +63,7 @@ public class ItemStackTranslator {
 		return null;
 	}
 
-	
+
 	public boolean checkItemStackForFeatures(ItemStack item){ //Returns true if this would make a shop customizable
 		boolean b = false;
 		if(item!=null){
@@ -59,6 +71,7 @@ public class ItemStackTranslator {
 				StringManager s = ClassManager.manager.getStringManager();
 				ItemMeta meta = item.getItemMeta();
 
+				//Normal itemdata
 				if(meta.hasDisplayName()){
 					if(s.checkStringForFeatures(meta.getDisplayName())){
 						b = true;
@@ -73,11 +86,21 @@ public class ItemStackTranslator {
 						}
 					}
 				}
+				
+				//Skull itemdata
+				if(meta instanceof SkullMeta){
+					SkullMeta skullmeta = (SkullMeta) meta;
+					if(skullmeta.hasOwner()){
+						if(s.checkStringForFeatures(skullmeta.getOwner())){
+							b = true;
+						}
+					}
+				}
 			}
 		}
 		return b;
 	}
-	
+
 
 
 	public boolean isItemList(Object o){

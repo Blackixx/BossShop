@@ -4,6 +4,19 @@ signs:
   text: '[Menu]'
   NeedPermissionToCreateSign: true
 shop:
+  PlayerInfo:
+    RewardType: nothing
+    PriceType: nothing
+    MenuItem:
+    - name:&6[tools] &c&l%name% Info &6[tools]
+    - 'lore:&2Money: %balance%#&9Points: %balancepoints%'
+    - type:SKULL_ITEM
+    - amount:1
+    - durability:3
+    - playerhead:%name%
+    Message: ''
+    InventoryLocation: 1
+    ExtraPermission: ''
   MenuBuyShop:
     RewardType: shop
     PriceType: free
@@ -14,7 +27,7 @@ shop:
     - name:&9&lBuyShop &6[+]
     - lore:&8Here you can buy Items
     Message: ''
-    InventoryLocation: 1
+    InventoryLocation: 3
     ExtraPermission: ''
   MenuSellShop:
     RewardType: shop
@@ -26,7 +39,7 @@ shop:
     - name:&b&lSellShop &6[+]
     - lore:&8Here you can sell Items
     Message: ''
-    InventoryLocation: 3
+    InventoryLocation: 5
     ExtraPermission: ''
   MenuPotions:
     RewardType: shop
@@ -40,7 +53,7 @@ shop:
     - potioneffect:SPEED#1#1
     - hideflags:all
     Message: ''
-    InventoryLocation: 5
+    InventoryLocation: 7
     ExtraPermission: ''
   MenuSpells:
     RewardType: shop
@@ -53,7 +66,7 @@ shop:
     - lore:&8Here you can buy magical Spells
     - hideflags:all
     Message: ''
-    InventoryLocation: 7
+    InventoryLocation: 9
     ExtraPermission: ''
   MenuPointShop:
     RewardType: shop
@@ -66,7 +79,7 @@ shop:
     - 'lore:&8Here you can buy Points ##&b&lYour Points: &r&9%balancepoints%#&b&lYour
       Money: &r&9%balance% ##&cOnly for VIPs'
     Message: ''
-    InventoryLocation: 9
+    InventoryLocation: 10
     ExtraPermission: Permission.Vip
   MenuWarps:
     RewardType: shop
@@ -78,7 +91,7 @@ shop:
     - name:&a&lWarps &6[x]
     - lore:&8Free Teleportation
     Message: ''
-    InventoryLocation: 10
+    InventoryLocation: 12
     ExtraPermission: ''
   MenuBungeeCordServers:
     RewardType: shop
@@ -90,7 +103,7 @@ shop:
     - name:&c&lServers &6[x]
     - lore:&8Available Servers &7(Working with BungeeCord)
     Message: ''
-    InventoryLocation: 12
+    InventoryLocation: 14
     ExtraPermission: ''
   MenuLilyPadServers:
     RewardType: shop
@@ -102,7 +115,7 @@ shop:
     - name:&c&lServers &6[x]
     - lore:&8Available Servers &7(Working with LilyPad)
     Message: ''
-    InventoryLocation: 14
+    InventoryLocation: 16
     ExtraPermission: ''
   Black_ixxHead:
     RewardType: item

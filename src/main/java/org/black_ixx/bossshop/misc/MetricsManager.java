@@ -88,23 +88,7 @@ public class MetricsManager {
 			PointsPlugin ppl = s.getPointsPlugin();
 			if(ppl!=null){
 				Graph pp = metrics.createGraph("Points Plugin if used");
-				switch(ppl){
-				case PLAYERPOINTS:
-					addPlotter(pp, "PlayerPoints", 1);
-					break;
-				case COMMANDPOINTS:
-					addPlotter(pp, "CommandPoints", 1);
-					break;
-				case ENJIN_MINECRAFT_PLUGIN:
-					addPlotter(pp, "Enjin Minecraft Plugin", 1);
-					break;
-				case POINTSAPI:
-					addPlotter(pp, "PointsAPI", 1);
-					break;
-				case CUSTOM:
-					addPlotter(pp, "Custom", 1);
-					break;
-				}
+				addPlotter(pp, ppl.getPluginName(), 1);
 			}
 
 			Graph shops = metrics.createGraph("Shops");

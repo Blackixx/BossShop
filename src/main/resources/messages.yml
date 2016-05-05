@@ -1,4 +1,4 @@
-#Here you can define the BossShop messages that are sent to players. Leave a line empty in order to disable it.
+#Here you can define the BossShop messages that are sent to players. Leave a line empty in order to disable a message.
 Main:
   NoPermission: '&cYou are not allowed to do this!'
   AlreadyBought: '&cYou already purchased that!'

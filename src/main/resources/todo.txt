@@ -16,3 +16,4 @@ BS-SingleUse:
 
 
 GuiShopManager:
+* Optional item-give-delay
