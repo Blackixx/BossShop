@@ -101,6 +101,32 @@ public class ItemStackTranslator {
 	}
 
 
+	public void copyTexts(ItemStack receiver, ItemStack source){
+		if(source.hasItemMeta() && receiver.hasItemMeta()){
+			ItemMeta meta_source = source.getItemMeta();
+			ItemMeta meta_receiver = receiver.getItemMeta();
+
+			if(meta_source.hasDisplayName()){
+				meta_receiver.setDisplayName(meta_source.getDisplayName());
+			}			
+			if(meta_source.hasLore()){
+				meta_receiver.setLore(meta_source.getLore());
+			}
+
+			if(meta_source instanceof SkullMeta && meta_receiver instanceof SkullMeta){
+				SkullMeta sm_source = (SkullMeta) meta_source;
+				SkullMeta sm_receiver = (SkullMeta) meta_receiver;
+
+				if(sm_source.hasOwner()){
+					sm_receiver.setOwner(sm_source.getOwner());
+				}
+			}
+			
+			receiver.setItemMeta(meta_receiver);
+		}
+	}
+
+
 
 	public boolean isItemList(Object o){
 		if(o instanceof List<?>){

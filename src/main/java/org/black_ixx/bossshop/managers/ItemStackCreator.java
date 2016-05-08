@@ -13,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
@@ -22,6 +23,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.Colorable;
+import org.bukkit.material.SpawnEgg;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -109,6 +111,15 @@ public class ItemStackCreator {
 					ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (durability) needs to be a number!");
 					continue;
 				}
+
+				if(i.getType() == Material.MONSTER_EGG){
+					SpawnEgg egg = new SpawnEgg(EntityType.fromId(Short.parseShort(a)));
+					ItemStack egg_item = egg.toItemStack(i.getAmount());
+					ClassManager.manager.getItemStackTranslator().copyTexts(egg_item, i); //Copying all data because ItemStack 'i' might contain information that would get lost otherwise
+					i = egg_item;
+					continue;
+				}
+
 				i.setDurability(Short.parseShort(a));
 				continue;
 			}
@@ -417,7 +428,7 @@ public class ItemStackCreator {
 
 		return 0;
 	}
-	
-	
+
+
 
 }
