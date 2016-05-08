@@ -31,7 +31,6 @@ public class ServerPingingManager {
 		String motd = c.getMotd();
 
 		if(motd==null){
-			System.out.print("[BossShop] [ServerPinging] Was not able to get the motd of Server "+c.getHost()+":"+c.getPort());
 			return;
 		}
 

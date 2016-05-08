@@ -10,6 +10,8 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.4.6
+*[IMPROVE] Serverpinging: When unable to connect with a server a short warning message is printed every 90 seconds, rather than spamming the console/server.log with huge error messages.
 
 v2.4.5 (thanks to MTC's suggestions)
 *[ADD] Added possibility to manually set the amount of rows of an inventory ('InventoryRows: <amount>')

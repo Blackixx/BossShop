@@ -10,6 +10,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.List;
 
+import org.black_ixx.bossshop.managers.ClassManager;
+
 import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 
@@ -17,30 +19,38 @@ public class Connector3 extends BasicConnector{
 
 
 
+	private InetSocketAddress host;
+	private int timeout = 7000;
+	private Gson gson = new Gson();
 
+	private StatusResponse response;
+	
+	private long latest_failure;
+	
 
+	
+	
+	public Connector3(String host, int port, int timeout){
+		setAddress(new InetSocketAddress(host, port));
+		setTimeout(timeout);		
+	}
+		
+
+	public InetSocketAddress getAddress() {
+		return this.host;
+	}
+	int getTimeout() {
+		return this.timeout;
+	}
 	@Override
 	public String getHost() {
 		return host.getAddress().getHostName();
 	}
-
+	
 	@Override
 	public int getPort(){
 		return host.getPort();
-	}
-	
-
-	
-	private StatusResponse response;
-	
-	@Override
-	public void update(){
-		try {
-			response = fetchData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	}	
 	
 	@Override
 	public String getPlayerCount() {
@@ -57,32 +67,33 @@ public class Connector3 extends BasicConnector{
 		}
 		return response.getDescription();
 	}
+
 	
 	
-	public Connector3(String host, int port, int timeout){
-		setAddress(new InetSocketAddress(host, port));
-		setTimeout(timeout);		
+	public void setAddress(InetSocketAddress host) {
+		this.host = host;
+	}
+	void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+	
+	
+	@Override
+	public void update(){
+		try {
+			response = fetchData();
+		} catch (IOException e) {
+			if(System.currentTimeMillis() > latest_failure + 90000){ //When there are issues: Do not spam the server.log with huge error messages but rather print a short line every 1 1/2 minutes.
+				ClassManager.manager.getBugFinder().warn("Serverpinging error: Unable to connect with '"+host.getHostName()+":"+host.getPort()+"'!");
+				latest_failure = System.currentTimeMillis();
+			}
+		}
 	}
 	
 	
 	
 
-	private InetSocketAddress host;
-	private int timeout = 7000;
-	private Gson gson = new Gson();
 	
-	public void setAddress(InetSocketAddress host) {
-		this.host = host;
-	}
-	public InetSocketAddress getAddress() {
-		return this.host;
-	}
-	void setTimeout(int timeout) {
-		this.timeout = timeout;
-	}
-	int getTimeout() {
-		return this.timeout;
-	}
 	public int readVarInt(DataInputStream in) throws IOException {
 		int i = 0;
 		int j = 0;
