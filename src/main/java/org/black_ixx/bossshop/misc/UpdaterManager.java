@@ -8,6 +8,7 @@ import java.io.File;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.managers.ClassManager;
+import org.bukkit.Bukkit;
 
 
 public class UpdaterManager{
@@ -46,10 +47,11 @@ public class UpdaterManager{
 		BossShop plugin = ClassManager.manager.getPlugin();
 
 		boolean auto_download_update = ClassManager.manager.getSettings().getAutoDownloadUpdateEnabled();
-		Updater updater = new Updater(plugin, 65031, pluginfile, auto_download_update?UpdateType.DEFAULT:UpdateType.NO_DOWNLOAD, false){
+		Updater updater = new Updater(plugin, 65031, pluginfile, auto_download_update?UpdateType.DEFAULT:UpdateType.NO_DOWNLOAD, true){
 			@Override
 			public boolean shouldUpdate(String localVersion, String remoteVersion){
 				if(getWorth(remoteVersion) > getWorth(localVersion)){
+					Bukkit.getLogger().info("Found BossShop '"+remoteVersion+"'. You currently are using '"+localVersion+"'.");
 					return true;
 				}
 				return false;
@@ -81,7 +83,7 @@ public class UpdaterManager{
 				n++;
 
 			} catch (NumberFormatException e){ //When the version name contains any other letters it must be special (like Beta) and nothing to download
-				return 100;
+				return -1;
 			}
 		}
 		return goal;
