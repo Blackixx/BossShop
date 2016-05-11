@@ -11,7 +11,12 @@ public class PointsManager {
 	private IPointsAPI pa;
 
 	public enum PointsPlugin {
-		PLAYERPOINTS("PlayerPoints", "PP"), COMMANDPOINTS("CommandPoints", "CP"), ENJIN_MINECRAFT_PLUGIN("EnjinMinecraftPlugin", "Enjin",  "EMP"), POINTSAPI("PointsAPI", "PAPI"), CUSTOM;
+		PLAYERPOINTS("PlayerPoints", "PP"), 
+		COMMANDPOINTS("CommandPoints", "CP"), 
+		ENJIN_MINECRAFT_PLUGIN("EnjinMinecraftPlugin", "Enjin",  "EMP"), 
+		POINTSAPI("PointsAPI", "PAPI"), 
+		TOKENENCHANT("TokenEnchant", "TE", "TokenEnchants"),
+		CUSTOM;
 		
 		private String[] nicknames;
 		private String name;
@@ -88,6 +93,14 @@ public class PointsManager {
 				return;
 			}
 			pa = new PointsAPIPlugin();
+			return;
+
+		case TOKENENCHANT:
+			if (Bukkit.getPluginManager().getPlugin("TokenEnchant") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined TokenEnchant as the Points(/Token) Plugin ... BUT IT WAS NOT FOUND?! Please download it at spigotmc.org!");
+				return;
+			}
+			pa = new TokenEnchantAPI();
 			return;
 
 		case CUSTOM:

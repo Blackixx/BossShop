@@ -102,7 +102,7 @@ public class ItemStackTranslator {
 
 
 	public void copyTexts(ItemStack receiver, ItemStack source){
-		if(source.hasItemMeta() && receiver.hasItemMeta()){
+		if(source.hasItemMeta()){
 			ItemMeta meta_source = source.getItemMeta();
 			ItemMeta meta_receiver = receiver.getItemMeta();
 
