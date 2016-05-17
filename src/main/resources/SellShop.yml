@@ -16,7 +16,6 @@ shop:
     - amount:1
     - name:&b1 Diamond
     - 'lore:&2Reward: 100 Money'
-    - amount:1
     Message: '&eYou sold %price% for %reward% %rewardtype%!'
     InventoryLocation: 1
     ExtraPermission: ''
@@ -29,10 +28,9 @@ shop:
     Reward: 20
     MenuItem:
     - type:COBBLESTONE
-    - amount:1
+    - amount:32
     - name:&b32 Cobblestone
     - 'lore:&2Reward: 20 Money'
-    - amount:32
     Message: '&eYou sold &eYou sold %price% for %reward% %rewardtype%!'
     InventoryLocation: 2
     ExtraPermission: ''
@@ -45,10 +43,9 @@ shop:
     Reward: 30
     MenuItem:
     - type:GLASS
-    - amount:1
+    - amount:32
     - name:&b32 Glass
     - 'lore:&2Reward: 30 Money'
-    - amount:32
     Message: '&eYou sold %price% for %reward% %rewardtype%!'
     InventoryLocation: 3
     ExtraPermission: ''

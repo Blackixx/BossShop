@@ -23,11 +23,10 @@ shop:
       - durability:5
     MenuItem:
     - type:WOOL
-    - amount:1
+    - amount:40
     - name:&9Colored Wool
     - 'lore:&c10 Red, &110 Blue, &e10 Yellow and &a10 Green Wool #&cPrice: 400 Money'
     - durability:11
-    - amount:40
     Message: '&eYou bought colored Wool! Money left: &c%left%'
     InventoryLocation: 1
     ExtraPermission: ''
@@ -40,10 +39,9 @@ shop:
       - amount:5
     MenuItem:
     - type:DIAMOND
-    - amount:1
+    - amount:5
     - name:&95 Diamonds
     - 'lore:&cPrice: 5000 Money'
-    - amount:5
     Message: '&eYou bought %reward%! Money left: &c%left%'
     InventoryLocation: 3
     ExtraPermission: ''
@@ -77,10 +75,9 @@ shop:
       - amount:64
     MenuItem:
     - type:OBSIDIAN
-    - amount:1
+    - amount:64
     - name:&964 Obsidian
     - 'lore:&cPrice: 10000 Money'
-    - amount:64
     Message: '&eYou bought %reward%! Money left: &c%left%'
     InventoryLocation: 7
     ExtraPermission: ''

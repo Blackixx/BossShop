@@ -14,7 +14,6 @@ shop:
     - amount:1
     - name:&6%reward% %rewardtype%
     - 'lore:&cPrice: %price% %pricetype%'
-    - amount:1
     Message: '&eYou bought %reward% %rewardtype%! Money left: &c%left%'
     InventoryLocation: 1
     ExtraPermission: ''
@@ -25,10 +24,9 @@ shop:
     Reward: 500
     MenuItem:
     - type:DIAMOND
-    - amount:1
+    - amount:5
     - name:&6%reward% %rewardtype%
     - 'lore:&cPrice: %price% %pricetype%'
-    - amount:5
     Message: '&eYou bought %reward% %rewardtype%! Money left: &c%left%'
     InventoryLocation: 2
     ExtraPermission: ''
@@ -39,10 +37,9 @@ shop:
     Reward: 1000
     MenuItem:
     - type:DIAMOND
-    - amount:1
+    - amount:10
     - name:&6%reward% %rewardtype%
     - 'lore:&cPrice: %price% %pricetype%'
-    - amount:10
     Message: '&eYou bought %reward% %rewardtype%! Money left: &c%left%'
     InventoryLocation: 3
     ExtraPermission: ''
@@ -53,10 +50,9 @@ shop:
     Reward: 500
     MenuItem:
     - type:EMERALD
-    - amount:1
+    - amount:5
     - name:&6500 Money
     - 'lore:&cPrice: 100 Points'
-    - amount:5
     Message: '&eYou bought 500 Money! Points left: &c%left%'
     InventoryLocation: 19
     ExtraPermission: ''
@@ -67,10 +63,9 @@ shop:
     Reward: 1000
     MenuItem:
     - type:EMERALD
-    - amount:1
+    - amount:10
     - name:&61000 Money
     - 'lore:&cPrice: 200 Points'
-    - amount:10
     Message: '&eYou bought 1000 Money! Points left: &c%left%'
     InventoryLocation: 20
     ExtraPermission: ''
@@ -81,10 +76,9 @@ shop:
     Reward: 5000
     MenuItem:
     - type:EMERALD
-    - amount:1
+    - amount:50
     - name:&65000 Money
     - 'lore:&cPrice: 1000 Points'
-    - amount:50
     Message: '&eYou bought 5000 Money! Points left: &c%left%'
     InventoryLocation: 21
     ExtraPermission: ''

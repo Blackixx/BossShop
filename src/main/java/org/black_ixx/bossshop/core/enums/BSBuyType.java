@@ -192,7 +192,7 @@ public enum BSBuyType{
 				return type;
 			}
 		}
-		return null;
+		return BSBuyType.Nothing;
 	}
 	public abstract Object createObject(Object o, boolean force_final_state);
 	public abstract boolean validityCheck(String item_name, Object o);
