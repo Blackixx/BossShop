@@ -103,6 +103,14 @@ public class InputReader {
 	}
 
 	public static double getDouble(Object o, double exception){
+		if(o instanceof String){
+			String s = (String) o;
+			try{
+				return Double.parseDouble(s);
+			}catch(NumberFormatException e){
+				return exception;
+			}
+		}
 		if(o instanceof Double){
 			return (Double) o;
 		}
@@ -113,6 +121,14 @@ public class InputReader {
 	}
 
 	public static int getInt(Object o, int exception){
+		if(o instanceof String){
+			String s = (String) o;
+			try{
+				return Integer.parseInt(s);
+			}catch(NumberFormatException e){
+				return exception;
+			}
+		}
 		if(o instanceof Integer){
 			return (Integer) o;	
 		}
