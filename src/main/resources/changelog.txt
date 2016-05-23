@@ -10,6 +10,10 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.4.8
+*[FIX] Fixed serverpinging (broken since v2.4.1)
+
+
 v2.4.7
 *[ADD] Added optional TokenEnchant support (counts as Points plugin)
 *[FIX] A tiny fix
