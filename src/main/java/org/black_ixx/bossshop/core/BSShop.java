@@ -47,13 +47,14 @@ public abstract class BSShop {
 		this.sign_text=sign_text;
 		this.manual_inventory_rows = manual_inventory_rows;
 		this.needPermToCreateSign=needPermToCreateSign;
-		hiding = plugin.getClassManager().getSettings().getInventoryCustomizingHideEnabled();
+		this.hiding = plugin.getClassManager().getSettings().getInventoryCustomizingHideEnabled();
 
 		setDisplayName(displayname);
 	}
 
 	public BSShop(int shop_id){
 		this.shop_id=shop_id;
+		this.hiding = ClassManager.manager.getSettings().getInventoryCustomizingHideEnabled();
 	}
 
 	//////////////////////////// <- Methods to get main Variables

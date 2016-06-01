@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import org.black_ixx.bossshop.core.BSBuy;
 import org.black_ixx.bossshop.core.BSShop;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -55,7 +56,7 @@ public class ServerPingingManager {
 		if(c.getShop()!=null){
 			if(c.getShop().getInventory()!=null){
 				//TODO wenn inventory customizable ist ist es auch nicht existent hier
-				c.getShop().getInventory().setItem(c.getLocation(), i);
+				c.getShop().getInventory().setItem(c.getShopItem().getInventoryLocation(), i);
 			}
 		}
 
@@ -87,13 +88,13 @@ public class ServerPingingManager {
 		}
 	}
 
-	public void addItem(ItemStack i,int loc, BSShop shop, BasicConnector c){
+	public void addItem(ItemStack i, BSShop shop, BSBuy buy, BasicConnector c){
 		to_ping.add(c);
 		if(!i.hasItemMeta()){
-			c.setOldData(null, null,i,shop,loc);
+			c.setOldData(null, null, i, shop, buy);
 			return;
 		}
-		c.setOldData(i.getItemMeta().getLore(), i.getItemMeta().getDisplayName(),i,shop,loc);
+		c.setOldData(i.getItemMeta().getLore(), i.getItemMeta().getDisplayName(),i,shop, buy);
 	}
 
 

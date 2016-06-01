@@ -53,7 +53,7 @@ SearchSubfoldersForShops: false
 # 		
 # 		
 # ServerPingingDelay:			
-# ServerPinging Delay in seconds. Relevant only when working with ServerPinging: dev.bukkit.org/bukkit-plugins/bossshop/pages/server-pinging/		
+# ServerPinging Delay in ticks (20 ticks = 1 second). Relevant only when working with ServerPinging: dev.bukkit.org/bukkit-plugins/bossshop/pages/server-pinging/		
 ServerPingingDelay: 20	
 # 		
 # 																		

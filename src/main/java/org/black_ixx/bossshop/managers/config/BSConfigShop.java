@@ -11,7 +11,7 @@ import org.black_ixx.bossshop.core.enums.BSBuyType;
 import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.managers.ClassManager;
-import org.black_ixx.bossshop.managers.serverpinging.Connector3;
+import org.black_ixx.bossshop.managers.serverpinging.Connector_1_8;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -179,7 +179,8 @@ public class BSConfigShop extends BSShop{
 			}
 
 			ClassManager.manager.getSettings().setServerPingingEnabled(true);
-			ClassManager.manager.getServerPingingManager().addItem(i, b.getInventoryLocation(),this,new Connector3(host, port, 4000));
+			
+			ClassManager.manager.getServerPingingManager().addItem(i, this, b, new Connector_1_8(host, port, 4000));
 		} //Server Pinging end
 
 		if (b==null){

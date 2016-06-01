@@ -15,7 +15,7 @@ import org.black_ixx.bossshop.managers.ClassManager;
 import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 
-public class Connector3 extends BasicConnector{
+public class Connector_1_8 extends BasicConnector{
 
 
 
@@ -24,13 +24,13 @@ public class Connector3 extends BasicConnector{
 	private Gson gson = new Gson();
 
 	private StatusResponse response;
-
+	
 	private long latest_failure;
 
 
 
 
-	public Connector3(String host, int port, int timeout){
+	public Connector_1_8(String host, int port, int timeout){
 		setAddress(new InetSocketAddress(host, port));
 		setTimeout(timeout);		
 	}
@@ -68,6 +68,15 @@ public class Connector3 extends BasicConnector{
 		return response.getDescription();
 	}
 
+	@Override
+	public boolean isOnline() {
+		if(response!=null){
+			if(latest_failure==-1){
+				return response.getDescription()!=null;
+			}
+		}
+		return false;
+	}
 
 
 	public void setAddress(InetSocketAddress host) {
@@ -82,10 +91,12 @@ public class Connector3 extends BasicConnector{
 	public void update(){
 		try {
 			response = fetchData();
+			latest_failure = -1;
 		} catch (IOException e) {
 			if(System.currentTimeMillis() > latest_failure + 90000){ //When there are issues: Do not spam the server.log with huge error messages but rather print a short line every 1 1/2 minutes.
 				ClassManager.manager.getBugFinder().warn("Serverpinging error: Unable to connect with '"+host.getHostName()+":"+host.getPort()+"'!");
 				latest_failure = System.currentTimeMillis();
+				System.out.println("exception: "+e.getMessage());
 			}
 		}
 	}
@@ -206,6 +217,11 @@ public class Connector3 extends BasicConnector{
 		return response;
 	}
 
+	
+	
+	
+	
+
 	public class StatusResponse {
 		private String description;
 		private Players players;
@@ -280,7 +296,5 @@ public class Connector3 extends BasicConnector{
 		}
 	}
 }
-
-
 
 

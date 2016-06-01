@@ -2,6 +2,7 @@ package org.black_ixx.bossshop.managers.serverpinging;
 
 import java.util.List;
 
+import org.black_ixx.bossshop.core.BSBuy;
 import org.black_ixx.bossshop.core.BSShop;
 import org.bukkit.inventory.ItemStack;
 
@@ -11,14 +12,14 @@ public abstract class BasicConnector {
 	private String old_name;
 	private ItemStack item;
 	private BSShop shop;
-	private int location;
+	private BSBuy buy;
 
-	public void setOldData(List<String> lore, String name, ItemStack item, BSShop shop, int location){
+	public void setOldData(List<String> lore, String name, ItemStack item, BSShop shop, BSBuy buy){
 		old_lore=lore;
 		old_name=name;
 		this.item=item;
 		this.shop=shop;
-		this.location=location;
+		this.buy=buy;
 	}
 	
 	public ItemStack getItem(){
@@ -37,8 +38,8 @@ public abstract class BasicConnector {
 		return shop;
 	}
 	
-	public int getLocation(){
-		return location;
+	public BSBuy getShopItem(){
+		return buy;
 	}
 	
 	
@@ -46,10 +47,13 @@ public abstract class BasicConnector {
 	
 	public abstract String getPlayerCount();
 	
+	public abstract boolean isOnline();
+	
 	public abstract void update();
 	
 	public abstract String getHost();
 	
 	public abstract int getPort();
+	
 	
 }
