@@ -10,8 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.0
+*[FIX] FINALLY fixed a bug related to PlaceholderAPI. I apologize for not fixing it earlier! :O Finally I was able to reproduce the issue and to spot the source of it. All problems related to PlaceholderAPI should be finally gone forever!
+
+
 v2.4.9
-*[FIX] In some cases ItemHiding was not working
+*[FIX] In some cases hiding items if the player did not have the required permissions was not working
 
 
 v2.4.8

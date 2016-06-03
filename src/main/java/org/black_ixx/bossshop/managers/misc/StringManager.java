@@ -61,9 +61,6 @@ public class StringManager {
 		if(s==null){
 			return null;
 		}
-		if(ClassManager.manager.getPlaceholderHandler()!=null){
-			s = ClassManager.manager.getPlaceholderHandler().transformString(s, target);
-		}
 
 		if(target!=null){
 			s=s.replace("%name%", target.getName()).replace("%player%", target.getName());
@@ -75,6 +72,11 @@ public class StringManager {
 			if(s.contains("%balancepoints%") && ClassManager.manager.getPointsManager() != null){
 				int balance_points = ClassManager.manager.getPointsManager().getPoints(target);
 				s=s.replace("%balancepoints%", String.valueOf(balance_points));
+			}
+			
+			
+			if(ClassManager.manager.getPlaceholderHandler()!=null){
+				s = ClassManager.manager.getPlaceholderHandler().transformString(s, target);
 			}
 		}
 

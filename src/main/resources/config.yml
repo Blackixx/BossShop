@@ -56,10 +56,10 @@ SearchSubfoldersForShops: false
 # ServerPinging Delay in ticks (20 ticks = 1 second). Relevant only when working with ServerPinging: dev.bukkit.org/bukkit-plugins/bossshop/pages/server-pinging/		
 ServerPingingDelay: 20	
 # 		
-# 																		
-AllowUnsafeEnchantments: false	
+# 														
 # AllowUnsafeEnchantments:			
-# If enabled you can set up items with insane enchants like knockback level 10 or a mad cookie that burns players.
+# If enabled you can set up items with insane enchants like knockback level 10 or a mad cookie that burns players.				
+AllowUnsafeEnchantments: false	
 # 				
 # 																
 # DisableUpdateNotifications:			
