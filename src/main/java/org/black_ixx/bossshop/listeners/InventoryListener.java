@@ -20,10 +20,12 @@ import org.bukkit.event.inventory.InventoryType.SlotType;
 
 public class InventoryListener implements Listener{
 
+	
+	private BossShop plugin;
+	
 	public InventoryListener(BossShop plugin){
 		this.plugin=plugin;
 	}
-	private BossShop plugin;
 
 
 	@EventHandler
@@ -38,8 +40,6 @@ public class InventoryListener implements Listener{
 	}
 
 
-
-
 	@EventHandler
 	public void purchase(InventoryClickEvent event){
 		if (!(event.getInventory().getHolder() instanceof BSShopHolder)){
@@ -48,18 +48,13 @@ public class InventoryListener implements Listener{
 
 		BSShopHolder holder = (BSShopHolder)event.getInventory().getHolder();
 
-		event.setCancelled(true);
-		event.setResult(Result.DENY);
-		//event.setCurrentItem(null);
 
 		if (event.getWhoClicked() instanceof Player){
 			if (event.getCurrentItem()==null){
-				event.setCancelled(true);
 				return;							
 			}
 
 			if (event.getCursor()==null){
-				event.setCancelled(true);
 				return;
 			}
 
@@ -71,8 +66,12 @@ public class InventoryListener implements Listener{
 			if(buy==null){
 				return;
 			}
+
+			event.setCancelled(true);
+			event.setResult(Result.DENY);
+			//event.setCurrentItem(null);
+			
 			if (buy.getInventoryLocation()==event.getRawSlot()){
-				event.setCancelled(true);
 
 				Player p = (Player) event.getWhoClicked();
 				if (!buy.hasPermission(p,true)){

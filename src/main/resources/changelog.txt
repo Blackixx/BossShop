@@ -10,6 +10,10 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.2
+*[IMPROVE] Players can now move items around in their inventory while they have a shop open
+
+
 v2.5.1
 *[IMPROVE] Improved Item sell-shops: As soon as the sell-item in the shop contains a custom displayname or lore the shop will only accept items with the same name and lore
 *[IMPROVE] Item-selling is more smooth now and items of the same type are no longer moved around in the player inventory
