@@ -25,36 +25,28 @@ public class ItemStackChecker {
 	}
 
 	public void takeItem(ItemStack shop_item, Player p, boolean can_player_sell_item_with_greater_enchants){
-		int a = 0;
+		int to_take = shop_item.getAmount();
 		int slot = -1;
 
-			for (ItemStack player_item : p.getInventory().getContents()){
-				slot++;
-				if (player_item!=null){					
-					if(canSell(p, player_item, shop_item, slot, can_player_sell_item_with_greater_enchants)){
-						a+=player_item.getAmount();
-						remove(p, player_item);						
-						if(a>=shop_item.getAmount()){ //Reached amount. Can stop!
-							break;
-						}
+		for (ItemStack player_item : p.getInventory().getContents()){
+			slot++;
+			if (player_item!=null){					
+				if(canSell(p, player_item, shop_item, slot, can_player_sell_item_with_greater_enchants)){
+					int take_next = Math.min(to_take, player_item.getAmount());
+					remove(p, player_item, take_next);	
+					to_take -= take_next;					
+					if(to_take<=0){ //Reached amount. Can stop!
+						break;
 					}
 				}
 			}
-			
-			a=a-shop_item.getAmount();
-			if (a>0){
-				addItem(shop_item, p, a);
-			}
-			return;
-	}
-	private void remove(Player p, ItemStack toR){
-		if (toR.hasItemMeta()){
-			ItemMeta m = toR.getItemMeta();
-			m.setDisplayName(null);
-			toR.setItemMeta(m);
-			toR.setItemMeta(null);
 		}
-		p.getInventory().removeItem(new ItemStack(toR.getType(),toR.getAmount(), toR.getDurability()));
+		return;
+	}
+	private void remove(Player p, ItemStack toR, int amount){
+		ItemStack i = toR.clone();
+		i.setAmount(amount);
+		p.getInventory().removeItem(i);
 		return;
 
 	}
@@ -63,34 +55,17 @@ public class ItemStackChecker {
 		int a = 0;
 		int slot = -1;
 
-			for (ItemStack player_item : p.getInventory().getContents()){
-				slot++;
-				if (player_item!=null){
-					if(canSell(p, player_item, shop_item, slot, can_player_sell_item_with_greater_enchants)){
-						a+=player_item.getAmount();
-					}
+		for (ItemStack player_item : p.getInventory().getContents()){
+			slot++;
+			if (player_item!=null){
+				if(canSell(p, player_item, shop_item, slot, can_player_sell_item_with_greater_enchants)){
+					a+=player_item.getAmount();
 				}
 			}
-			return a;
-	}
-
-	private void addItem(ItemStack i, Player p, int amount){
-		ItemStack s = new ItemStack(i.getType(),amount,i.getDurability());
-		if (!i.getEnchantments().isEmpty()){
-			s.addUnsafeEnchantments(i.getEnchantments());
 		}
-
-		//Max stack size = 1
-		if(i.getMaxStackSize()==1){
-			s.setAmount(1);
-			for(int x = 0; x < amount; x++) {
-				p.getInventory().addItem(s);
-			}
-			return;
-		}
-
-		p.getInventory().addItem(s);
+		return a;
 	}
+	
 
 	public void addItemSafe(Player p, ItemStack i){
 		if(p.getInventory().firstEmpty()==-1){ //Inventory full
@@ -131,11 +106,11 @@ public class ItemStackChecker {
 		if(slot<INVENTORY_SLOT_START || slot>INVENTORY_SLOT_END){ //Has to be inside normal inventory
 			return false;
 		}
-		
+
 		if (player_item.getType()!=shop_item.getType()){ //Both need to be the same item type
 			return false;
 		}
-		
+
 		if (!sameDurability(player_item, shop_item)){ //Both need to have the same durability
 			return false;
 		}
@@ -144,19 +119,20 @@ public class ItemStackChecker {
 			return false;
 		}
 
-
-		return true;
-	}
-
-
-	public boolean isValidEnchantment(ItemStack item, Enchantment enchantment, int level){
-		try{
-			item.clone().addEnchantment(enchantment, level);
-		}catch(Exception e){
-			return false;
+		if(shop_item.hasItemMeta()){
+			ItemMeta meta = shop_item.getItemMeta();
+			if(meta.hasLore() || meta.hasDisplayName()){
+				if(!hasEqualItemMeta(player_item, shop_item)){
+					return false;
+				}
+			}
 		}
+
+
 		return true;
 	}
+
+
 	private boolean containsSameEnchantments(ItemStack shop_item, ItemStack player_item, boolean can_player_sell_item_with_greater_enchants){
 		for (Enchantment e : shop_item.getEnchantments().keySet()){
 			if (!player_item.containsEnchantment(e)){
@@ -181,6 +157,38 @@ public class ItemStackChecker {
 	private boolean sameDurability(ItemStack i, ItemStack s){
 		if (i.getDurability()==s.getDurability()){
 			return true;
+		}
+		return false;
+	}
+
+	public boolean hasEqualItemMeta(ItemStack a, ItemStack b){
+		if(a != null && b != null){
+			if(a.hasItemMeta() == b.hasItemMeta()){
+				if(a.hasItemMeta()){
+					ItemMeta ma = a.getItemMeta();
+					ItemMeta mb = b.getItemMeta();
+
+					if(ma.hasDisplayName() == mb.hasDisplayName() && ma.hasLore() == mb.hasLore()){
+						if(ma.hasDisplayName()){
+							if(!ma.getDisplayName().equals(mb.getDisplayName())){
+								return false;
+							}
+						}
+						if(ma.hasLore()){
+							if(ma.getLore().size() != mb.getLore().size()){
+								return false;
+							}
+							for(int i = 0; i<ma.getLore().size(); i++){
+								if(!ma.getLore().get(i).equals(mb.getLore().get(i))){
+									return false;
+								}
+							}
+						}
+					}
+
+				}
+				return true;
+			}
 		}
 		return false;
 	}

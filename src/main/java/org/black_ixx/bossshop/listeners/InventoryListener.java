@@ -99,7 +99,7 @@ public class InventoryListener implements Listener{
 
 				if(buy.getBuyType()==BSBuyType.Enchantment){
 					Enchant e = (Enchant) buy.getReward();
-					if(p.getInventory().getItemInMainHand()==null |! plugin.getClassManager().getItemStackChecker().isValidEnchantment(p.getInventory().getItemInMainHand(), e.getType(), e.getLevel()) &! plugin.getClassManager().getSettings().getUnsafeEnchantmentsEnabled()){
+					if(p.getInventory().getItemInMainHand()==null || (!e.getType().canEnchantItem(p.getInventory().getItemInMainHand()) &! plugin.getClassManager().getSettings().getUnsafeEnchantmentsEnabled())){
 						plugin.getClassManager().getMessageHandler().sendMessage("Enchantment.Invalid", p);
 						return;
 					}
