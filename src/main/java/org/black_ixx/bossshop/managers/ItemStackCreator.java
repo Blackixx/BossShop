@@ -324,7 +324,7 @@ public class ItemStackCreator {
 
 			if (s.equalsIgnoreCase("itemflag")){
 				ItemMeta meta =  i.getItemMeta();
-				meta.addItemFlags(ItemFlag.valueOf(a));
+				meta.addItemFlags(ItemFlag.valueOf(a.toUpperCase()));
 				i.setItemMeta(meta);				
 				continue;
 			}

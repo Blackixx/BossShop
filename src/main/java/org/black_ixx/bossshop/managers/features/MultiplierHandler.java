@@ -7,6 +7,7 @@ import java.util.Set;
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.core.BSMultiplier;
 import org.black_ixx.bossshop.core.enums.BSPriceType;
+import org.black_ixx.bossshop.misc.MathTools;
 import org.bukkit.entity.Player;
 
 
@@ -44,7 +45,7 @@ public class MultiplierHandler {
 				}
 			}
 		}
-		return d;
+		return MathTools.round(d, 2);
 	}
 
 	public int calculateWithMultiplier(Player p, BSPriceType type, int d){ //Used for prices
@@ -68,7 +69,7 @@ public class MultiplierHandler {
 				}
 			}
 		}
-		return (int)x;
+		return (int) x;
 	}
 	
 	public double calculateRewardWithMultiplier(Player p, BSPriceType type, double d){ //Used for reward; Works the other way around
@@ -79,7 +80,7 @@ public class MultiplierHandler {
 				}
 			}
 		}
-		return d;
+		return MathTools.round(d, 2);
 	}
 
 

@@ -10,6 +10,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.3
+*[IMPROVE] Now when working with multipliers the output numbers are rounded to prevent prices like "49.999999"
+*[IMPROVE] Improved Itemflags detection: Not case sensitive anymore
+
+
 v2.5.2
 *[IMPROVE] Players can now move items around in their inventory while they have a shop open
 
