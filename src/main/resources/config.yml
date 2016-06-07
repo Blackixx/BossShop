@@ -21,7 +21,7 @@
 # 				
 # EnableSigns:			
 # If set EnableSigns to 'false' BossShop signs will be disabled.				
-EnableSigns: true	
+EnableSigns: true
 #
 #
 # MainShop:			
