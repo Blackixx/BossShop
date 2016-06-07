@@ -281,7 +281,7 @@ public class ItemStackCreator {
 					continue;                           
 				}
 
-				if (s.equalsIgnoreCase("hideflags")){
+				if (s.equalsIgnoreCase("hideflags") || s.equalsIgnoreCase("itemflag")){
 					a=stringFix(a);
 					ItemMeta meta = i.getItemMeta();
 					if (a.equalsIgnoreCase("all") || a.equalsIgnoreCase("true")) {
@@ -321,13 +321,6 @@ public class ItemStackCreator {
 				continue;
 			}
 
-
-			if (s.equalsIgnoreCase("itemflag")){
-				ItemMeta meta =  i.getItemMeta();
-				meta.addItemFlags(ItemFlag.valueOf(a.toUpperCase()));
-				i.setItemMeta(meta);				
-				continue;
-			}
 
 			if (s.equalsIgnoreCase("potioneffect")){
 				a=stringFix(a);
