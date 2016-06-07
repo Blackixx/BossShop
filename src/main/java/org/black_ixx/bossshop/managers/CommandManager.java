@@ -45,11 +45,12 @@ public class CommandManager implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("close")) {
 					if (sender.hasPermission("BossShop.close")) {
 						Player p = null;
+						String name = "CONSOLE";
 						if (sender instanceof Player) {
 							p = (Player) sender;
 						}
 						if (args.length == 2) {
-							String name = args[1];
+							name = args[1];
 							Player x = Bukkit.getPlayer(name);
 							if (x != null) {
 								p = x;
@@ -62,13 +63,14 @@ public class CommandManager implements CommandExecutor {
 						}
 
 						if (p == null) {
-							sender.sendMessage(ChatColor.RED + "Player not found!");
+							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", name));
 							return false;
 						}
 
 						p.closeInventory();
-
-						sender.sendMessage(ChatColor.YELLOW + "Closed Inventory of " + ChatColor.RED + p.getName() + ChatColor.YELLOW + "!");
+						if(p!=sender){
+							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.CloseShopOtherPlayer").replace("%player%", p.getDisplayName()));
+						}
 
 					} else {
 						ClassManager.manager.getMessageHandler().sendMessage("Main.NoPermission", sender);
@@ -95,7 +97,7 @@ public class CommandManager implements CommandExecutor {
 						}
 
 						if (p == null) {
-							sender.sendMessage(ChatColor.RED + "Player not found!");
+							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", pname));
 							return false;
 						}
 
@@ -107,7 +109,9 @@ public class CommandManager implements CommandExecutor {
 						}
 
 						shop.openInventory(p);
-						sender.sendMessage(ChatColor.YELLOW + "Opened Shop " + ChatColor.RED + shopname.toLowerCase() + ChatColor.YELLOW + " for " + ChatColor.RED + p.getName() + ChatColor.YELLOW + "!");
+						if(p!=sender){
+							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.OpenShopOtherPlayer").replace("%player%", p.getDisplayName()).replace("%shop%", shop.getShopName()));
+						}
 
 					} else {
 						ClassManager.manager.getMessageHandler().sendMessage("Main.NoPermission", sender);
@@ -127,9 +131,9 @@ public class CommandManager implements CommandExecutor {
 						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM-hh-mm-ss");
 
 						String date = /*
-									 * ClassManager.manager.getBugFinder().getDate
-									 * ();
-									 */formatter.format(new Date());
+						 * ClassManager.manager.getBugFinder().getDate
+						 * ();
+						 */formatter.format(new Date());
 						File f = new File(ClassManager.manager.getPlugin().getDataFolder().getAbsolutePath() + "/checks/" + date + ".yml");
 						FileConfiguration conf = YamlConfiguration.loadConfiguration(f);
 						List<String> l = new ArrayList<String>();

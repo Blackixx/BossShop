@@ -3,8 +3,11 @@ Main:
   NoPermission: '&cYou are not allowed to do this!'
   AlreadyBought: '&cYou already purchased that!'
   ShopNotExisting: '&cThat Shop is not existing...'
-  OpenShop: '&6Opening the BossShop...'
+  OpenShop: '&6Opening Shop &c%shop%&6.'
+  OpenShopOtherPlayer: '&6Opening Shop &c%shop% &6for %player%&6.'
+  CloseShopOtherPlayer: '&6Closed inventory of %player%&6.'
   CloseShop: ''
+  PlayerNotFound: '&cPlayer %name% not found!'
 Economy:
   NoAccount: '&cYou don''t have an economy account!'
 NotEnough:

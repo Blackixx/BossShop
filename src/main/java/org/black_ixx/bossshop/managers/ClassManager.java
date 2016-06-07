@@ -20,33 +20,21 @@ public class ClassManager {
 	public static ClassManager manager;
 
 	public ClassManager(BossShop plugin){
-
 		this.plugin=plugin;
 
 		manager=this;
-
-
 		settings = new Settings();
 
-		//////////////// <- Independent Classes
-		
+		//////////////// <- Independent Classes		
 
 		bugfinder= new BugFinder(plugin);
-
 		stringmanager= new StringManager();
-
-		itemstackCreator = new ItemStackCreator();
-		
+		itemstackCreator = new ItemStackCreator();		
 		itemstackTranslator = new ItemStackTranslator();
-
 		buyItemHandler = new BuyItemHandler();		
-
 		configHandler = new ConfigHandler(plugin);
-
 		itemstackChecker= new ItemStackChecker();
-
-		messagehandler= new MessageHandler(plugin);
-		
+		messagehandler= new MessageHandler(plugin);		
 		multiplierHandler = new MultiplierHandler(plugin);
 		
 		if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
@@ -56,8 +44,7 @@ public class ClassManager {
 
 		////////////////<- Dependent Classes
 
-		shops = new BSShops(plugin, settings);
-		
+		shops = new BSShops(plugin, settings);		
 
 		if (settings.getPointsEnabled()){
 			pointsmanager = new PointsManager();
@@ -86,13 +73,11 @@ public class ClassManager {
 		
 		if (settings.getServerPingingEnabled()){
 			getServerPingingManager().getServerPingingRunnableHandler().start(settings.getServerPingingSpeed(), plugin);
-		}
-		
-		
-
+		}		
 
 	}	
 
+	
 	///////////////////////////////
 
 	private ItemStackChecker itemstackChecker;
@@ -117,6 +102,7 @@ public class ClassManager {
 	private MultiplierHandler multiplierHandler;
 	private UpdaterManager updaterManager;
 
+	
 	///////////////////////////////
 
 	public Settings getSettings(){

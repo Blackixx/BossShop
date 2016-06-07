@@ -1,7 +1,10 @@
 package org.black_ixx.bossshop.managers.config;
 
+import java.io.File;
+
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.managers.ClassManager;
+import org.black_ixx.bossshop.managers.PluginSetup;
 import org.black_ixx.bossshop.managers.features.PointsManager.PointsPlugin;
 import org.black_ixx.bossshop.points.PointsAPI;
 import org.bukkit.Bukkit;
@@ -13,6 +16,10 @@ public class ConfigHandler {
 	public ConfigHandler(BossShop plugin) {
 		this.plugin = plugin;
 
+		File folder = new File(plugin.getDataFolder().getAbsolutePath()+ File.separator + "config.yml");
+		if (!folder.isFile()){
+			new PluginSetup().setupConfigs(plugin);
+		}
 		//addDefaults(); //Not needed anymore because default config is copied from resources folder. NOTE: Needing new code in case of adding new config lines
 
 		if (plugin.getConfig().getBoolean("signs.enabled") || plugin.getConfig().getBoolean("EnableSigns")) {

@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 import org.black_ixx.bossshop.BossShop;
 import org.black_ixx.bossshop.managers.ClassManager;
+import org.black_ixx.bossshop.managers.PluginSetup;
 import org.black_ixx.bossshop.managers.Settings;
 import org.black_ixx.bossshop.managers.config.BSConfigShop;
-import org.black_ixx.bossshop.managers.config.FileHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -20,7 +20,7 @@ public class BSShops {
 
 		File folder = new File(plugin.getDataFolder().getAbsolutePath()+ File.separator + "shops" + File.separator);
 		if (!folder.isFile()&!folder.isDirectory()){
-			createDefaults(plugin);			
+			new PluginSetup().setupShops(plugin);
 		}
 
 		loadShops(folder, settings, "");
@@ -149,22 +149,6 @@ public class BSShops {
 
 	////////////////////////////////////////////////////////////////////////////
 
-	public void createDefaults(BossShop plugin){
-		FileHandler filehandler = new FileHandler();
-		filehandler.copyFromJar(plugin, false
-				, "config.yml"
-				, "messages.yml");
-		filehandler.copyFromJar(plugin, true
-				, "BungeeCordServers.yml"
-				, "BuyShop.yml"
-				, "LilyPadServers.yml"
-				, "Menu.yml"
-				, "PointShop.yml"
-				, "Potions.yml"
-				, "SellShop.yml"
-				, "Spells.yml"
-				, "Warps.yml");
-	}
 
 
 }

@@ -10,8 +10,14 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.5
+*[IMPROVE] Removed useless tabs from default config file (Thanks to Androkai)
+*[IMPROVE] Made BossShop command messages even more configurable 
+*[FIX] One small fix
+
+
 v2.5.4
-*[ADD] Now you can make items "unbreakable"
+*[ADD] Now you can make items "unbreakable" (simply add following line to your items: "- unbreakable")
 *[IMPROVE] Small improvements
 
 

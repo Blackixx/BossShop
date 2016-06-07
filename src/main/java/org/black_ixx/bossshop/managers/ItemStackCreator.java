@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.black_ixx.bossshop.managers.external.GuiShopManagerManager;
-import org.black_ixx.bossshop.misc.ClassTools;
 import org.bukkit.Bukkit;
 
 import org.bukkit.Color;
@@ -359,10 +358,12 @@ public class ItemStackCreator {
 
 
 			if (s.equalsIgnoreCase("unbreaking") || s.equalsIgnoreCase("unbreakable")){
-				if(ClassTools.classExists("org.bukkit.inventory.meta.ItemMeta.Spigot")){
+				try{
 					ItemMeta im = i.getItemMeta();
 					im.spigot().setUnbreakable(true);
 					i.setItemMeta(im);
+				}catch (Exception e){
+					ClassManager.manager.getBugFinder().severe("Error: Unable to make item unbreakable! You need the Spigot API.");
 				}
 				continue;
 			}
