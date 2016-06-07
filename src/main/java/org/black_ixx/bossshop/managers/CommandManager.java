@@ -45,23 +45,16 @@ public class CommandManager implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("close")) {
 					if (sender.hasPermission("BossShop.close")) {
 						Player p = null;
-						String name = "CONSOLE";
+						String name = sender instanceof Player ? sender.getName() : "CONSOLE";
+						
 						if (sender instanceof Player) {
 							p = (Player) sender;
 						}
-						if (args.length == 2) {
+						if (args.length >= 2) {
 							name = args[1];
-							Player x = Bukkit.getPlayer(name);
-							if (x != null) {
-								p = x;
-							}
-						} else {
-							if (!(sender instanceof Player)) {
-								sendCommandList(sender);
-								return false;
-							}
+							p = Bukkit.getPlayer(name);
 						}
-
+						
 						if (p == null) {
 							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", name));
 							return false;
@@ -82,29 +75,32 @@ public class CommandManager implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("open")) {
 					if (sender.hasPermission("BossShop.open.other")) {
 
-						if (args.length != 3) {
+						if (args.length < 2) {
 							sendCommandList(sender);
 							return false;
 						}
 
 						String shopname = args[1];
-						String pname = args[2];
+						String name = sender instanceof Player ? sender.getName() : "CONSOLE";
+						if(args.length >= 3){
+							name = args[2];
+						}
 
-						Player p = Bukkit.getPlayerExact(pname);
+						Player p = Bukkit.getPlayerExact(name);
 
 						if (p == null) {
-							p = Bukkit.getPlayer(pname);
+							p = Bukkit.getPlayer(name);
 						}
 
 						if (p == null) {
-							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", pname));
+							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", name));
 							return false;
 						}
 
 						BSShop shop = ClassManager.manager.getShops().getShop(shopname.toLowerCase());
 
 						if (shop == null) {
-							ClassManager.manager.getMessageHandler().sendMessage("Main.ShopNotExisting", p);
+							ClassManager.manager.getMessageHandler().sendMessage("Main.ShopNotExisting", sender);
 							return false;
 						}
 
