@@ -49,7 +49,7 @@ public abstract class BasicConnector {
 	
 	public abstract boolean isOnline();
 	
-	public abstract void update();
+	public abstract boolean update();
 	
 	public abstract String getHost();
 	

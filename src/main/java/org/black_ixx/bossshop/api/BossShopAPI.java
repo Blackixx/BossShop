@@ -19,6 +19,7 @@ import org.black_ixx.bossshop.managers.config.BSConfigShop;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
@@ -37,8 +38,16 @@ public class BossShopAPI {
 	
 	
 	//For Single Shop	
+	public boolean isValidShop(InventoryView v){
+		if(v!=null){
+			if(v.getTopInventory() != null){
+				return isValidShop(v.getTopInventory());
+			}
+		}
+		return false;
+	}
 	public boolean isValidShop(Inventory i){
-		return (i.getHolder() instanceof BSShopHolder && plugin.getClassManager().getShops().getShopIds().containsKey(i.getName().toLowerCase()));
+		return (i.getHolder() instanceof BSShopHolder);
 	}
 	
 	

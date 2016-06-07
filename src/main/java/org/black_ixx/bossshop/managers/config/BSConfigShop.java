@@ -11,7 +11,11 @@ import org.black_ixx.bossshop.core.enums.BSBuyType;
 import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.managers.ClassManager;
-import org.black_ixx.bossshop.managers.serverpinging.Connector_1_8;
+import org.black_ixx.bossshop.managers.serverpinging.BasicConnector;
+import org.black_ixx.bossshop.managers.serverpinging.Connector4;
+import org.black_ixx.bossshop.managers.serverpinging.Connector5;
+import org.black_ixx.bossshop.managers.serverpinging.Connector6;
+import org.black_ixx.bossshop.managers.serverpinging.ConnectorSmart;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -180,7 +184,13 @@ public class BSConfigShop extends BSShop{
 
 			ClassManager.manager.getSettings().setServerPingingEnabled(true);
 			
-			ClassManager.manager.getServerPingingManager().addItem(i, this, b, new Connector_1_8(host, port, 4000));
+
+			//NOTE: Using ConnectorSmart as temporary fix until there is a stable system that knows which Connector to choose
+			BasicConnector connector4 = new Connector4(host, port, 4000);
+			BasicConnector connector5 = new Connector5(host, port, 4000);
+			BasicConnector connector6 = new Connector6(host, port, 4000);
+			
+			ClassManager.manager.getServerPingingManager().addItem(i, this, b, new ConnectorSmart(connector4, connector5, connector6));
 		} //Server Pinging end
 
 		if (b==null){

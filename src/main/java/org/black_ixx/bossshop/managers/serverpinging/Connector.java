@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 
 public class Connector {
+	// An old Connector. Will probably be never used again.
 
 	private String host;
 	private int port;

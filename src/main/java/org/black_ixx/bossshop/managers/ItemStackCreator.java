@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.black_ixx.bossshop.managers.external.GuiShopManagerManager;
+import org.black_ixx.bossshop.misc.ClassTools;
 import org.bukkit.Bukkit;
 
 import org.bukkit.Color;
@@ -37,7 +38,7 @@ public class ItemStackCreator {
 
 			String parts[] = x.split(":",2);
 			String s = parts[0].trim();
-			String a = parts[1].trim();
+			String a = parts.length == 2 ? parts[1].trim() : null;
 
 			if (s.equalsIgnoreCase("id")){
 				a=stringFix(a);
@@ -356,6 +357,15 @@ public class ItemStackCreator {
 				continue;
 			}
 
+
+			if (s.equalsIgnoreCase("unbreaking") || s.equalsIgnoreCase("unbreakable")){
+				if(ClassTools.classExists("org.bukkit.inventory.meta.ItemMeta.Spigot")){
+					ItemMeta im = i.getItemMeta();
+					im.spigot().setUnbreakable(true);
+					i.setItemMeta(im);
+				}
+				continue;
+			}
 
 
 			if (s.equalsIgnoreCase("guishopmanageritem")||s.equalsIgnoreCase("gsmitem")||s.equalsIgnoreCase("guishopmanager")||s.equalsIgnoreCase("gsm")){

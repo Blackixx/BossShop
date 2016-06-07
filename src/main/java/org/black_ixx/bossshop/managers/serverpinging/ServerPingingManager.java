@@ -26,9 +26,7 @@ public class ServerPingingManager {
 		c.update();
 		
 		ItemStack i = c.getItem();
-
 		ItemMeta meta = i.getItemMeta();
-
 		String motd = c.getMotd();
 
 		if(motd==null){
@@ -55,7 +53,6 @@ public class ServerPingingManager {
 		i.setItemMeta(meta);
 		if(c.getShop()!=null){
 			if(c.getShop().getInventory()!=null){
-				//TODO wenn inventory customizable ist ist es auch nicht existent hier
 				c.getShop().getInventory().setItem(c.getShopItem().getInventoryLocation(), i);
 			}
 		}
@@ -63,7 +60,7 @@ public class ServerPingingManager {
 	}
 
 	private String transform(String s,String current, String motd, String players){
-		boolean b=false;;
+		boolean b=false;
 		if(s.contains("%motd%")&&motd!=null){
 			s=s.replace("%motd%", motd);
 			b=true;

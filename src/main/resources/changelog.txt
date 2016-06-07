@@ -10,6 +10,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.4
+*[ADD] Now you can make items "unbreakable"
+*[IMPROVE] Small improvements
+
+
 v2.5.3
 *[IMPROVE] Now when working with multipliers the output numbers are rounded to prevent prices like "49.999999"
 *[IMPROVE] Improved Itemflags detection: Not case sensitive anymore

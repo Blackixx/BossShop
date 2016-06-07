@@ -13,11 +13,12 @@ import java.util.List;
 import org.black_ixx.bossshop.managers.ClassManager;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
 import java.io.ByteArrayOutputStream;
 
-public class Connector_1_8 extends BasicConnector{
-
-
+public class Connector5 extends BasicConnector{
+	// This connector worked fine on recent (1.8 and 1.9) Spigot and Bukkit builds however it caused errors on a PaperSpigot 1.8.8 server
 
 	private InetSocketAddress host;
 	private int timeout = 7000;
@@ -30,7 +31,7 @@ public class Connector_1_8 extends BasicConnector{
 
 
 
-	public Connector_1_8(String host, int port, int timeout){
+	public Connector5(String host, int port, int timeout){
 		setAddress(new InetSocketAddress(host, port));
 		setTimeout(timeout);		
 	}
@@ -65,14 +66,14 @@ public class Connector_1_8 extends BasicConnector{
 		if(response==null){
 			return null;
 		}
-		return response.getDescription();
+		return response.getDescription().getText();
 	}
 
 	@Override
 	public boolean isOnline() {
 		if(response!=null){
 			if(latest_failure==-1){
-				return response.getDescription()!=null;
+				return response.getDescription().getText()!=null;
 			}
 		}
 		return false;
@@ -88,16 +89,18 @@ public class Connector_1_8 extends BasicConnector{
 
 
 	@Override
-	public void update(){
+	public boolean update(){
 		try {
 			response = fetchData();
 			latest_failure = -1;
-		} catch (IOException e) {
+			return true;
+		} catch (Exception e) {
 			if(System.currentTimeMillis() > latest_failure + 90000){ //When there are issues: Do not spam the server.log with huge error messages but rather print a short line every 1 1/2 minutes.
 				ClassManager.manager.getBugFinder().warn("Serverpinging error: Unable to connect with '"+host.getHostName()+":"+host.getPort()+"'!");
 				latest_failure = System.currentTimeMillis();
 				System.out.println("exception: "+e.getMessage());
 			}
+			return false;
 		}
 	}
 
@@ -130,7 +133,7 @@ public class Connector_1_8 extends BasicConnector{
 
 
 	@SuppressWarnings("resource")
-	public StatusResponse fetchData() throws IOException {
+	public StatusResponse fetchData() throws IOException{
 
 		Socket socket = new Socket();
 		OutputStream outputStream;
@@ -221,15 +224,15 @@ public class Connector_1_8 extends BasicConnector{
 	
 	
 	
-
+	
 	public class StatusResponse {
-		private String description;
+		private Description description;
 		private Players players;
 		private Version version;
 		private String favicon;
 		private int time;
 
-		public String getDescription() {
+		public Description getDescription() {
 			return description;
 		}
 
@@ -295,6 +298,13 @@ public class Connector_1_8 extends BasicConnector{
 			return protocol;
 		}
 	}
+
+	public class Description {
+		private String text;
+
+		public String getText(){
+			return text;
+		}
+	}
+
 }
-
-
