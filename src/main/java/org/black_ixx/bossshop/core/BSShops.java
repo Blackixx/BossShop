@@ -96,7 +96,7 @@ public class BSShops {
 
 	public void openShop(Player p, BSShop shop){		
 		shop.openInventory(p);
-		ClassManager.manager.getMessageHandler().sendMessage("Main.OpenShop", p);
+		p.sendMessage(ClassManager.manager.getMessageHandler().get("Main.OpenShop").replace("%shop%", shop.getShopName()));
 	}
 
 	public BSShop getShop(String name){

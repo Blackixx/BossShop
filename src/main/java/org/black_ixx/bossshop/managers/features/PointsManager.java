@@ -100,7 +100,7 @@ public class PointsManager {
 				ClassManager.manager.getBugFinder().severe("You defined TokenEnchant as the Points(/Token) Plugin ... BUT IT WAS NOT FOUND?! Please download it at spigotmc.org!");
 				return;
 			}
-			pa = new TokenEnchantAPI();
+			pa = new TokenEnchantAPIPlugin();
 			return;
 
 		case CUSTOM:

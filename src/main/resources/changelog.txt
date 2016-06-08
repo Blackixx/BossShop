@@ -10,6 +10,11 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.6
+*[IMPROVE] Small improvements (Thanks to Androkai)
+*[FIX] Added missing placeholder to "OpenShop" message
+
+
 v2.5.5
 *[IMPROVE] Removed useless tabs from default config file (Thanks to Androkai)
 *[IMPROVE] Made BossShop command messages even more configurable 
