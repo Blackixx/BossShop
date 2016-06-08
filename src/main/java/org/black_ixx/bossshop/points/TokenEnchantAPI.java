@@ -5,10 +5,10 @@ import org.black_ixx.bossshop.managers.ClassManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.Plugin;
 
-import com.vk2gpz.tokenenchant.TokenEnchant;
+//import com.vk2gpz.tokenenchant.api.TokenEnchant;
 
 public class TokenEnchantAPI extends IPointsAPI {
-	private TokenEnchant pp;
+	private com.vk2gpz.tokenenchant.api.TokenEnchantAPI pp;
 	private BossShop plugin;
 
 	public TokenEnchantAPI() {
@@ -17,7 +17,7 @@ public class TokenEnchantAPI extends IPointsAPI {
 		plugin = ClassManager.manager.getPlugin();
 		Plugin tokenEnchant = plugin.getServer().getPluginManager().getPlugin("TokenEnchant");
 		if (tokenEnchant != null) {
-			pp = ((TokenEnchant) tokenEnchant);
+			pp = ((com.vk2gpz.tokenenchant.api.TokenEnchantAPI) tokenEnchant);
 		}
 	}
 
