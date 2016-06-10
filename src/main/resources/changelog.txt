@@ -10,6 +10,14 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.5.7
+*[IMPROVE] Extended placeholder functionality. New placeholders:
+**%displayname% - Shows the players displayed name (Which can include colors etc.)
+**%shop% - Shows the name of the shop (For example 'ItemShop')
+**%shopdisplayname% - Shows the displayname of the shop (Can contain spaces, colors etc.)
+*[FIX] A few messages could not be completely disabled
+
+
 v2.5.6
 *[IMPROVE] Small improvements (Thanks to Androkai)
 *[FIX] Added missing placeholder to "OpenShop" message

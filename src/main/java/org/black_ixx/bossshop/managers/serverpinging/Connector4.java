@@ -13,7 +13,6 @@ import java.util.List;
 import org.black_ixx.bossshop.managers.ClassManager;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 import java.io.ByteArrayOutputStream;
 
@@ -168,6 +167,7 @@ public class Connector4 extends BasicConnector{
 		dataOutputStream.writeByte(0x01); //size is only 1
 		dataOutputStream.writeByte(0x00); //packet id for ping
 		DataInputStream dataInputStream = new DataInputStream(inputStream);
+		@SuppressWarnings("unused")
 		int size = readVarInt(dataInputStream); //size of packet
 		int id = readVarInt(dataInputStream); //packet id
 

@@ -33,9 +33,11 @@ public class InventoryListener implements Listener{
 		if (!(e.getInventory().getHolder() instanceof BSShopHolder)){
 			return;
 		}
+		
+		BSShopHolder holder = (BSShopHolder) e.getInventory().getHolder();
 
 		if (e.getPlayer() instanceof Player){
-			plugin.getClassManager().getMessageHandler().sendMessage("Main.CloseShop", (Player)e.getPlayer());
+			plugin.getClassManager().getMessageHandler().sendMessage("Main.CloseShop", (Player)e.getPlayer(), null, (Player) e.getPlayer(), holder.getShop(), null);
 		}
 	}
 
@@ -92,14 +94,14 @@ public class InventoryListener implements Listener{
 				}
 
 				if(buy.alreadyBought(p)){
-					plugin.getClassManager().getMessageHandler().sendMessage("Main.AlreadyBought", p);
+					plugin.getClassManager().getMessageHandler().sendMessage("Main.AlreadyBought", p, null, p, shop, buy);
 					return;
 				}
 
 				if(buy.getBuyType()==BSBuyType.Enchantment){
 					Enchant e = (Enchant) buy.getReward();
 					if(p.getInventory().getItemInMainHand()==null || (!e.getType().canEnchantItem(p.getInventory().getItemInMainHand()) &! plugin.getClassManager().getSettings().getUnsafeEnchantmentsEnabled())){
-						plugin.getClassManager().getMessageHandler().sendMessage("Enchantment.Invalid", p);
+						plugin.getClassManager().getMessageHandler().sendMessage("Enchantment.Invalid", p, null, p, shop, buy);
 						return;
 					}
 				}

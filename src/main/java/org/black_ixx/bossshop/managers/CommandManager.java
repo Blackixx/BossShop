@@ -46,7 +46,7 @@ public class CommandManager implements CommandExecutor {
 					if (sender.hasPermission("BossShop.close")) {
 						Player p = null;
 						String name = sender instanceof Player ? sender.getName() : "CONSOLE";
-						
+
 						if (sender instanceof Player) {
 							p = (Player) sender;
 						}
@@ -54,15 +54,15 @@ public class CommandManager implements CommandExecutor {
 							name = args[1];
 							p = Bukkit.getPlayer(name);
 						}
-						
+
 						if (p == null) {
-							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", name));
+							ClassManager.manager.getMessageHandler().sendMessage("Main.PlayerNotFound", sender, name);
 							return false;
 						}
 
 						p.closeInventory();
 						if(p!=sender){
-							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.CloseShopOtherPlayer").replace("%player%", p.getDisplayName()));
+							ClassManager.manager.getMessageHandler().sendMessage("Main.CloseShopOtherPlayer", sender, p);
 						}
 
 					} else {
@@ -93,7 +93,7 @@ public class CommandManager implements CommandExecutor {
 						}
 
 						if (p == null) {
-							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.PlayerNotFound").replace("%name%", name));
+							ClassManager.manager.getMessageHandler().sendMessage("Main.PlayerNotFound", sender, name);
 							return false;
 						}
 
@@ -106,7 +106,7 @@ public class CommandManager implements CommandExecutor {
 
 						shop.openInventory(p);
 						if(p!=sender){
-							sender.sendMessage(ClassManager.manager.getMessageHandler().get("Main.OpenShopOtherPlayer").replace("%player%", p.getDisplayName()).replace("%shop%", shop.getShopName()));
+							ClassManager.manager.getMessageHandler().sendMessage("Main.OpenShopOtherPlayer", sender, null, p, shop, null);
 						}
 
 					} else {

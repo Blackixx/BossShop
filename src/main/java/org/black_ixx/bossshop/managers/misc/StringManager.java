@@ -51,6 +51,14 @@ public class StringManager {
 		if(s==null){
 			return null;
 		}
+		if(shop!=null){
+			if(shop.getShopName() != null){
+				s = s.replace("%shop%", shop.getShopName());
+			}
+			if(shop.getDisplayName() != null){
+				s = s.replace("%shopdisplayname%", shop.getDisplayName());
+			}
+		}
 		if(item!=null){
 			s=item.transformMessage(s, shop, target);
 		}
@@ -63,7 +71,8 @@ public class StringManager {
 		}
 
 		if(target!=null){
-			s=s.replace("%name%", target.getName()).replace("%player%", target.getName());
+			s=s.replace("%name%", target.getName()).replace("%player%", target.getName()).replace("%target%", target.getName());
+			s=s.replace("%displayname%", target.getDisplayName());
 
 			if(s.contains("%balance%") && ClassManager.manager.getVaultHandler() != null){
 				double balance = MathTools.round(ClassManager.manager.getVaultHandler().getEconomy().getBalance(target.getName()), 2);
@@ -73,8 +82,8 @@ public class StringManager {
 				int balance_points = ClassManager.manager.getPointsManager().getPoints(target);
 				s=s.replace("%balancepoints%", String.valueOf(balance_points));
 			}
-			
-			
+
+
 			if(ClassManager.manager.getPlaceholderHandler()!=null){
 				s = ClassManager.manager.getPlaceholderHandler().transformString(s, target);
 			}
@@ -99,7 +108,7 @@ public class StringManager {
 				ClassManager.manager.getSettings().setPointsEnabled(true);
 				b = true;
 			}
-			
+
 			if(s.contains("%name%") || s.contains("%player%")){
 				b = true;
 			}
