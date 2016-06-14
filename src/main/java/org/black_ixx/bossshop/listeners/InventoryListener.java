@@ -8,6 +8,7 @@ import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.core.BSShopHolder;
 import org.black_ixx.bossshop.events.BSPlayerPurchaseEvent;
 import org.black_ixx.bossshop.events.BSPlayerPurchasedEvent;
+import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.misc.Enchant;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 
 public class InventoryListener implements Listener{
@@ -46,6 +48,34 @@ public class InventoryListener implements Listener{
 	public void purchase(InventoryClickEvent event){
 		if (!(event.getInventory().getHolder() instanceof BSShopHolder)){
 			return;
+		}
+
+		boolean cancel = true;
+		if(! (ClassManager.manager.getPlugin().getAPI().isValidShop(event.getClickedInventory()))){
+			switch(event.getAction()){
+			case CLONE_STACK:
+			case COLLECT_TO_CURSOR:
+			case DROP_ALL_SLOT:
+			case DROP_ONE_SLOT:
+			case HOTBAR_MOVE_AND_READD:
+			case HOTBAR_SWAP:
+			case PICKUP_ALL:
+			case PICKUP_HALF:
+			case PICKUP_ONE:
+			case PICKUP_SOME:
+			case PLACE_ALL:
+			case PLACE_ONE:
+			case PLACE_SOME:
+			case SWAP_WITH_CURSOR:
+				cancel = false;
+				break;
+			default:
+				break;
+			}
+		}
+		if(cancel){
+			event.setCancelled(true);
+			event.setResult(Result.DENY);
 		}
 
 		BSShopHolder holder = (BSShopHolder)event.getInventory().getHolder();
@@ -138,6 +168,17 @@ public class InventoryListener implements Listener{
 			}
 
 		}
+	}
+	
+
+	@EventHandler
+	public void drag(InventoryDragEvent event){
+		if (!(event.getInventory().getHolder() instanceof BSShopHolder)){
+			return;
+		}
+		//When there is a good way to detect whether the upper inventory has been affected by the drag event or not then please inbuilt it and only cancel the event in that case
+		event.setCancelled(true);
+		event.setResult(Result.DENY);
 	}
 
 

@@ -10,8 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+2.5.8
+*[FIX] Items can no longer be dropped in an inventory (caused by v2.5.2)
+
+
 v2.5.7
-*[IMPROVE] Extended placeholder functionality. New placeholders:
+*[IMPROVE] Extended placeholder functionality (including message handling) and added new placeholders:
 **%displayname% - Shows the players displayed name (Which can include colors etc.)
 **%shop% - Shows the name of the shop (For example 'ItemShop')
 **%shopdisplayname% - Shows the displayname of the shop (Can contain spaces, colors etc.)

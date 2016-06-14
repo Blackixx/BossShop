@@ -47,6 +47,9 @@ public class BossShopAPI {
 		return false;
 	}
 	public boolean isValidShop(Inventory i){
+		if(i == null){
+			return false;
+		}
 		return (i.getHolder() instanceof BSShopHolder);
 	}
 	
