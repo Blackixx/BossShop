@@ -10,7 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
-2.5.8
+v2.5.9
+*[IMPROVE] Now variable %itemname% shows the displayname of the actual item rather than the shopitemname, which can be displayed via %shopitemname%
+*[FIX] BossShop did not work properly on non-Spigot server builds since v2.5.8
+
+
+v2.5.8
 *[FIX] Items can no longer be dropped in an inventory (caused by v2.5.2)
 
 

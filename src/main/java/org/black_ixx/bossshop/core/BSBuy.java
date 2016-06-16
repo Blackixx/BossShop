@@ -493,72 +493,72 @@ public class BSBuy {
 		if(msg.contains("%price%") || msg.contains("%reward%")){
 			String rewardMessage = String.valueOf(reward);
 			String priceMessage = String.valueOf(price);
-			
-			
-		if(msg.contains("%reward%")){
-			if (reward == null) {
-				reward = 0;
-			}
-			//Item?
-			if(ClassManager.manager.getItemStackTranslator().isItemList(reward)){
-				rewardMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) reward);
-			}
-		}
 
-		if(msg.contains("%price%")){
-			if (price == null) {
-				price = 0;
+
+			if(msg.contains("%reward%")){
+				if (reward == null) {
+					reward = 0;
+				}
+				//Item?
+				if(ClassManager.manager.getItemStackTranslator().isItemList(reward)){
+					rewardMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) reward);
+				}
 			}
-			//Item?
-			if(ClassManager.manager.getItemStackTranslator().isItemList(price)){
-				priceMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) price);
+
+			if(msg.contains("%price%")){
+				if (price == null) {
+					price = 0;
+				}
+				//Item?
+				if(ClassManager.manager.getItemStackTranslator().isItemList(price)){
+					priceMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) price);
+				}
 			}
-		}
-			
-		//Does shop need to be customizable?
-		if(shop!=null){
-			if(!shop.isCustomizable()){
-				boolean has_pricevariable = (msg.contains("%price%") && (priceT==BSPriceType.Money || priceT==BSPriceType.Exp || priceT==BSPriceType.Points));
-				boolean has_rewardvariable = (msg.contains("%reward%") && (buyT==BSBuyType.Money || buyT==BSBuyType.Points));
-				if(has_pricevariable || has_rewardvariable){
-					if(ClassManager.manager.getMultiplierHandler().hasMultipliers()){
-						shop.setCustomizable(true);
-						shop.setDisplaying(true);
+
+			//Does shop need to be customizable?
+			if(shop!=null){
+				if(!shop.isCustomizable()){
+					boolean has_pricevariable = (msg.contains("%price%") && (priceT==BSPriceType.Money || priceT==BSPriceType.Exp || priceT==BSPriceType.Points));
+					boolean has_rewardvariable = (msg.contains("%reward%") && (buyT==BSBuyType.Money || buyT==BSBuyType.Points));
+					if(has_pricevariable || has_rewardvariable){
+						if(ClassManager.manager.getMultiplierHandler().hasMultipliers()){
+							shop.setCustomizable(true);
+							shop.setDisplaying(true);
+						}
 					}
 				}
 			}
-		}
-		
-		boolean possibly_customizable = shop == null;
-		if(shop!=null){
-			possibly_customizable = shop.isCustomizable();
-		}
-		if(possibly_customizable){
-			if(p == null){ //When shop is customizable, the variables needs to be adapted to the player and can not be set here!
-				priceMessage = null; 
-				rewardMessage = null;
-			}else{
-				if(price instanceof Integer){
-					priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
-				}
-				if(price instanceof Double){
-					priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
-				}
-				if(reward instanceof Integer){
-					rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward));
-				}
-				if(reward instanceof Double){
-					rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward));
+
+			boolean possibly_customizable = shop == null;
+			if(shop!=null){
+				possibly_customizable = shop.isCustomizable();
+			}
+			if(possibly_customizable){
+				if(p == null){ //When shop is customizable, the variables needs to be adapted to the player and can not be set here!
+					priceMessage = null; 
+					rewardMessage = null;
+				}else{
+					if(price instanceof Integer){
+						priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
+					}
+					if(price instanceof Double){
+						priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
+					}
+					if(reward instanceof Integer){
+						rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward));
+					}
+					if(reward instanceof Double){
+						rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward));
+					}
 				}
 			}
-		}
 
-		if (priceMessage != null && priceMessage != "" && priceMessage.length() > 0) {
-			msg = msg.replace("%price%", priceMessage);
-		}
-		if (rewardMessage != null && rewardMessage != "" && rewardMessage.length() > 0) {
-			msg = msg.replace("%reward%", rewardMessage);
-		}
+			if (priceMessage != null && priceMessage != "" && priceMessage.length() > 0) {
+				msg = msg.replace("%price%", priceMessage);
+			}
+			if (rewardMessage != null && rewardMessage != "" && rewardMessage.length() > 0) {
+				msg = msg.replace("%reward%", rewardMessage);
+			}
 		}
 
 		if (priceT != null && priceT.name() != "" && priceT.name().length() > 0) {
@@ -569,10 +569,17 @@ public class BSBuy {
 		}
 
 		//Handle rest
-		if (name != null && name != "" && name.length() > 0) {
+		msg = msg.replace("%shopitemname%", this.name);
+
+		String name = this.name;
+		if(shop != null){
+			String item_title = ClassManager.manager.getItemStackTranslator().readName(shop.getMenuItem(this));
+			if(item_title != null){
+				name = item_title;
 			msg = msg.replace("%itemname%", name);
-			msg = msg.replace("%shopitemname%", name);
+			}
 		}
+
 		return msg;
 	}
 

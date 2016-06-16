@@ -100,6 +100,18 @@ public class ItemStackTranslator {
 		return b;
 	}
 
+	public String readName(ItemStack item){
+		if(item != null){
+			if(item.hasItemMeta()){
+				ItemMeta meta = item.getItemMeta();
+				if(meta.hasDisplayName()){
+					return meta.getDisplayName();
+				}
+			}
+		}
+		return null;
+	}
+
 
 	public void copyTexts(ItemStack receiver, ItemStack source){
 		if(source.hasItemMeta()){
@@ -121,7 +133,7 @@ public class ItemStackTranslator {
 					sm_receiver.setOwner(sm_source.getOwner());
 				}
 			}
-			
+
 			receiver.setItemMeta(meta_receiver);
 		}
 	}

@@ -51,6 +51,9 @@ public class StringManager {
 		if(s==null){
 			return null;
 		}
+		if(item!=null){
+			s=item.transformMessage(s, shop, target);
+		}
 		if(shop!=null){
 			if(shop.getShopName() != null){
 				s = s.replace("%shop%", shop.getShopName());
@@ -58,9 +61,6 @@ public class StringManager {
 			if(shop.getDisplayName() != null){
 				s = s.replace("%shopdisplayname%", shop.getDisplayName());
 			}
-		}
-		if(item!=null){
-			s=item.transformMessage(s, shop, target);
 		}
 		return transform(s, target);	
 	}
