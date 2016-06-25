@@ -1,12 +1,5 @@
 BossShop:
 * Heads shall not always be loaded for the client after opening inventories once
-* Move BSBuy code into the different enums. New methods that enums should have:
-**transformReward/transformPrice (transforms it into nice string to display)
-**hasPrice (only for prices)
-**takePrice (only for prices)
-**giveReward (only for rewards)
-**alreadyBought (only for rewards); Optional: Does not need to be implemented
-therefor, create new helper classes that do stuff like giving rewards
 
 
 

@@ -32,6 +32,10 @@ public class FailedPointsAPI extends IPointsAPI {
 	private void informPlayer(OfflinePlayer player) {
 		Bukkit.getConsoleSender().sendMessage("PlayerPoints/CommandPoints was not found... " + "You need one of that plugins if you want to work with Points! " + "Get PlayerPoints there: " + "http://dev.bukkit.org/server-mods/playerpoints/");
 		if(player.isOnline())
-			player.getPlayer().sendMessage("[BossShop] No Points Plugin installed. Please inform an administrator.");
+			if(player.isOp()){
+				player.getPlayer().sendMessage("[BossShop] No Points Plugin installed. If you want to work with Points please install one.");
+			}else{
+				player.getPlayer().sendMessage("[BossShop] No Points Plugin installed. Please inform an administrator.");
+			}
 	}
 }

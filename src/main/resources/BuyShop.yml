@@ -27,7 +27,7 @@ shop:
     - name:&9Colored Wool
     - 'lore:&c10 Red, &110 Blue, &e10 Yellow and &a10 Green Wool #&cPrice: 400 Money'
     - durability:11
-    Message: '&eYou bought colored Wool! Money left: &c%left%'
+    Message: '&eYou bought %itemname%&e! Money left: &c%left%'
     InventoryLocation: 1
     ExtraPermission: ''
   Diamonds:
@@ -59,11 +59,11 @@ shop:
     MenuItem:
     - type:LEATHER_CHESTPLATE
     - amount:1
-    - name:&5%itemname%
+    - name:&5%shopitemname%
     - 'lore:&cPrice: 1500 Money'
     - color:110#10#140
     - enchantment:PROTECTION_ENVIRONMENTAL#10
-    Message: '&eYou bought 1 %itemname%! Money left: &c%left%'
+    Message: '&eYou bought 1 %shopitemname%! Money left: &c%left%'
     InventoryLocation: 5
     ExtraPermission: ''
   Obsidian:
@@ -92,10 +92,10 @@ shop:
     MenuItem:
     - type:GOLDEN_APPLE
     - amount:1
-    - name:&9%itemname%
+    - name:&9%shopitemname%
     - 'lore:&cPrice: 10000 Money'
     - durability:1
-    Message: '&eYou bought 1 %itemname%! Money left: &c%left%'
+    Message: '&eYou bought 1 %shopitemname%! Money left: &c%left%'
     InventoryLocation: 9
     ExtraPermission: ''
   EnchantUnbreaking:
@@ -127,11 +127,11 @@ shop:
     MenuItem:
     - type:DIAMOND_SWORD
     - amount:1
-    - name:&4[*] &c%itemname% &4[*]
+    - name:&4[*] &c%shopitemname% &4[*]
     - 'lore:&cPrice: 2000 Points'
     - enchantment:DAMAGE_ALL#5
     - enchantment:FIRE_ASPECT#2
-    Message: '&eYou bought 1 %itemname%! Money left: &c%left%'
+    Message: '&eYou bought 1 %shopitemname%! Money left: &c%left%'
     InventoryLocation: 21
     ExtraPermission: ''
   Back:
