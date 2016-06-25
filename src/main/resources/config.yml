@@ -1,4 +1,7 @@
 # BossShop
+# by Felix Neubauer
+# Check out following page for more information: http://dev.bukkit.org/bukkit-plugins/bossshop/pages/configuration/ 
+#
 # Help Links:
 #
 # BossShop Page:
@@ -28,6 +31,12 @@ EnableSigns: true
 # That's the name of your Main Shop. Whenever someone uses '/bossshop', this Shop is opened. Other Shops can be opened via '/bossshop <shop>'.
 # Also, all Shops can be opened via Sign (If Signs are enabled) or with clicking a specific Item (If you have 'GuiShopManager' installed).
 MainShop: Menu
+#
+#
+# AdvancedSecurity:
+# When enabled players are not able to move items around in their inventory while a BossShop is open. This option will make shops 100% secure. 
+# Duping items should not be able in any case, however there were some issues on kCauldron-1.7 servers which can be solved with this option.
+AdvancedSecurity: false
 #
 #
 # HideItemsPlayersDoNotHavePermissionsFor:

@@ -2,13 +2,14 @@ package org.black_ixx.bossshop.managers;
 
 
 import org.black_ixx.bossshop.core.BSBuy;
+import org.black_ixx.bossshop.core.BSShop;
 import org.black_ixx.bossshop.core.enums.BSBuyType;
 import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class BuyItemHandler {
 
-	public BSBuy createBuyItem(String name,ConfigurationSection c){		
+	public BSBuy createBuyItem(String name, ConfigurationSection c, BSShop shop){		
 		String stage = "Basic Data";
 
 		try{		
@@ -23,7 +24,7 @@ public class BuyItemHandler {
 
 			if (inventoryLocation<0){
 				inventoryLocation=0;
-				ClassManager.manager.getBugFinder().warn("The InventoryLocation of the Shop Item "+name+" is "+inventoryLocation+". It has to be higher than 0! Setting it to 1...");
+				ClassManager.manager.getBugFinder().warn("The InventoryLocation of the Shop Item "+name+" is "+inventoryLocation+". It has to be higher than 0! Setting it to 1... [Shop: "+shop.getShopName()+"]");
 			}
 
 			stage="Price- and RewardType Detection";
@@ -32,7 +33,7 @@ public class BuyItemHandler {
 			BSPriceType priceT = BSPriceType.detectType(priceType);
 
 			if (rewardT==null){
-				ClassManager.manager.getBugFinder().severe("Was not able to create BuyItem "+name+"! "+rewardType+" is not a valid RewardType!");
+				ClassManager.manager.getBugFinder().severe("Was not able to create BuyItem "+name+"! "+rewardType+" is not a valid RewardType! [Shop: "+shop.getShopName()+"]");
 				ClassManager.manager.getBugFinder().severe("Valid RewardTypes:");
 				for (BSBuyType type : BSBuyType.values()){
 					ClassManager.manager.getBugFinder().severe("-"+type.name());
@@ -41,7 +42,7 @@ public class BuyItemHandler {
 			}
 
 			if (priceT==null){
-				ClassManager.manager.getBugFinder().severe("Was not able to create BuyItem "+name+"! "+priceType+" is not a valid PriceType!");
+				ClassManager.manager.getBugFinder().severe("Was not able to create BuyItem "+name+"! "+priceType+" is not a valid PriceType! [Shop: "+shop.getShopName()+"]");
 				ClassManager.manager.getBugFinder().severe("Valid PriceTypes:");
 				for (BSPriceType type : BSPriceType.values()){
 					ClassManager.manager.getBugFinder().severe("-"+type.name());
@@ -74,7 +75,7 @@ public class BuyItemHandler {
 
 
 		} catch (Exception e){
-			ClassManager.manager.getBugFinder().severe("Was not able to create BuyItem "+name+"! Error at Stage '"+stage+"'.");
+			ClassManager.manager.getBugFinder().severe("Was not able to create BuyItem "+name+" of Shop "+shop.getShopName()+"! Error at Stage '"+stage+"'.");
 			e.printStackTrace();
 			ClassManager.manager.getBugFinder().severe("Probably caused by Config Mistakes.");
 			ClassManager.manager.getBugFinder().severe("For more help, create a ticket here: http://dev.bukkit.org/bukkit-plugins/bossshop/create-ticket/");

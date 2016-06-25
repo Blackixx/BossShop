@@ -67,6 +67,14 @@ public abstract class BSShop {
 		return displayname; 
 	}
 
+	public String getValidDisplayName(Player p){
+		String displayname = this.displayname;
+		if(p!=null){
+			displayname = ClassManager.manager.getStringManager().transform(displayname, null, this, p);
+		}
+		return displayname.length() > 32 ? displayname.substring(0, 32) : displayname;
+	}
+
 	public String getSignText(){
 		return sign_text;
 	}
@@ -90,7 +98,7 @@ public abstract class BSShop {
 	public Inventory getInventory(){
 		return inventory;
 	}
-	
+
 	public int getManualInventoryRows(){
 		return manual_inventory_rows;
 	}
@@ -131,7 +139,7 @@ public abstract class BSShop {
 	public void setManualInventoryRows(int i){
 		this.manual_inventory_rows = i;
 	}
-	
+
 	//////////////////////////// <- Methods to get Items
 
 	public HashMap<ItemStack, BSBuy> getItems(){
@@ -249,10 +257,9 @@ public abstract class BSShop {
 
 	public void createInventory(){
 		BSShopHolder holder = new BSShopHolder(this);
-		inventory = Bukkit.createInventory(holder, inventory_size, displayname);
+		inventory = Bukkit.createInventory(holder, inventory_size, getValidDisplayName(null));
 
 		HashMap<Integer, BSBuy> locs = new HashMap<Integer, BSBuy>();
-
 		for (ItemStack item : shop_items.keySet()){
 			BSBuy b = shop_items.get(item);
 			if(b!=null){
@@ -308,7 +315,7 @@ public abstract class BSShop {
 		if(rest>0){
 			i+=ROW_ITEMS-i%ROW_ITEMS;
 		}
-		
+
 		return Math.min(ROWS_LIMIT*ROW_ITEMS, Math.max(i, ROW_ITEMS*manual_inventory_rows));
 	}
 

@@ -20,7 +20,7 @@ public class ConfigHandler {
 		if (!folder.isFile()){
 			new PluginSetup().setupConfigs(plugin);
 		}
-		//addDefaults(); //Not needed anymore because default config is copied from resources folder. NOTE: Needing new code in case of adding new config lines
+		addDefaults(); //Still enabled in case of adding new options
 
 		if (plugin.getConfig().getBoolean("signs.enabled") || plugin.getConfig().getBoolean("EnableSigns")) {
 			ClassManager.manager.getSettings().setSignsEnabled(true);
@@ -38,6 +38,7 @@ public class ConfigHandler {
 		ClassManager.manager.getSettings().setAutoDownloadUpdateEnabled((!plugin.getConfig().getBoolean("DisableUpdateAutoDownload")));
 		ClassManager.manager.getSettings().setLoadSubfoldersEnabled(plugin.getConfig().getBoolean("SearchSubfoldersForShops"));
 		ClassManager.manager.getSettings().setCanPlayersSellItemsWithGreaterEnchants(plugin.getConfig().getBoolean("CanPlayersSellItemsWithGreaterEnchants"));
+		ClassManager.manager.getSettings().setAdvancedSecurityEnabled(plugin.getConfig().getBoolean("AdvancedSecurity"));
 	}
 
 	private PointsPlugin findPointsPlugin(String config_points_plugin){
@@ -77,20 +78,6 @@ public class ConfigHandler {
 
 	public void addDefaults() {
 		plugin.reloadConfig();
-
-		plugin.getConfig().addDefault("EnableSigns", true);
-		plugin.getConfig().addDefault("MainShop", "Menu");
-		plugin.getConfig().addDefault("HideItemsPlayersDoNotHavePermissionsFor", false);
-		plugin.getConfig().addDefault("CanPlayersSellItemsWithGreaterEnchants", false);
-		plugin.getConfig().addDefault("EnableTransactionLog", false);
-		plugin.getConfig().addDefault("SearchSubfoldersForShops", false);
-		plugin.getConfig().addDefault("ServerPingingDelay", 20);
-		plugin.getConfig().addDefault("AllowUnsafeEnchantments", false);
-		plugin.getConfig().addDefault("DisableUpdateNotifications", false);
-		plugin.getConfig().addDefault("DisableUpdateAutoDownload", false);
-		plugin.getConfig().addDefault("MultiplierGroups.Enabled", false);
-		plugin.getConfig().addDefault("MultiplierGroups.List", new String[] { "Permission.Node:<type>:<multiplier>", "BossShop.PriceMultiplier.Points1:points:0.75", "BossShop.PriceMultiplier.Points1:points:0.5", "BossShop.PriceMultiplier.Money1:money:0.75", "BossShop.PriceMultiplier.Money2:money:0.5", "BossShop.PriceMultiplier.MoneyNegative:money:2.0", "BossShop.PriceMultiplier.Exp:exp:0.8"});
-		plugin.getConfig().addDefault("PointsPlugin", "auto-detect");
 		plugin.getConfig().options().copyDefaults(true);
 		plugin.saveConfig();
 

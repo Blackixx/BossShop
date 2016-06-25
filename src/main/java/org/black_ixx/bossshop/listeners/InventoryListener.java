@@ -22,9 +22,9 @@ import org.bukkit.event.inventory.InventoryType.SlotType;
 
 public class InventoryListener implements Listener{
 
-	
+
 	private BossShop plugin;
-	
+
 	public InventoryListener(BossShop plugin){
 		this.plugin=plugin;
 	}
@@ -35,7 +35,7 @@ public class InventoryListener implements Listener{
 		if (!(e.getInventory().getHolder() instanceof BSShopHolder)){
 			return;
 		}
-		
+
 		BSShopHolder holder = (BSShopHolder) e.getInventory().getHolder();
 
 		if (e.getPlayer() instanceof Player){
@@ -51,33 +51,34 @@ public class InventoryListener implements Listener{
 		}
 
 		boolean cancel = true;
-		
 
-		try{
-			if(! (ClassManager.manager.getPlugin().getAPI().isValidShop(event.getClickedInventory()))){
-				switch(event.getAction()){
-				case CLONE_STACK:
-				case COLLECT_TO_CURSOR:
-				case DROP_ALL_SLOT:
-				case DROP_ONE_SLOT:
-				case HOTBAR_MOVE_AND_READD:
-				case HOTBAR_SWAP:
-				case PICKUP_ALL:
-				case PICKUP_HALF:
-				case PICKUP_ONE:
-				case PICKUP_SOME:
-				case PLACE_ALL:
-				case PLACE_ONE:
-				case PLACE_SOME:
-				case SWAP_WITH_CURSOR:
-					cancel = false;
-					break;
-				default:
-					break;
+		if(!ClassManager.manager.getSettings().getAdvancedSecurityEnabled()){
+			try{
+				if(! (ClassManager.manager.getPlugin().getAPI().isValidShop(event.getClickedInventory()))){
+					switch(event.getAction()){
+					case CLONE_STACK:
+					case COLLECT_TO_CURSOR:
+					case DROP_ALL_SLOT:
+					case DROP_ONE_SLOT:
+					case HOTBAR_MOVE_AND_READD:
+					case HOTBAR_SWAP:
+					case PICKUP_ALL:
+					case PICKUP_HALF:
+					case PICKUP_ONE:
+					case PICKUP_SOME:
+					case PLACE_ALL:
+					case PLACE_ONE:
+					case PLACE_SOME:
+					case SWAP_WITH_CURSOR:
+						cancel = false;
+						break;
+					default:
+						break;
+					}
 				}
+			}catch (NoSuchMethodError e){
+				//error when not using spigot api
 			}
-		}catch (NoSuchMethodError e){
-			//error when not using spigot api
 		}
 		if(cancel){
 			event.setCancelled(true);
@@ -108,7 +109,7 @@ public class InventoryListener implements Listener{
 			event.setCancelled(true);
 			event.setResult(Result.DENY);
 			//event.setCurrentItem(null);
-			
+
 			if (buy.getInventoryLocation()==event.getRawSlot()){
 
 				Player p = (Player) event.getWhoClicked();
@@ -175,7 +176,7 @@ public class InventoryListener implements Listener{
 
 		}
 	}
-	
+
 
 	@EventHandler
 	public void drag(InventoryDragEvent event){

@@ -154,20 +154,19 @@ public class BSConfigShop extends BSShop{
 	///////////////////////////////////////// <- Load Config-Items
 
 	public BSBuy loadItem(String name){
-
 		if (config.getConfigurationSection("shop").getConfigurationSection(name)==null){
-			ClassManager.manager.getBugFinder().severe("Error when trying to create BuyItem "+name+"! (1)");
+			ClassManager.manager.getBugFinder().severe("Error when trying to create BuyItem "+name+"! (1) [Shop: "+getShopName()+"]");
 			return null;
 		}
 		ConfigurationSection c = config.getConfigurationSection("shop").getConfigurationSection(name);
 
 		if (c.getStringList("MenuItem")==null){
-			ClassManager.manager.getBugFinder().severe("Error when trying to create BuyItem "+name+"! MenuItem is not existing?! (2)");
+			ClassManager.manager.getBugFinder().severe("Error when trying to create BuyItem "+name+"! MenuItem is not existing?! (2) [Shop: "+getShopName()+"]");
 			return null;
 		}
 
 		ItemStack i = ClassManager.manager.getItemStackCreator().createItemStack(c.getStringList("MenuItem"));
-		BSBuy b = ClassManager.manager.getBuyItemHandler().createBuyItem(name, c);
+		BSBuy b = ClassManager.manager.getBuyItemHandler().createBuyItem(name, c, this);
 
 
 		if (c.getString("ServerPinging")!=null){ //Server Pinging
@@ -179,7 +178,7 @@ public class BSConfigShop extends BSShop{
 			try{
 				port = Integer.parseInt(port_string);
 			}catch(Exception e){
-				ClassManager.manager.getBugFinder().severe("Mistake in Config: "+b.getName()+" ServerPinging. Your line looks like this: '"+a+"' but it has to look like this: 'host:port'. 'port' needs to be a valid number! BossShop is setting the port to 25565 for you.");
+				ClassManager.manager.getBugFinder().severe("Mistake in Config: "+b.getName()+" ServerPinging. Your line looks like this: '"+a+"' but it has to look like this: 'host:port'. 'port' needs to be a valid number! BossShop is setting the port to 25565 for you. [Shop: "+getShopName()+"]");
 			}
 
 			ClassManager.manager.getSettings().setServerPingingEnabled(true);

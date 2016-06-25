@@ -24,7 +24,7 @@ public class ShopCustomizer {
 
 	public Inventory createInventory(BSShop shop,HashMap<ItemStack, BSBuy> shop_items, boolean displaying, Player p, ClassManager m){
 		BSShopHolder holder = new BSShopHolder(shop);
-		Inventory inventory = Bukkit.createInventory(holder, shop.getInventorySize(), m.getStringManager().transform(shop.getDisplayName(), null, shop, p));
+		Inventory inventory = Bukkit.createInventory(holder, shop.getInventorySize(), shop.getValidDisplayName(p));
 
 		return createInventory(shop, shop_items, displaying, p, m, inventory, holder);
 	}

@@ -10,6 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.6.0
+*[ADD] Added new "AdvancedSecurity" option that blocks any item movement while a BossShop is open (Duping items should not be able in any case, however there were some issues on kCauldron-1.7 servers which can be solved with this option)
+*[IMPROVE] Now displaying the affected shop when a shopitem is set up the wrong way
+*[FIX] Automatically cutting down inventory titles when longer than 32 characters to avoid shops from not working at all
+
+
 v2.5.9
 *[IMPROVE] Now variable %itemname% shows the displayname of the actual item rather than the shopitemname, which can be displayed via %shopitemname%
 *[FIX] BossShop did not work properly on non-Spigot server builds since v2.5.8

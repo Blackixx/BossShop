@@ -28,6 +28,7 @@ public class Settings {
 	private boolean load_subfolders;
 	private boolean auto_download_update;
 	private boolean can_players_sell_items_with_greater_enchants;
+	private boolean advanced_security;
 	
 	private String mainshop;
 	
@@ -119,6 +120,10 @@ public class Settings {
 		can_players_sell_items_with_greater_enchants=b;
 	}
 	
+	public void setAdvancedSecurityEnabled(boolean b){
+		advanced_security = b;
+	}
+	
 	public boolean getMetricsEnabled(){
 		return metrics;
 	}
@@ -201,6 +206,10 @@ public class Settings {
 	
 	public boolean getCanPlayersSellItemsWithGreaterEnchants(){
 		return can_players_sell_items_with_greater_enchants;
+	}
+	
+	public boolean getAdvancedSecurityEnabled(){
+		return advanced_security;
 	}
 	
 	
