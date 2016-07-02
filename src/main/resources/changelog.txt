@@ -10,6 +10,10 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.6.2
+*[FIX] Fixed PointsAPI support
+
+
 v2.6.1
 *[IMPROVE] Small improvements
 *[FIX] Small default-shops fixes

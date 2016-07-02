@@ -1,5 +1,5 @@
 ShopName: PointShop
-DisplayName: '&9&lPoints: %balancepoints%  &2&lMoney: %balance%'
+DisplayName: '&1&lPointShop &a[v]'
 signs:
   text: '[PointShop]'
   NeedPermissionToCreateSign: true
@@ -14,7 +14,7 @@ shop:
     - amount:1
     - name:&6%reward% %rewardtype%
     - 'lore:&cPrice: %price% %pricetype%'
-    Message: '&eYou bought %reward% %rewardtype%! Money left: &c%left%'
+    Message: '&eYou bought %reward% %rewardtype%! %pricetype% left: &c%left%'
     InventoryLocation: 1
     ExtraPermission: ''
   500Points:
@@ -27,7 +27,7 @@ shop:
     - amount:5
     - name:&6%reward% %rewardtype%
     - 'lore:&cPrice: %price% %pricetype%'
-    Message: '&eYou bought %reward% %rewardtype%! Money left: &c%left%'
+    Message: '&eYou bought %reward% %rewardtype%! %pricetype% left: &c%left%'
     InventoryLocation: 2
     ExtraPermission: ''
   1000Points:
@@ -40,7 +40,7 @@ shop:
     - amount:10
     - name:&6%reward% %rewardtype%
     - 'lore:&cPrice: %price% %pricetype%'
-    Message: '&eYou bought %reward% %rewardtype%! Money left: &c%left%'
+    Message: '&eYou bought %reward% %rewardtype%! %pricetype% left: &c%left%'
     InventoryLocation: 3
     ExtraPermission: ''
   500Money:
@@ -51,9 +51,9 @@ shop:
     MenuItem:
     - type:EMERALD
     - amount:5
-    - name:&6500 Money
-    - 'lore:&cPrice: 100 Points'
-    Message: '&eYou bought 500 Money! Points left: &c%left%'
+    - name:&6%reward% %rewardtype%
+    - 'lore:&cPrice: %price% %pricetype%'
+    Message: '&eYou bought %reward% %rewardtype%! %pricetype% left: &c%left%'
     InventoryLocation: 19
     ExtraPermission: ''
   1000Money:
@@ -64,9 +64,9 @@ shop:
     MenuItem:
     - type:EMERALD
     - amount:10
-    - name:&61000 Money
-    - 'lore:&cPrice: 200 Points'
-    Message: '&eYou bought 1000 Money! Points left: &c%left%'
+    - name:&6%reward% %rewardtype%
+    - 'lore:&cPrice: %price% %pricetype%'
+    Message: '&eYou bought %reward% %rewardtype%! %pricetype% left: &c%left%'
     InventoryLocation: 20
     ExtraPermission: ''
   5000Money:
@@ -77,9 +77,9 @@ shop:
     MenuItem:
     - type:EMERALD
     - amount:50
-    - name:&65000 Money
-    - 'lore:&cPrice: 1000 Points'
-    Message: '&eYou bought 5000 Money! Points left: &c%left%'
+    - name:&6%reward% %rewardtype%
+    - 'lore:&cPrice: %price% %pricetype%'
+    Message: '&eYou bought %reward% %rewardtype%! %pricetype% left: &c%left%'
     InventoryLocation: 21
     ExtraPermission: ''
   Back:
