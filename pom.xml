@@ -178,6 +178,13 @@
 			<scope>system</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.gamingmesh.jobs</groupId>
+			<artifactId>Jobs</artifactId>
+			<version>1.0</version>
+			<systemPath>${basedir}/lib/Jobs.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.enjin</groupId>
 			<artifactId>EnjinMinecraftPlugin</artifactId>
 			<version>3.0.10</version>

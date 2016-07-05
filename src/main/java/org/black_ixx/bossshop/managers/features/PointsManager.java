@@ -16,11 +16,12 @@ public class PointsManager {
 		ENJIN_MINECRAFT_PLUGIN("EnjinMinecraftPlugin", "Enjin",  "EMP"), 
 		POINTSAPI("PointsAPI", "PAPI"), 
 		TOKENENCHANT("TokenEnchant", "TE", "TokenEnchants"),
+		Jobs("Jobs", "JobsReborn", "JobsPoints"),
 		CUSTOM;
-		
+
 		private String[] nicknames;
 		private String name;
-		
+
 		private PointsPlugin(String... nicknames){
 			this.nicknames = nicknames;
 		}
@@ -59,63 +60,74 @@ public class PointsManager {
 		case COMMANDPOINTS:
 			if (Bukkit.getPluginManager().getPlugin("CommandPoints") == null) {
 				ClassManager.manager.getBugFinder().severe("You defined CommandPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-				return;
+				break;
 			}
 			pa = new CommandPointsAPI();
-			return;
+			break;
 
 		case ENJIN_MINECRAFT_PLUGIN:
 			if (Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin") == null) {
 				ClassManager.manager.getBugFinder().severe("You defined Enjin Minecraft Plugin as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-				return;
+				break;
 			}
-			
+
 			Plugin enjinplugin = Bukkit.getPluginManager().getPlugin("EnjinMinecraftPlugin");
 			if(enjinplugin.getDescription().getVersion().startsWith("2")){ //When using an older Enjin version
 				pa = new EnjinPointsAPI_v2();
-				return;
+				break;
 
 			}
 			pa = new EnjinPointsAPI();
-			return;
+			break;
 
 		case PLAYERPOINTS:
 			if (Bukkit.getPluginManager().getPlugin("PlayerPoints") == null) {
 				ClassManager.manager.getBugFinder().severe("You defined PlayerPoints as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-				return;
+				break;
 			}
 			pa = new PlayerPointsAPI();
-			return;
+			break;
 
 		case POINTSAPI:
 			if (Bukkit.getPluginManager().getPlugin("PointsAPI") == null) {
 				ClassManager.manager.getBugFinder().severe("You defined PointsAPI as the Points Plugin... BUT IT WAS NOT FOUND?! Please download it at Bukkit.org!");
-				return;
+				break;
 			}
 			pa = new PointsAPIPlugin();
-			return;
+			break;
 
 		case TOKENENCHANT:
 			if (Bukkit.getPluginManager().getPlugin("TokenEnchant") == null) {
 				ClassManager.manager.getBugFinder().severe("You defined TokenEnchant as the Points(/Token) Plugin ... BUT IT WAS NOT FOUND?! Please download it at spigotmc.org!");
-				return;
+				break;
 			}
 			pa = new TokenEnchantAPIPlugin();
-			return;
+			break;
+
+		case Jobs:
+			if (Bukkit.getPluginManager().getPlugin("Jobs") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined Jobs as the Point Plugin ... BUT IT WAS NOT FOUND?! Please download it at spigotmc.org!");
+				break;
+			}
+			pa = new JobsPointsAPI();
+			break;
 
 		case CUSTOM:
 			IPointsAPI customPoints = PointsAPI.get(p.getCustom());
 			if (customPoints != null) {
 				pa = customPoints;
-				return;
+				break;
 			}	
 			break;
 
 		}
 
+		if(pa == null){
+			ClassManager.manager.getBugFinder().warn("No PointsPlugin was found... You need one if you want BossShop to work with Points! Get PlayerPoints here: http://dev.bukkit.org/server-mods/playerpoints/");		
+			pa = new FailedPointsAPI();
+		}
 
 
-		ClassManager.manager.getBugFinder().warn("No PointsPlugin was found... You need one if you want BossShop to work with Points! Get PlayerPoints here: http://dev.bukkit.org/server-mods/playerpoints/");
 	}
 
 	public int getPoints(OfflinePlayer player) {
