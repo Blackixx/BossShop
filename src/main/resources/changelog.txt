@@ -10,6 +10,14 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.6.4
+*[FIX] Fixed rounding decimals issue
+
+
+v2.6.3
+*[ADD] Added support for the points currency of the plugin "Jobs"
+
+
 v2.6.2
 *[FIX] Fixed PointsAPI support
 
