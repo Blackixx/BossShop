@@ -10,6 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+
+v2.6.5
+*[ADD] Added new permission "BossShop.open.sign.<shop>": Gives access to the named shop to be opened via sign
+*[FIX] Permission "BossShop.open.command.<shop>" was not working
+
+
 v2.6.4
 *[FIX] Fixed rounding decimals issue
 

@@ -66,16 +66,16 @@ public class SignListener implements Listener{
 			}
 
 			if (e.getLine(0)!=""){
-				e.setLine(0, plugin.getClassManager().getStringManager().transform(e.getLine(0)));
+				e.setLine(0, plugin.getClassManager().getStringManager().transform(e.getLine(0), null, shop, null));
 			}
 			if (e.getLine(1)!=""){
-				e.setLine(1, plugin.getClassManager().getStringManager().transform(e.getLine(1)));
+				e.setLine(1, plugin.getClassManager().getStringManager().transform(e.getLine(1), null, shop, null));
 			}
 			if (e.getLine(2)!=""){
-				e.setLine(2, plugin.getClassManager().getStringManager().transform(e.getLine(2)));
+				e.setLine(2, plugin.getClassManager().getStringManager().transform(e.getLine(2), null, shop, null));
 			}
 			if (e.getLine(3)!=""){
-				e.setLine(3, plugin.getClassManager().getStringManager().transform(e.getLine(3)));
+				e.setLine(3, plugin.getClassManager().getStringManager().transform(e.getLine(3), null, shop, null));
 			}
 			
 			
@@ -85,7 +85,6 @@ public class SignListener implements Listener{
 	
 	@EventHandler
 	public void interactSign(PlayerInteractEvent e){
-
 		if (!s){
 			return;
 		}
@@ -105,15 +104,12 @@ public class SignListener implements Listener{
 						BSShop shop = getBossShopSign(s.getLine(0));
 						if (shop!=null){
 							
-							if (e.getPlayer().hasPermission("BossShop.open")||e.getPlayer().hasPermission("BossShop.open.sign")){
-
-								plugin.getClassManager().getShops().openShop(e.getPlayer(), shop);
-								
+							if (e.getPlayer().hasPermission("BossShop.open") || e.getPlayer().hasPermission("BossShop.open.sign") || e.getPlayer().hasPermission("BossShop.open.sign."+shop.getShopName())){
+								plugin.getClassManager().getShops().openShop(e.getPlayer(), shop);								
 								return;
 							}
 							
-							plugin.getClassManager().getMessageHandler().sendMessage("Main.NoPermission", e.getPlayer());
-							
+							plugin.getClassManager().getMessageHandler().sendMessage("Main.NoPermission", e.getPlayer());							
 							return;
 						}
 						

@@ -72,7 +72,7 @@ public class CommandManager implements CommandExecutor {
 					return true;
 				}
 
-				if (args[0].equalsIgnoreCase("open")) {
+				if (args.length >= 3 && args[0].equalsIgnoreCase("open")) {
 					if (sender.hasPermission("BossShop.open.other")) {
 
 						if (args.length < 2) {
@@ -81,11 +81,7 @@ public class CommandManager implements CommandExecutor {
 						}
 
 						String shopname = args[1];
-						String name = sender instanceof Player ? sender.getName() : "CONSOLE";
-						if(args.length >= 3){
-							name = args[2];
-						}
-
+						String name = args[2];						
 						Player p = Bukkit.getPlayerExact(name);
 
 						if (p == null) {
@@ -236,25 +232,14 @@ public class CommandManager implements CommandExecutor {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 
-				if (p.hasPermission("BossShop.open") || p.hasPermission("BossShop.open.command")) {
+				String shop = ClassManager.manager.getSettings().getMainShop();
+				if(args.length != 0){
+					shop = args[0].toLowerCase();
+				}
 
-					if (args.length != 0) {
-						ClassManager.manager.getShops().openShop(p, args[0].toLowerCase());
-						return true;
-					}
-
-					ClassManager.manager.getShops().openShop(p, ClassManager.manager.getSettings().getMainShop());
+				if (p.hasPermission("BossShop.open") || p.hasPermission("BossShop.open.command") || p.hasPermission("BossShop.open.command." + shop)) {
+					ClassManager.manager.getShops().openShop(p, shop);
 					return true;
-
-				} else if (args.length != 0) {
-
-					String shop = args[0].toLowerCase();
-
-					if (p.hasPermission("BossShop.open.command." + shop)) {
-						ClassManager.manager.getShops().openShop(p, shop);
-						return true;
-					}
-
 				}
 
 				ClassManager.manager.getMessageHandler().sendMessage("Main.NoPermission", p);
@@ -262,7 +247,6 @@ public class CommandManager implements CommandExecutor {
 			}
 
 			sendCommandList(sender);
-
 			return false;
 		}
 
