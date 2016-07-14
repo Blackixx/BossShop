@@ -10,6 +10,20 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.6.6
+*[IMPROVE] You can now add optionally create lores following way:
+A) (traditional)
+item:
+- 'name:Name of item'
+- 'lore:Line 1#Line 2#Line 3'
+B) (new)
+item:
+- 'name:Name of item'
+- 'lore:Line 1'
+- 'lore:Line 2'
+- 'lore:Line 3'
+*[FIX] Item hideflags were not working
+
 
 v2.6.5
 *[ADD] Added new permission "BossShop.open.sign.<shop>": Gives access to the named shop to be opened via sign

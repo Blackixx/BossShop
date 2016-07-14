@@ -107,8 +107,7 @@ shop:
     - type:ENCHANTED_BOOK
     - amount:1
     - name:&4[crown] &cEnchantment &4[crown]
-    - 'lore:&8Enchants the Item in your hand. #&cPrice: 25 Exp Level ##&cOnly for
-      VIPs!'
+    - 'lore:&8Enchants the Item in your hand. #&cPrice: 25 Exp Level ##&cOnly for VIPs!'
     - enchantment:DURABILITY#3
     Message: '&eThe Enchantment Unbreaking III was added to your item!'
     InventoryLocation: 19

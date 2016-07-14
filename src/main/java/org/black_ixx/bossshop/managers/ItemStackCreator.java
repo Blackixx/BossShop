@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.black_ixx.bossshop.managers.external.GuiShopManagerManager;
-import org.bukkit.Bukkit;
 
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
@@ -135,7 +134,10 @@ public class ItemStackCreator {
 				ItemMeta meta = i.getItemMeta();
 
 				String par[] = a.split("#");
-				List<String> lore = new ArrayList<String>();
+				List<String> lore = meta.getLore();
+				if(lore == null){
+					lore = new ArrayList<>();
+				}
 				for (String b : par){
 					lore.add(b);
 				}
@@ -253,7 +255,8 @@ public class ItemStackCreator {
 
 				continue;
 			}
-			if (Bukkit.getVersion().contains("1.8") || Bukkit.getVersion().contains("1.9")) {    // Make sure server is 1.8+
+
+			try{
 				if (s.equalsIgnoreCase("banner")) {
 					if (i.getType()!=Material.BANNER){
 						ClassManager.manager.getBugFinder().severe("Mistake in Config: "+a+" (patterns) You can't use \"banner\" on items which are not banners...");
@@ -307,6 +310,8 @@ public class ItemStackCreator {
 					i.setItemMeta(meta);
 					continue;
 				}
+			}catch (Exception e){
+				//Seems like players are using an older server version that does not support banners or itemflags yet
 			}
 
 			if (s.equalsIgnoreCase("playerhead")){

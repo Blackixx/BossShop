@@ -9,7 +9,8 @@ shop:
     PriceType: nothing
     MenuItem:
     - name:&6[tools] &c&l%name% Info &6[tools]
-    - 'lore:&2Money: %balance%#&9Points: %balancepoints%'
+    - 'lore:&2Money: %balance%'
+    - 'lore:&9Points: %balancepoints%'
     - type:SKULL_ITEM
     - amount:1
     - durability:3
@@ -76,8 +77,7 @@ shop:
     - type:DIAMOND
     - amount:1
     - name:&6&lPointShop &a[v]
-    - 'lore:&8Here you can buy Points ##&b&lYour Points: &r&9%balancepoints%#&b&lYour
-      Money: &r&9%balance% ##&cOnly for VIPs'
+    - 'lore:&8Here you can buy Points ##&b&lYour Points: &r&9%balancepoints%#&b&lYour Money: &r&9%balance% ##&cOnly for VIPs'
     Message: ''
     InventoryLocation: 10
     ExtraPermission: Permission.Vip
@@ -125,14 +125,19 @@ shop:
     - durability:3
     - playerhead:Black_ixx
     - name:&4Black_ixx
-    - 'lore:&cDeveloper.#&b&lName: &r&bFelix N.#&b&lWebsite: &r&bfelix.neuby.de'
+    - 'lore:&cDeveloper'
+    - 'lore:&b&lName: &r&bFelix N'
+    - 'lore:&b&lWebsite: &r&bfelix.neuby.de'
     MenuItem:
     - type:SKULL_ITEM
     - durability:3
     - playerhead:Black_ixx
     - name:&4Black_ixx
-    - 'lore:&cDeveloper.#&b&lName: &r&bFelix N.#&b&lWebsite: &r&bfelix.neuby.de##&8Click
-      to get his head! &c[<3]'
+    - 'lore:&cDeveloper'
+    - 'lore:&b&lName: &r&bFelix N'
+    - 'lore:&b&lWebsite: &r&bfelix.neuby.de'
+    - 'lore: '
+    - 'lore:&8Click to get his head! &c[<3]'
     Message: '&6You just got a free Black_ixx head!'
     InventoryLocation: 18
     ExtraPermission: ''
