@@ -1,6 +1,6 @@
 ﻿<<quote>>
 
-Tired of promoting your Players by hand? [[http://dev.bukkit.org/server-mods/commandrank-permissionsbukkit/|**CommandRank**]] promotes players for money/kills/passwords/exp etc.!
+Don't forget to check out the recently released Pro version of BossShop: [[https://www.spigotmc.org/resources/25699|**BossShopPro**]] ;-)
 
 Unleash the Power of an unique economy system: [[http://dev.bukkit.org/bukkit-plugins/playerpoints/|**PlayerPoints**]] (You can run this beside an other economy plugin)
 
@@ -9,6 +9,10 @@ Allow your players to open a Shop GUI by right-clicking an Item with [[http://de
 You want your VIPs to be able to become invincible but you are afraid of abusing players? Use [[http://dev.bukkit.org/bukkit-plugins/vip-god/|**VIP-God**]] :)
 
 <</quote>>
+
+v2.6.7
+*[FIX] Now displaying huge numbers correctly
+
 
 v2.6.6
 *[IMPROVE] You can now add optionally create lores following way:

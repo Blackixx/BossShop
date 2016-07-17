@@ -51,7 +51,11 @@ public class ClassManager {
 		}
 
 		if (settings.getVaultEnabled()){
+			try{
 			vaulthandler= new VaultHandler(settings.getMoneyEnabled(), settings.getPermissionsEnabled());
+			}catch (NoClassDefFoundError exc){
+				bugfinder.warn("Vault was not found! You need that plugin in order to be able to work with money or the permissions reward.");
+			}
 		}
 
 		if (settings.getTimedCommandEnabled()){
