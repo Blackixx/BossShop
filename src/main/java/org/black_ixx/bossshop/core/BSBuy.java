@@ -10,6 +10,7 @@ import org.black_ixx.bossshop.core.enums.BSPriceType;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.config.BSConfigShop;
 import org.black_ixx.bossshop.misc.Enchant;
+import org.black_ixx.bossshop.misc.MathTools;
 import org.black_ixx.timedCommands.StoreHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -307,11 +308,11 @@ public class BSBuy {
 			return "";
 		}
 		ClassManager.manager.getVaultHandler().getEconomy().withdrawPlayer(p.getName(), money);
-		return "" + ClassManager.manager.getVaultHandler().getEconomy().getBalance(p.getName());
+		return MathTools.displayDouble(ClassManager.manager.getVaultHandler().getEconomy().getBalance(p.getName()), 2);
 	}
 
 	private String takePoints(Player p, Integer d) {
-		return "" + ClassManager.manager.getPointsManager().takePoints(p, d);
+		return MathTools.displayDouble(ClassManager.manager.getPointsManager().takePoints(p, d), 0);
 	}
 
 	// //////////////////////////////// <- Give reward
@@ -480,7 +481,6 @@ public class BSBuy {
 
 	// //////////////////////////////// <- Transform messages
 
-	@SuppressWarnings("unchecked")
 	public String transformMessage(String msg, BSShop shop, Player p) {
 		if (msg == null) {
 			return null;
@@ -491,28 +491,16 @@ public class BSBuy {
 
 		//Handle reward and price variables
 		if(msg.contains("%price%") || msg.contains("%reward%")){
-			String rewardMessage = String.valueOf(reward);
-			String priceMessage = String.valueOf(price);
+			String rewardMessage = null;
+			String priceMessage = null;
 
 
 			if(msg.contains("%reward%")){
-				if (reward == null) {
-					reward = 0;
-				}
-				//Item?
-				if(ClassManager.manager.getItemStackTranslator().isItemList(reward)){
-					rewardMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) reward);
-				}
+				rewardMessage = getObjectInfo(reward);
 			}
 
 			if(msg.contains("%price%")){
-				if (price == null) {
-					price = 0;
-				}
-				//Item?
-				if(ClassManager.manager.getItemStackTranslator().isItemList(price)){
-					priceMessage = ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) price);
-				}
+				priceMessage = getObjectInfo(price);
 			}
 
 			//Does shop need to be customizable?
@@ -539,16 +527,16 @@ public class BSBuy {
 					rewardMessage = null;
 				}else{
 					if(price instanceof Integer){
-						priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price));
+						priceMessage = MathTools.displayDouble((ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (int)price)), 0);
 					}
 					if(price instanceof Double){
-						priceMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price));
+						priceMessage = MathTools.displayDouble((ClassManager.manager.getMultiplierHandler().calculateWithMultiplier(p, priceT, (double)price)), 2);
 					}
 					if(reward instanceof Integer){
-						rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward));
+						rewardMessage = MathTools.displayDouble((ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (int)reward)), 0);
 					}
 					if(reward instanceof Double){
-						rewardMessage = String.valueOf(ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward));
+						rewardMessage = MathTools.displayDouble((ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(p, BSPriceType.detectType(buyT.name()), (double)reward)), 2);
 					}
 				}
 			}
@@ -581,6 +569,29 @@ public class BSBuy {
 		}
 
 		return msg;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	private String getObjectInfo(Object o){
+		if(o == null){
+			return "0";
+		}
+		
+		if(ClassManager.manager.getItemStackTranslator().isItemList(o)){
+			return ClassManager.manager.getItemStackTranslator().getFriendlyText((List<ItemStack>) o);
+		}
+
+		if(o instanceof Integer){
+			int i = (int) o;
+			return MathTools.displayDouble(i, 0);
+		}
+		if(o instanceof Double){
+			double d = (double) o;
+			return MathTools.displayDouble(d, 2);
+		}
+		
+		return String.valueOf(o);
 	}
 
 

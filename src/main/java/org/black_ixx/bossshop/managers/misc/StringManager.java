@@ -76,11 +76,11 @@ public class StringManager {
 
 			if(s.contains("%balance%") && ClassManager.manager.getVaultHandler() != null){
 				double balance = MathTools.round(ClassManager.manager.getVaultHandler().getEconomy().getBalance(target.getName()), 2);
-				s=s.replace("%balance%", String.valueOf(balance));
+				s=s.replace("%balance%", MathTools.displayDouble(balance, 2));
 			}
 			if(s.contains("%balancepoints%") && ClassManager.manager.getPointsManager() != null){
 				int balance_points = ClassManager.manager.getPointsManager().getPoints(target);
-				s=s.replace("%balancepoints%", String.valueOf(balance_points));
+				s=s.replace("%balancepoints%",  MathTools.displayDouble(balance_points, 0));
 			}
 
 
