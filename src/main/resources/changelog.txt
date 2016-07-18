@@ -15,7 +15,7 @@ v2.6.8
 
 
 v2.6.7
-*[FIX] Now displaying huge numbers correctly
+*[FIX] Now displaying the value of huge numbers correctly
 
 
 v2.6.6

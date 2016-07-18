@@ -6,10 +6,11 @@ import java.text.DecimalFormat;
 
 public class MathTools{
 
+	
+	private static DecimalFormat df = new DecimalFormat("#");
 
 
 	public static String displayDouble(double d, int decimal_place){
-		DecimalFormat df = new DecimalFormat("#");
 		df.setMaximumFractionDigits(decimal_place);
 		return df.format(d);
 	}
