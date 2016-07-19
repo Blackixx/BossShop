@@ -310,8 +310,9 @@ public class ItemStackCreator {
 					i.setItemMeta(meta);
 					continue;
 				}
-			}catch (Exception e){
-				//Seems like players are using an older server version that does not support banners or itemflags yet
+			}catch (NoClassDefFoundError e){
+				ClassManager.manager.getBugFinder().severe("Unable to work with itemdata '"+s.toLowerCase()+":"+a+". Seems like it is not supported by your server version yet.");
+				//Seems like players are using an older server version that does not support these features yet. The error should not appear when users have set up their shops correctly and do not try to use things they can not use yet.
 			}
 
 			if (s.equalsIgnoreCase("playerhead")){
