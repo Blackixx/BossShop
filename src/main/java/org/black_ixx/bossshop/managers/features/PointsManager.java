@@ -16,6 +16,7 @@ public class PointsManager {
 		ENJIN_MINECRAFT_PLUGIN("EnjinMinecraftPlugin", "Enjin",  "EMP"), 
 		POINTSAPI("PointsAPI", "PAPI"), 
 		TOKENENCHANT("TokenEnchant", "TE", "TokenEnchants"),
+		VOTINGPLUGIN("VotingPlugin", "VP"),
 		Jobs("Jobs", "JobsReborn", "JobsPoints"),
 		CUSTOM;
 
@@ -102,6 +103,14 @@ public class PointsManager {
 				break;
 			}
 			pa = new TokenEnchantAPIPlugin();
+			break;
+
+		case VOTINGPLUGIN:
+			if (Bukkit.getPluginManager().getPlugin("VotingPlugin") == null) {
+				ClassManager.manager.getBugFinder().severe("You defined VotingPlugin as the Points Plugin ... BUT IT WAS NOT FOUND?! Please download it at spigotmc.org!");
+				break;
+			}
+			pa = new VotingPluginAPI();
 			break;
 
 		case Jobs:
