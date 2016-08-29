@@ -4,19 +4,15 @@ import org.bukkit.OfflinePlayer;
 import org.kingdoms.constants.kingdom.Kingdom;
 import org.kingdoms.constants.player.OfflineKingdomPlayer;
 import org.kingdoms.manager.game.GameManagement;
-import org.kingdoms.manager.game.KingdomManager;
 
 public class KingdomsAPI extends IPointsAPI {
 
 	
-	private KingdomManager k;
 	
 	
 	
 	public KingdomsAPI() {
 		super("Kingdoms");
-		
-		 k = GameManagement.getKingdomManager();
 	}
 	
 	
@@ -25,7 +21,7 @@ public class KingdomsAPI extends IPointsAPI {
     public int getPoints(OfflinePlayer player) {
         OfflineKingdomPlayer p = GameManagement.getPlayerManager().getOfflineKingdomPlayer(player);
         if(p.getKingdomName() != null){
-            Kingdom kingdom = k.getOrLoadKingdom(p.getKingdomName());
+            Kingdom kingdom = GameManagement.getKingdomManager().getOrLoadKingdom(p.getKingdomName());
             if(kingdom != null){
                 return kingdom.getResourcepoints();
             }
@@ -37,7 +33,7 @@ public class KingdomsAPI extends IPointsAPI {
 	public int setPoints(OfflinePlayer player, int points) {
         OfflineKingdomPlayer p = GameManagement.getPlayerManager().getOfflineKingdomPlayer(player);
         if(p.getKingdomName() != null){
-            Kingdom kingdom = k.getOrLoadKingdom(p.getKingdomName());
+            Kingdom kingdom = GameManagement.getKingdomManager().getOrLoadKingdom(p.getKingdomName());
 			if(kingdom != null){
 				kingdom.setResourcepoints(points);
 				return points;
@@ -50,7 +46,7 @@ public class KingdomsAPI extends IPointsAPI {
 	public int takePoints(OfflinePlayer player, int points) {
         OfflineKingdomPlayer p = GameManagement.getPlayerManager().getOfflineKingdomPlayer(player);
         if(p.getKingdomName() != null){
-            Kingdom kingdom = k.getOrLoadKingdom(p.getKingdomName());
+            Kingdom kingdom = GameManagement.getKingdomManager().getOrLoadKingdom(p.getKingdomName());
 			if(kingdom != null){
 				int current = kingdom.getResourcepoints();
 				int result = current - points;
@@ -65,7 +61,7 @@ public class KingdomsAPI extends IPointsAPI {
 	public int givePoints(OfflinePlayer player, int points) {
         OfflineKingdomPlayer p = GameManagement.getPlayerManager().getOfflineKingdomPlayer(player);
         if(p.getKingdomName() != null){
-            Kingdom kingdom = k.getOrLoadKingdom(p.getKingdomName());
+            Kingdom kingdom = GameManagement.getKingdomManager().getOrLoadKingdom(p.getKingdomName());
 			if(kingdom != null){
 				int current = kingdom.getResourcepoints();
 				int result = current + points;
