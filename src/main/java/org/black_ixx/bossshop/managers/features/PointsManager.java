@@ -18,6 +18,7 @@ public class PointsManager {
 		TOKENENCHANT("TokenEnchant", "TE", "TokenEnchants"),
 		VOTINGPLUGIN("VotingPlugin", "VP"),
 		Jobs("Jobs", "JobsReborn", "JobsPoints"),
+		Kingdoms("Kingdoms", "Kingdom"),
 		CUSTOM;
 
 		private String[] nicknames;
@@ -90,6 +91,10 @@ public class PointsManager {
 
 		case TOKENENCHANT:
 			pa = new TokenEnchantAPIPlugin();
+			break;
+			
+		case Kingdoms:
+			pa = new KingdomsAPI();
 			break;
 
 		case Jobs:

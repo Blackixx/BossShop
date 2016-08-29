@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.black_ixx</groupId>
 	<artifactId>BossShop</artifactId>
-	<version>2.7.0</version>
+	<version>2.7.1</version>
 	<name>BossShop</name>
 	<description>Create virtual chest shops</description>
 	<licenses>
@@ -203,6 +203,13 @@
 			<artifactId>EnjinMinecraftPlugin_v2</artifactId>
 			<version>2.7.8</version>
 			<systemPath>${basedir}/lib/EnjinMinecraftPlugin_v2.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.kingdoms.main</groupId>
+			<artifactId>Kingdoms</artifactId>
+			<version>8.5.3</version>
+			<systemPath>${basedir}/lib/Kingdoms.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
 		<dependency>

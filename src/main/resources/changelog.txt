@@ -10,8 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+v2.7.1
+*[ADD] Added support for Kingdoms Resourcepoints
+
+
 v2.7.0
-*[ADD] Added support for VotingPlugin Points (If you are using VotingPlugin you need v4.2.4 or higher)
+*[ADD] Added support for VotingPlugin Points (Needs VotingPlugin v4.2.4 or higher)
 
 
 v2.6.9

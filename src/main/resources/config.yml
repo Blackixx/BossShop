@@ -102,6 +102,6 @@ MultiplierGroups:
 # Only important if you work with Points.
 # Here you can enter whatever you want. BossShop will always detect the Points Plugin you are using and it will hook into it
 # (If you are using one). If you use multiple Points Plugins fill in the name of the one that you want BossShop to work with.
-# 'PlayerPoints'/'PP', 'CommandPoints'/'CP', 'Enjin Minecraft Plugin'/'Enjin'/'EMP', 'PointsAPI'/'PAPI'.
+# 'PlayerPoints', 'CommandPoints', 'EnjinMinecraftPlugin'/'Enjin', 'PointsAPI', 'Kingdoms', 'Jobs', 'TokenEnchant', 'VotingPlugin'.
 #
 PointsPlugin: auto-detect
