@@ -10,6 +10,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 
 <</quote>>
 
+
+v2.7.2
+*[REMOVE] Removed auto-updater (still keeping optional update notifications). It might be re-added in the future.
+*[FIX] Small message fix
+
+
 v2.7.1
 *[ADD] Added support for Kingdoms Resourcepoints
 

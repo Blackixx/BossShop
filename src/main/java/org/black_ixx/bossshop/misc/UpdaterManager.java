@@ -46,7 +46,7 @@ public class UpdaterManager{
 
 		BossShop plugin = ClassManager.manager.getPlugin();
 
-		boolean auto_download_update = ClassManager.manager.getSettings().getAutoDownloadUpdateEnabled();
+		boolean auto_download_update = false; //ClassManager.manager.getSettings().getAutoDownloadUpdateEnabled();
 		Updater updater = new Updater(plugin, 65031, pluginfile, auto_download_update?UpdateType.DEFAULT:UpdateType.NO_DOWNLOAD, true){
 			@Override
 			public boolean shouldUpdate(String localVersion, String remoteVersion){

@@ -96,7 +96,7 @@ public class BSShops {
 
 	public void openShop(Player p, BSShop shop){		
 		shop.openInventory(p);
-		ClassManager.manager.getMessageHandler().sendMessage("Main.CloseShop", p, null, p, shop, null);
+		ClassManager.manager.getMessageHandler().sendMessage("Main.OpenShop", p, null, p, shop, null);
 	}
 
 	public BSShop getShop(String name){
