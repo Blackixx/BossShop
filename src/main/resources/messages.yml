@@ -3,7 +3,7 @@ Main:
   NoPermission: '&cYou are not allowed to do this!'
   AlreadyBought: '&cYou already purchased that!'
   ShopNotExisting: '&cThat Shop is not existing...'
-  OpenShop: '&6Opening Shop &c%shop%&6.'
+  OpenShop: ''
   OpenShopOtherPlayer: '&6Opening Shop &c%shop% &6for %displayname%&6.'
   CloseShop: ''
   CloseShopOtherPlayer: '&6Closed inventory of %displayname%&6.'
