@@ -57,7 +57,6 @@ public class InventoryListener implements Listener{
 				if(! (ClassManager.manager.getPlugin().getAPI().isValidShop(event.getClickedInventory()))){
 					switch(event.getAction()){
 					case CLONE_STACK:
-					case COLLECT_TO_CURSOR:
 					case DROP_ALL_SLOT:
 					case DROP_ONE_SLOT:
 					case HOTBAR_MOVE_AND_READD:

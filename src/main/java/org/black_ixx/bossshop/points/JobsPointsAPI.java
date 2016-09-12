@@ -18,7 +18,7 @@ public class JobsPointsAPI extends IPointsAPI {
 	@Override
 	public int setPoints(OfflinePlayer player, int points) {
 		Jobs.getPlayerManager().getPointsData().getPlayerPointsInfo(player.getUniqueId()).setPoints(points);
-		return getPoints(player);
+		return points;
 	}
 
 	@Override

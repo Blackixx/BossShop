@@ -6,19 +6,11 @@ import net.milkbowl.vault.permission.Permission;
 import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.misc.NoEconomy;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class VaultHandler {
 
 	public VaultHandler(boolean eco, boolean per){
-
-
-		Plugin VaultPlugin = Bukkit.getServer().getPluginManager().getPlugin("Vault");	     
-		if (VaultPlugin == null) {
-			ClassManager.manager.getBugFinder().warn("Vault was not found... You need it if you want to work with Permissions, Permission Groups or Money! Get it there: http://dev.bukkit.org/server-mods/vault/");
-			return;
-		}	     
 		Bukkit.getLogger().info("[BossShop] Vault found.");
 
 		if (eco){

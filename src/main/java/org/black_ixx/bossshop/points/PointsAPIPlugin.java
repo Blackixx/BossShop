@@ -37,7 +37,7 @@ public class PointsAPIPlugin extends IPointsAPI {
 		}else{
 			pp.setPoints(player, points);
 		}
-		return getPoints(player);
+		return points;
 	}
 
 	@Override

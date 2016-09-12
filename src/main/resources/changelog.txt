@@ -11,8 +11,12 @@ You want your VIPs to be able to become invincible but you are afraid of abusing
 <</quote>>
 
 
+v2.7.3
+*[IMPROVE] Different small improvements
+
+
 v2.7.2
-*[REMOVE] Removed auto-updater (still keeping optional update notifications). It might be re-added in the future.
+*[REMOVE] Removed auto-updater (might be re-added in the future; still keeping optional update notifications)
 *[FIX] Small message fix
 
 

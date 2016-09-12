@@ -15,6 +15,7 @@ import org.black_ixx.bossshop.managers.misc.StringManager;
 import org.black_ixx.bossshop.managers.serverpinging.ServerPingingManager;
 import org.black_ixx.bossshop.misc.UpdaterManager;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 public class ClassManager {
 
 	public static ClassManager manager;
@@ -51,10 +52,11 @@ public class ClassManager {
 		}
 
 		if (settings.getVaultEnabled()){
-			try{
-			vaulthandler= new VaultHandler(settings.getMoneyEnabled(), settings.getPermissionsEnabled());
-			}catch (NoClassDefFoundError exc){
-				bugfinder.warn("Vault was not found! You need that plugin in order to be able to work with money or the permissions reward.");
+			Plugin VaultPlugin = Bukkit.getServer().getPluginManager().getPlugin("Vault");	     
+			if (VaultPlugin == null) {
+				ClassManager.manager.getBugFinder().warn("Vault was not found... You need it if you want to work with Permissions, Permission Groups or Money! Get it there: http://dev.bukkit.org/server-mods/vault/");
+			}else{
+				vaulthandler= new VaultHandler(settings.getMoneyEnabled(), settings.getPermissionsEnabled());
 			}
 		}
 

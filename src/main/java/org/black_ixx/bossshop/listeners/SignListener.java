@@ -34,8 +34,13 @@ public class SignListener implements Listener{
 
 		for (Integer s : set.keySet() ){
 
-			if (line.endsWith(set.get(s).getSignText().toLowerCase())){
-				return set.get(s);
+			BSShop shop = set.get(s);
+			String signtext = shop.getSignText();
+
+			if(signtext != null){
+				if (line.endsWith(signtext.toLowerCase())){
+					return shop;
+				}
 			}
 
 

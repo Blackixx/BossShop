@@ -30,7 +30,7 @@ public class TokenEnchantAPIPlugin extends IPointsAPI {
 	@Override
 	public int setPoints(OfflinePlayer player, int points) {
 		pp.setTokens(player, points);
-		return getPoints(player);
+		return points;
 	}
 
 	@Override

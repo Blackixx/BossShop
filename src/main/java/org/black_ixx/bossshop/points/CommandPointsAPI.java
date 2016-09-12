@@ -29,7 +29,7 @@ public class CommandPointsAPI extends IPointsAPI {
 	@Override
 	public int setPoints(OfflinePlayer player, int points) {
 		pp.setPoints(player.getName(), points, plugin);
-		return getPoints(player);
+		return points;
 	}
 
 	@Override
